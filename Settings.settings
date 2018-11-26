@@ -1,9 +1,15 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CustomSet" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="NeoLoadAddOn" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="TestNL" Type="System.String" Scope="User">
-      <Value Profile="(Default)">false</Value>
+    <Setting Name="NeoLoadApiPort" Type="System.String" Scope="User">
+      <Value Profile="(Default)">7400</Value>
+    </Setting>
+    <Setting Name="NeoLoadApiToken" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="NeoLoadApiHostname" Type="System.String" Scope="User">
+      <Value Profile="(Default)">localhost</Value>
     </Setting>
   </Settings>
 </SettingsFile>

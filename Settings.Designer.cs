@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CustomSet {
+namespace NeoLoadAddOn {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -25,13 +25,37 @@ namespace CustomSet {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("false")]
-        public string TestNL {
+        [global::System.Configuration.DefaultSettingValueAttribute("7400")]
+        public string NeoLoadApiPort {
             get {
-                return ((string)(this["TestNL"]));
+                return ((string)(this["NeoLoadApiPort"]));
             }
             set {
-                this["TestNL"] = value;
+                this["NeoLoadApiPort"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string NeoLoadApiToken {
+            get {
+                return ((string)(this["NeoLoadApiToken"]));
+            }
+            set {
+                this["NeoLoadApiToken"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("localhost")]
+        public string NeoLoadApiHostname {
+            get {
+                return ((string)(this["NeoLoadApiHostname"]));
+            }
+            set {
+                this["NeoLoadApiHostname"] = value;
             }
         }
     }

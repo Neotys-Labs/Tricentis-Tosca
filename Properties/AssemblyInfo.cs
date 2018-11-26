@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Tricentis.Automation.Creation.Attributes;
 using Tricentis.Automation.Execution;
@@ -8,15 +7,15 @@ using Tricentis.TCAddOns;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CustomSet")]
+[assembly: AssemblyTitle("NeoLoadAddOn")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("CustomSet")]
+[assembly: AssemblyProduct("NeoLoadAddOn")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: TCAddOnType(typeof(CustomSet.NeoLoadAddOn))]
+[assembly: TCAddOnType(typeof(NeoLoadAddOn.NeoLoadAddOn))]
 [assembly: EngineId("SapEngine")]
 [assembly: HandlesExecutionInfosAttribute]
 

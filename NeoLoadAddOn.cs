@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Tricentis.TCAddOns;
+﻿using Tricentis.TCAddOns;
 
-namespace CustomSet
+namespace NeoLoadAddOn
 {
     public class NeoLoadAddOn : TCAddOn
     {

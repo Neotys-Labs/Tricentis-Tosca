@@ -7,8 +7,8 @@
     <ProjectGuid>{BAA1DFA1-E13E-4A8C-AACA-F899BC7C2A2E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CustomSet</RootNamespace>
-    <AssemblyName>CustomSet</AssemblyName>
+    <RootNamespace>NeoLoadAddOn</RootNamespace>
+    <AssemblyName>NeoLoadAddOn</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -94,38 +94,37 @@
       <HintPath>packages\System.Spatial.5.8.4\lib\net40\System.Spatial.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="TCAddOn">
-      <HintPath>..\..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\TCAddOn.dll</HintPath>
+    <Reference Include="TCAddOn, Version=12.0.0.18421, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\TCAddOn.dll</HintPath>
     </Reference>
-    <Reference Include="TCAPIObjects">
-      <HintPath>..\..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\TCAPIObjects.dll</HintPath>
+    <Reference Include="TCAPIObjects, Version=12.0.0.18848, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\TCAPIObjects.dll</HintPath>
     </Reference>
     <Reference Include="Tricentis.Automation.Interaction">
-      <HintPath>C:\Program Files (x86)\Tricentis\Tosca Testsuite\Tricentis.Automation.Interaction.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Tricentis.Automation.Resources, Version=11.3.0.16310, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\Tricentis.Automation.Resources.dll</HintPath>
-    </Reference>
-    <Reference Include="Tricentis.AutomationBase">
-      <HintPath>C:\Program Files (x86)\Tricentis\Tosca Testsuite\Tricentis.AutomationBase.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\Tricentis.Automation.Interaction.dll</HintPath>
     </Reference>
     <Reference Include="Tricentis.Automation.SapEngine">
-      <HintPath>C:\Program Files (x86)\Tricentis\Tosca Testsuite\Tricentis.Automation.SapEngine.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\Tricentis.Automation.SapEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="Tricentis.AutomationBase">
+      <HintPath>..\..\..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\Tricentis.AutomationBase.dll</HintPath>
+    </Reference>
+    <Reference Include="Tricentis.AutomationObjects, Version=12.0.0.150, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\Tricentis.AutomationObjects.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExampleSubscriber .cs" />
     <Compile Include="ExecutionEntryInfo .cs" />
-    <Compile Include="MyResource.cs" />
     <Compile Include="NeoLoadAddOn.cs" />
-    <Compile Include="NeoLoadAddOnSettings.cs" />
+    <Compile Include="NeoLoadDesignApiInstance.cs" />
     <Compile Include="NeoLoadSettings.cs" />
     <Compile Include="NeoloadTracer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
