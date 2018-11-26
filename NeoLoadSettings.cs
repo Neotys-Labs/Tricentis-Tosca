@@ -7,9 +7,9 @@ namespace NeoLoadAddOn
 {
     public class NeoLoadSettings : TCAddOnOptionsDialogPage
     {
-        public const string API_PORT_KEY = "NeoLoadApiPort";
-        public const string API_TOKEN_KEY = "NeoLoadApiToken";
-        public const string API_HOSTNAME_KEY = "NeoLoadApiHostname";
+        public static readonly string API_PORT_KEY = "NeoLoadApiPort";
+        public static readonly string API_TOKEN_KEY = "NeoLoadApiToken";
+        public static readonly string API_HOSTNAME_KEY = "NeoLoadApiHostname";
 
         protected override ApplicationSettingsBase GetSettingsObject()
         {

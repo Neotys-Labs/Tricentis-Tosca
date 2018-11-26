@@ -117,12 +117,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExampleSubscriber .cs" />
+    <Compile Include="TestCaseSubscriber.cs" />
     <Compile Include="ExecutionEntryInfo .cs" />
     <Compile Include="NeoLoadAddOn.cs" />
     <Compile Include="NeoLoadDesignApiInstance.cs" />
     <Compile Include="NeoLoadSettings.cs" />
-    <Compile Include="NeoloadTracer.cs" />
+    <Compile Include="TestActionListener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Settings.Designer.cs">
@@ -130,7 +130,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Task.cs" />
+    <Compile Include="TransferToNeoLoadTask.cs" />
     <Compile Include="TestCaseInfo.cs" />
   </ItemGroup>
   <ItemGroup>

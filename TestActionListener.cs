@@ -7,11 +7,11 @@ using Tricentis.Automation.Execution.Results;
 
 namespace NeoLoadAddOn
 {
-    public class NeoloadTracer : MonitoringTaskExecutor {
+    public class TestActionListener : MonitoringTaskExecutor {
 
-        bool _sendingToNeoLoad;
+        private bool _sendingToNeoLoad;
 
-        public NeoloadTracer(Validator validator) : base(validator) {
+        public TestActionListener(Validator validator) : base(validator) {
             this._sendingToNeoLoad = NeoLoadSettings.IsSendingToNeoLoad();
         }
 
@@ -22,11 +22,7 @@ namespace NeoLoadAddOn
             }
             if (testAction is SpecialExecutionTaskTestAction && (testAction as SpecialExecutionTaskTestAction).GetParameter("SapConnection") != null) {
                 // We are after SAP Logon, we can start SAP recording in NeoLoad.
-                Dictionary<string, string> properties = NeoLoadSettings.ReadSettingsFromUserFile();
-                string host = properties[NeoLoadSettings.API_HOSTNAME_KEY];
-                string port = properties[NeoLoadSettings.API_PORT_KEY];
-                string token = properties[NeoLoadSettings.API_TOKEN_KEY];
-                NeoLoadDesignApiInstance.NewInstance(host, port, token).StartSapRecording();
+                NeoLoadDesignApiInstance.GetInstance().StartSapRecording();
             }
 
         }

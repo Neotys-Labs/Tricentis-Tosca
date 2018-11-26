@@ -1,5 +1,7 @@
 ﻿using Neotys.DesignAPI.Client;
 using Neotys.DesignAPI.Model;
+using System.Collections.Generic;
+using System;
 
 namespace NeoLoadAddOn
 {
@@ -8,6 +10,8 @@ namespace NeoLoadAddOn
         private static NeoLoadDesignApiInstance _instance = null;
 
         private IDesignAPIClient _client = null;
+        private string _userPathName = null;
+        private bool _userPathExist = false;
 
         private NeoLoadDesignApiInstance(string host, string port, string token) {
             string url = "http://" + host + ":" + port + "/Design/v1/Service.svc/";
@@ -16,19 +20,39 @@ namespace NeoLoadAddOn
 
         public static NeoLoadDesignApiInstance GetInstance()
         {
+            if (_instance == null)
+            {
+                Dictionary<string, string> properties = NeoLoadSettings.ReadSettingsFromUserFile();
+                string host = properties[NeoLoadSettings.API_HOSTNAME_KEY];
+                string port = properties[NeoLoadSettings.API_PORT_KEY];
+                string token = properties[NeoLoadSettings.API_TOKEN_KEY];
+                _instance = new NeoLoadDesignApiInstance(host, port, token);
+            }
             return _instance;
         }
 
-
-        public static NeoLoadDesignApiInstance NewInstance(string host, string port, string token)
+        public void SetUserPathName(string name)
         {
-            _instance = new NeoLoadDesignApiInstance(host, port, token);
-            return _instance;
+            _userPathName = name;
         }
 
         public void StartSapRecording()
         {
             StartRecordingParamsBuilder _startRecordingPB = new StartRecordingParamsBuilder();
+            if (_userPathName != null && _userPathName.Length != 0)
+            {
+                ContainsUserPathParamsBuilder _containsBuilder = new ContainsUserPathParamsBuilder();
+                _containsBuilder.name(_userPathName);
+                _userPathExist = _client.ContainsUserPath(_containsBuilder.Build());
+                if (_userPathExist)
+                {
+                    _startRecordingPB.virtualUser(_userPathName + "_recording");
+                }
+                else
+                {
+                    _startRecordingPB.virtualUser(_userPathName);
+                }
+            }
             _startRecordingPB.isSapGuiProtocol(true);
 
             _client.StartRecording(_startRecordingPB.Build());
@@ -36,9 +60,18 @@ namespace NeoLoadAddOn
 
         public void StopRecording()
         {
-            StopRecordingParamsBuilder _stopRecordingPB = new StopRecordingParamsBuilder();
+            StopRecordingParamsBuilder _stopRecordingBuilder = new StopRecordingParamsBuilder();
 
-            _client.StopRecording(_stopRecordingPB.Build());
+
+            if (_userPathExist)
+            {
+                UpdateUserPathParamsBuilder _updateUserPathBuilder = new UpdateUserPathParamsBuilder();
+                _updateUserPathBuilder.name(_userPathName);
+                _updateUserPathBuilder.deleteRecording(true);
+                _stopRecordingBuilder.updateParams(_updateUserPathBuilder.Build());
+            }
+
+            _client.StopRecording(_stopRecordingBuilder.Build());
         }
     }
 }

@@ -4,7 +4,7 @@ using Tricentis.TCAPIObjects.Objects;
 
 namespace NeoLoadAddOn
 {
-    class Task : TCAddOnTask
+    class TransferToNeoLoadTask : TCAddOnTask
     {
         public override Type ApplicableType
         {
@@ -18,7 +18,7 @@ namespace NeoLoadAddOn
         {
             get
             {
-                return "Send To NeoLoad";
+                return "Transfert to NeoLoad";
             }
         }
 
