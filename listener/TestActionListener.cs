@@ -1,17 +1,17 @@
 ﻿
-using System;
-using System.Collections.Generic;
+using NeoLoad.Client;
+using NeoLoad.Settings;
 using Tricentis.Automation.AutomationInstructions.TestActions;
 using Tricentis.Automation.Creation;
 using Tricentis.Automation.Engines.Monitoring;
 using Tricentis.Automation.Execution.Results;
 
-namespace NeoLoadAddOn
+namespace NeoLoad.Listener
 {
     public class TestActionListener : MonitoringTaskExecutor {
 
+        private static bool _recordStarted = false;
         private bool _sendingToNeoLoad;
-        private bool _recordStarted = false;
 
         public TestActionListener(Validator validator) : base(validator) {
             _sendingToNeoLoad = NeoLoadSettings.IsSendingToNeoLoad();
@@ -28,6 +28,7 @@ namespace NeoLoadAddOn
             {
                 _recordStarted = true;
                 // We are before SAP Login, we can start SAP recording in NeoLoad.
+                System.Threading.Thread.Sleep(2000);
                 NeoLoadDesignApiInstance.GetInstance().StartSapRecording();
             }
         }

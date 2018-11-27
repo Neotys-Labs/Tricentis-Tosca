@@ -1,7 +1,7 @@
 ﻿using System;
 using Tricentis.Automation.Execution;
 
-namespace NeoLoadAddOn
+namespace NeoLoad.Listener
 {
     [Serializable]
     [TypeName("ExecutionEntry")]

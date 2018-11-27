@@ -1,6 +1,6 @@
 ﻿using Tricentis.TCAddOns;
 
-namespace NeoLoadAddOn
+namespace NeoLoad.AddOn
 {
     public class NeoLoadAddOn : TCAddOn
     {

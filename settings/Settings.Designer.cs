@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NeoLoadAddOn {
+namespace NeoLoad.Settings {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

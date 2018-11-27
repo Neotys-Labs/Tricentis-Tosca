@@ -1,8 +1,9 @@
-﻿using System;
+﻿using NeoLoad.Settings;
+using System;
 using Tricentis.TCAddOns;
 using Tricentis.TCAPIObjects.Objects;
 
-namespace NeoLoadAddOn
+namespace NeoLoad.AddOn
 {
     class TransferToNeoLoadTask : TCAddOnTask
     {

@@ -1,4 +1,5 @@
-﻿namespace NeoLoadAddOn {
+﻿namespace NeoLoad.Settings
+{
     
     
     // Cette classe vous permet de gérer des événements spécifiques dans la classe de paramètres :

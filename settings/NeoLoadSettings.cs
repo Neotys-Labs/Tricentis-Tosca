@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using Tricentis.TCAddOns;
 
-namespace NeoLoadAddOn
+namespace NeoLoad.Settings
 {
     public class NeoLoadSettings : TCAddOnOptionsDialogPage
     {

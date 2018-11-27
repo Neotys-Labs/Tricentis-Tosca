@@ -1,9 +1,9 @@
-﻿using Neotys.DesignAPI.Client;
+﻿using NeoLoad.Settings;
+using Neotys.DesignAPI.Client;
 using Neotys.DesignAPI.Model;
 using System.Collections.Generic;
-using System;
 
-namespace NeoLoadAddOn
+namespace NeoLoad.Client
 {
     class NeoLoadDesignApiInstance
     {

@@ -1,7 +1,9 @@
-﻿using System;
+﻿using NeoLoad.Client;
+using NeoLoad.Settings;
+using System;
 using Tricentis.Automation.Execution;
 
-namespace NeoLoadAddOn
+namespace NeoLoad.Listener
 {
     public class TestCaseSubscriber : ExecutionEventHandler<ExecutionEntryInfo, TestCaseInfo>
     {

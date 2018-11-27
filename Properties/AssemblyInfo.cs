@@ -15,7 +15,7 @@ using Tricentis.TCAddOns;
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: TCAddOnType(typeof(NeoLoadAddOn.NeoLoadAddOn))]
+[assembly: TCAddOnType(typeof(NeoLoad.AddOn.NeoLoadAddOn))]
 [assembly: EngineId("SapEngine")]
 [assembly: HandlesExecutionInfosAttribute]
 
