@@ -38,12 +38,12 @@ namespace NeoLoad.Settings {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string NeoLoadApiToken {
+        public string NeoLoadApiKey {
             get {
-                return ((string)(this["NeoLoadApiToken"]));
+                return ((string)(this["NeoLoadApiKey"]));
             }
             set {
-                this["NeoLoadApiToken"] = value;
+                this["NeoLoadApiKey"] = value;
             }
         }
         

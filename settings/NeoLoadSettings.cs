@@ -8,7 +8,7 @@ namespace NeoLoad.Settings
     public class NeoLoadSettings : TCAddOnOptionsDialogPage
     {
         public static readonly string API_PORT_KEY = "NeoLoadApiPort";
-        public static readonly string API_TOKEN_KEY = "NeoLoadApiToken";
+        public static readonly string API_KEY_KEY = "NeoLoadApiKey";
         public static readonly string API_HOSTNAME_KEY = "NeoLoadApiHostname";
 
         protected override ApplicationSettingsBase GetSettingsObject()
@@ -25,7 +25,7 @@ namespace NeoLoad.Settings
         public static void WriteSettingsToUserFile()
         {
             string[] lines = { API_PORT_KEY + "=" + Settings.Default.NeoLoadApiPort,
-                API_TOKEN_KEY + "=" + Settings.Default.NeoLoadApiToken,
+                API_KEY_KEY + "=" + Settings.Default.NeoLoadApiKey,
                 API_HOSTNAME_KEY + "=" + Settings.Default.NeoLoadApiHostname,
             };
             System.IO.File.WriteAllLines(GetUserFilePath(), lines);
@@ -59,9 +59,9 @@ namespace NeoLoad.Settings
 
     public class TokenSetting : TCAddOnOptionsDialogEntry
     {
-        protected override string SettingName { get; } = "NeoLoadApiToken";
+        protected override string SettingName { get; } = "NeoLoadApiKey";
 
-        protected override string DisplayedName { get; } = "NeoLoadApiToken";
+        protected override string DisplayedName { get; } = "NeoLoadApiKey";
     }
 
     public class HostnameSetting : TCAddOnOptionsDialogEntry

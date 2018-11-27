@@ -25,7 +25,7 @@ namespace NeoLoad.Client
                 Dictionary<string, string> properties = NeoLoadSettings.ReadSettingsFromUserFile();
                 string host = properties[NeoLoadSettings.API_HOSTNAME_KEY];
                 string port = properties[NeoLoadSettings.API_PORT_KEY];
-                string token = properties[NeoLoadSettings.API_TOKEN_KEY];
+                string token = properties[NeoLoadSettings.API_KEY_KEY];
                 _instance = new NeoLoadDesignApiInstance(host, port, token);
             }
             return _instance;
