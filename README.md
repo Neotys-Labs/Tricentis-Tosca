@@ -23,9 +23,9 @@ It allows you to interact with the NeoLoad [Design API](https://www.neotys.com/d
 
 1. Download the [latest release](https://github.com/Neotys-Labs/Tricentis-Tosca/releases/latest)
 
-2. Unzip in the root folder of your Tricentis Tosca installation directory (for example: C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\).
+2. Unzip in the root folder of the Tricentis Tosca installation directory (for example: C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\).
 
-3. Edit the file **Tricentis.Automation.Agent.exe.config** in the folder Tricentis Tosca installation directory
+3. Edit the file **Tricentis.Automation.Agent.exe.config** in the installation directory of Tricentis Tosca :
 
 * In the following node, replace **0.0.0.0-5.8.1.0** by **0.0.0.0-5.8.4.0**:
 ```xml
