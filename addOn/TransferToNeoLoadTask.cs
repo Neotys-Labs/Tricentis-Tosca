@@ -19,7 +19,7 @@ namespace NeoLoad.AddOn
         {
             get
             {
-                return "Transfert to NeoLoad";
+                return "Transfer to NeoLoad";
             }
         }
 

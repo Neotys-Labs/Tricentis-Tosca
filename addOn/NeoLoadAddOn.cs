@@ -8,7 +8,7 @@ namespace NeoLoad.AddOn
         {
             get
             {
-                return "NeoLoadAddOn";
+                return "NeoLoadAdd-on";
             }
         }
 
@@ -16,7 +16,7 @@ namespace NeoLoad.AddOn
         {
             get
             {
-                return "NeoLoad AddOn";
+                return "NeoLoad Add-on";
             }
         }
     }

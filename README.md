@@ -1,11 +1,11 @@
 <p align="center"><img src="/screenshots/tricentis-logo.png" width="40%" alt="Tricentis Logo" /></p>
 
-# NeoLoad Add On for Tricentis Tosca
+# NeoLoad Add-on for Tricentis Tosca
 
 ## Overview
 
-C# extension to integrate [Tricentis Tosca](https://www.tricentis.com/) with [NeoLoad](https://www.neotys.com/neoload/overview) for SAP Script maintenance.
-It allows you to interact with the NeoLoad [Design API](https://www.neotys.com/documents/doc/neoload/latest/en/html/#11265.htm) to convert a Tricentis Tosca SAP script to a NeoLoad SAP User Path or update an existing SAP User Path.
+C# extension to integrate [Tricentis Tosca](https://www.tricentis.com/) with [NeoLoad](https://www.neotys.com/neoload/overview) for SAP GUI Script maintenance.
+It allows you to interact with the NeoLoad [Design API](https://www.neotys.com/documents/doc/neoload/latest/en/html/#11265.htm) to convert a Tricentis Tosca SAP GUI script to a NeoLoad SAP GUI User Path or update an existing SAP User Path.
 
 
 
@@ -15,11 +15,10 @@ It allows you to interact with the NeoLoad [Design API](https://www.neotys.com/d
 | Author | Neotys |
 | License           | [BSD 2-Clause "Simplified"](https://github.com/Neotys-Labs/Tricentis-Tosca/blob/master/LICENSE) |
 | NeoLoad Licensing | License FREE edition, or Enterprise edition, or Professional with Integration & Advanced Usage|
-| Tricentis Licensing | [TODO Tricentis Tosca license]() or a free [15-day trial](https://www.tricentis.com/testing-tool-trial/) |
 | Supported versions | Tested with Tricentis Tosca version 11.3 and 12.0 and NeoLoad version [6.7.0](https://www.neotys.com/support/download-neoload)|
 | Download Binaries | See the [latest release](https://github.com/Neotys-Labs/Tricentis-Tosca/releases/latest)|
 
-## Setting up the NeoLoad Tricentis Tosca Add On.
+## Setting up the NeoLoad Tricentis Tosca Add-on.
 
 1. Download the [latest release](https://github.com/Neotys-Labs/Tricentis-Tosca/releases/latest)
 
@@ -52,25 +51,28 @@ It allows you to interact with the NeoLoad [Design API](https://www.neotys.com/d
 
 ## Global Configuration
 
-Go to PROJECT > Options, to define the NeoLoad Add On settings:
+Go to PROJECT > Options, to define the NeoLoad Add-on settings:
 
 <p align="center"><img src="/screenshots/options.png" alt="Options" /></p>
 
 Parameters: 
 * **NeoLoadApiPort**: The port of the NeoLoad API, by default it is 7400. 
 * **NeoLoadApiKey**: The API Key specified in the NeoLoad project when identification is required. If no identification is required, this parameter can be left blank.
-* **NeoLoadApiHostname**: The hostname of the machine that contains NeoLoad, by default it is localhost.
+* **NeoLoadApiHostname**: The hostname of the machine that contains NeoLoad, by default it is localhost. It should be localhost for SAP GUI test case.
 
 To access these values, go to the NeoLoad **Preferences**, then the **Project settings** tab, then select the **REST API** category.
 <p align="center"><img src="/screenshots/designapi.png" alt="Design API" /></p>
 
 ## How to convert a Tricentis Tosca SAP script to a NeoLoad SAP User Path or update an existing SAP User Path.
 
-In Tricentis Tosca, right click on an execution of a SAP Test Case and then **NeoLoad AddOn > Transfert to NeoLoad**
+In Tricentis Tosca, right click on an execution of a SAP Test Case and then **NeoLoad Add-on > Transfer to NeoLoad**
 
-<p align="center"><img src="/screenshots/transferttoneoload.png" alt="Design API" /></p>
+<p align="center"><img src="/screenshots/transfertoneoload.png" alt="transfer" /></p>
 
-During the execution of the Tricentis Tosca test case, if the NeoLoad User Path does not exist, it will be created. Otherwise, the existing User Path will be updated. 
+During the execution of the Tricentis Tosca test case, if the NeoLoad User Path does not exist, it will be created. Otherwise, the existing User Path will be updated thanks to the User Path Update feature.
+The User Path Update feature merge the original User Path with a newer recording, copying variable extractors and variables. Below the SAP GUI User Path in NeoLoad.
+
+<p align="center"><img src="/screenshots/userpath.png" alt="user path" /></p>
 
 ## ChangeLog
 

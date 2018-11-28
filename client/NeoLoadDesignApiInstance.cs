@@ -12,6 +12,7 @@ namespace NeoLoad.Client
         private IDesignAPIClient _client = null;
         private string _userPathName = null;
         private bool _userPathExist = false;
+        private bool _recordStarted = false;
 
         private NeoLoadDesignApiInstance(string host, string port, string token) {
             string url = "http://" + host + ":" + port + "/Design/v1/Service.svc/";
@@ -36,8 +37,14 @@ namespace NeoLoad.Client
             _userPathName = name;
         }
 
+        public bool IsRecordStarted()
+        {
+            return _recordStarted;
+        }
+
         public void StartSapRecording()
         {
+            _recordStarted = true;
             StartRecordingParamsBuilder _startRecordingPB = new StartRecordingParamsBuilder();
             if (_userPathName != null && _userPathName.Length != 0)
             {
@@ -62,7 +69,6 @@ namespace NeoLoad.Client
         {
             StopRecordingParamsBuilder _stopRecordingBuilder = new StopRecordingParamsBuilder();
 
-
             if (_userPathExist)
             {
                 UpdateUserPathParamsBuilder _updateUserPathBuilder = new UpdateUserPathParamsBuilder();
@@ -72,6 +78,7 @@ namespace NeoLoad.Client
             }
 
             _client.StopRecording(_stopRecordingBuilder.Build());
+            _recordStarted = false;
         }
     }
 }
