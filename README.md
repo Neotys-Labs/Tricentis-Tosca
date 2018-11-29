@@ -24,7 +24,7 @@ It allows you to interact with the NeoLoad [Design API](https://www.neotys.com/d
 
 2. Unzip in the root folder of the Tricentis Tosca installation directory (for example: C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\).
 
-3. Edit the file **Tricentis.Automation.Agent.exe.config** in the installation directory of Tricentis Tosca :
+3. Edit the file **Tricentis.Automation.Agent.exe.config** in the installation directory of Tricentis Tosca:
 
 * In the following node, replace **0.0.0.0-5.8.1.0** by **0.0.0.0-5.8.4.0**:
 ```xml
@@ -47,11 +47,11 @@ It allows you to interact with the NeoLoad [Design API](https://www.neotys.com/d
         <bindingRedirect oldVersion="0.0.0.0-5.8.4.0" newVersion="5.8.1.0" />
      </dependentAssembly>
 ```
-4. Relaunch the Tosca Commander
+4. Relaunch the Tosca Commander.
 
 ## Global Configuration
 
-Go to PROJECT > Options, to define the NeoLoad Add-on settings:
+Go to **PROJECT** > **Options**, to define the NeoLoad Add-on settings:
 
 <p align="center"><img src="/screenshots/options.png" alt="Options" /></p>
 
@@ -65,7 +65,7 @@ To access these values, go to the NeoLoad **Preferences**, then the **Project se
 
 ## How to convert a Tricentis Tosca SAP script to a NeoLoad SAP User Path or update an existing SAP User Path.
 
-In Tricentis Tosca, right click on an execution of a SAP Test Case and then **NeoLoad Add-on > Transfer to NeoLoad**
+In Tricentis Tosca, right click on an execution of an SAP Test Case and then **NeoLoad Add-on > Transfer to NeoLoad**
 
 <p align="center"><img src="/screenshots/transfertoneoload.png" alt="transfer" /></p>
 
