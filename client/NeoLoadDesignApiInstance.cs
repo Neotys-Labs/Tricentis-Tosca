@@ -1,6 +1,7 @@
 ﻿using NeoLoad.Settings;
 using Neotys.DesignAPI.Client;
 using Neotys.DesignAPI.Model;
+using System;
 using System.Collections.Generic;
 
 namespace NeoLoad.Client
@@ -62,7 +63,14 @@ namespace NeoLoad.Client
             }
             _startRecordingPB.isSapGuiProtocol(true);
 
-            _client.StartRecording(_startRecordingPB.Build());
+            try
+            {
+                _client.StartRecording(_startRecordingPB.Build());
+            } catch (Exception e)
+            {
+                _recordStarted = false;
+                throw e;
+            }
         }
 
         public void StopRecording()
@@ -77,8 +85,14 @@ namespace NeoLoad.Client
                 _stopRecordingBuilder.updateParams(_updateUserPathBuilder.Build());
             }
 
-            _client.StopRecording(_stopRecordingBuilder.Build());
-            _recordStarted = false;
+            try
+            {
+                _client.StopRecording(_stopRecordingBuilder.Build());
+            }
+            finally
+            {
+                _recordStarted = false;
+            }
         }
     }
 }
