@@ -18,13 +18,15 @@ It allows you to interact with the NeoLoad [Design API](https://www.neotys.com/d
 | Supported versions | Tested with Tricentis Tosca version 11.3 and 12.0 and NeoLoad version [6.7.0](https://www.neotys.com/support/download-neoload) version 32 bits
 | Download Binaries | See the [latest release](https://github.com/Neotys-Labs/Tricentis-Tosca/releases/latest)|
 
-## Setting up the NeoLoad Tricentis Tosca Add-on.
+## Setting up the NeoLoad Tricentis Tosca Add-on
 
 1. Download the [latest release](https://github.com/Neotys-Labs/Tricentis-Tosca/releases/latest)
 
 2. Unzip in the root folder of the Tricentis Tosca installation directory (for example: C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\).
 
-3. Edit the file **Tricentis.Automation.Agent.exe.config** in the installation directory of Tricentis Tosca:
+3. Unblock "NeoLoadAddOn.dll" (Right click the DLL > Properties and tick **Unblock**).
+
+4. Edit the file **Tricentis.Automation.Agent.exe.config** in the installation directory of Tricentis Tosca:
 
 * In the following node, replace **0.0.0.0-5.8.1.0** by **0.0.0.0-5.8.4.0**:
 ```xml
@@ -48,6 +50,8 @@ It allows you to interact with the NeoLoad [Design API](https://www.neotys.com/d
      </dependentAssembly>
 ```
 4. Relaunch the Tosca Commander.
+
+**Warning**: You might need to launch both Tosca and SAP Logon as administrator in order to convert the Tosca Script to NeoLoad.
 
 ## Global Configuration
 
