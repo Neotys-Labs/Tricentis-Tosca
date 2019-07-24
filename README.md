@@ -20,34 +20,58 @@ It allows you to interact with the NeoLoad [Design API](https://www.neotys.com/d
 
 ## Setting up the NeoLoad Tricentis Tosca Add-on
 
+###For version 12.2
+
 1. Download the [latest release](https://github.com/Neotys-Labs/Tricentis-Tosca/releases/latest)
 
 2. Unzip in the root folder of the Tricentis Tosca installation directory (for example: C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\).
 
 3. Unblock "NeoLoadAddOn.dll" (Right click the DLL > Properties and tick **Unblock**).
 
-4. Edit the file **Tricentis.Automation.Agent.exe.config** in the installation directory of Tricentis Tosca:
 
-* In the following node, replace **0.0.0.0-5.8.1.0** by **0.0.0.0-5.8.4.0**:
+###For version 11.3 and 12.0
+
+1. Download the [latest release](https://github.com/Neotys-Labs/Tricentis-Tosca/releases/latest)
+
+2. Unzip in the Tosca Commander directory of the Tricentis Tosca installation directory (for example: C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\ToscaCommander).
+
+3. Unzip in the TBox directory of the Tricentis Tosca installation directory (for example: C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\TBox).
+
+4. Unblock "ToscaCommander\NeoLoadAddOn.dll" (Right click the DLL > Properties and tick **Unblock**).
+
+5. Unblock "TBox\NeoLoadAddOn.dll" (Right click the DLL > Properties and tick **Unblock**).
+
+6. Edit the file **TBox\Tricentis.Automation.Agent.exe.config** in the installation directory of Tricentis Tosca:
+
+* Add the following nodes at the end of the **runtime** node:
 ```xml
-    <dependentAssembly>
-        <assemblyIdentity name="Microsoft.Data.Edm" publicKeyToken="31bf3856ad364e35" culture="neutral" />
-        <bindingRedirect oldVersion="0.0.0.0-5.8.1.0" newVersion="5.8.1.0" />
-    </dependentAssembly>
-```
-* Add the following nodes at the end of the **assemblyBinding** node:
-```xml
-    <dependentAssembly>
-        <assemblyIdentity name="Microsoft.OData.Core" publicKeyToken="31bf3856ad364e35" culture="neutral" />
-        <bindingRedirect oldVersion="0.0.0.0-6.14.0.0" newVersion="6.14.0.0" />
-		<bindingRedirect oldVersion="6.15.0.0-7.3.0.0" newVersion="7.3.0.0" />
-		<codeBase version="6.14.0.0" href="nl-lib\Microsoft.OData.Core.dll" />
-        <codeBase version="7.3.0.0" href="Microsoft.OData.Core.dll" />
-     </dependentAssembly>
-	 <dependentAssembly>
-        <assemblyIdentity name="System.Spatial" publicKeyToken="31bf3856ad364e35" culture="neutral" />
-        <bindingRedirect oldVersion="0.0.0.0-5.8.4.0" newVersion="5.8.1.0" />
-     </dependentAssembly>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+        <dependentAssembly>
+            <assemblyIdentity name="Microsoft.Data.Edm" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+            <bindingRedirect oldVersion="0.0.0.0-5.8.4.0" newVersion="5.8.4.0" />
+    	 </dependentAssembly>
+    </assemblyBinding>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+        <dependentAssembly>
+            <assemblyIdentity name="Microsoft.Data.Odata" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+            <bindingRedirect oldVersion="0.0.0.0-5.8.4.0" newVersion="5.8.4.0" />
+        </dependentAssembly>
+    </assemblyBinding>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+        <dependentAssembly>
+            <assemblyIdentity name="Microsoft.OData.Core" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+            <bindingRedirect oldVersion="0.0.0.0-6.14.0.0" newVersion="6.14.0.0" />
+    		<bindingRedirect oldVersion="6.15.0.0-7.3.0.0" newVersion="7.3.0.0" />
+    		<codeBase version="6.14.0.0" href="nl-lib\Microsoft.OData.Core.dll" />
+            <codeBase version="7.3.0.0" href="Microsoft.OData.Core.dll" />
+        </dependentAssembly>
+    </assemblyBinding>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+        <dependentAssembly>
+            <assemblyIdentity name="System.Spatial" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+            <bindingRedirect oldVersion="0.0.0.0-5.8.4.0" newVersion="5.8.4.0" />
+        </dependentAssembly>
+    </assemblyBinding>
 ```
 4. Relaunch the Tosca Commander.
 
@@ -81,3 +105,4 @@ The User Path Update feature merge the original User Path with a newer recording
 ## ChangeLog
 
 * Version 1.0.0 (November 30, 2018): Initial release.
+* Version 1.1.0 (July 24, 2019): Support of Tosca version 12.2
