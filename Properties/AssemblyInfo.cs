@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 using Tricentis.Automation.Creation.Attributes;
-using Tricentis.Automation.Execution;
+using Tricentis.Automation.Engines.Monitoring;
 using Tricentis.TCAddOns;
 
 // General Information about an assembly is controlled through the following
@@ -16,8 +16,7 @@ using Tricentis.TCAddOns;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: TCAddOnType(typeof(NeoLoad.AddOn.NeoLoadAddOn))]
-[assembly: EngineId("SapEngine")]
-[assembly: HandlesExecutionInfosAttribute]
+[assembly: EngineId(MonitoringTaskExecutor.MonitoringEngineId)]
 
 // Setting ComVisible to false makes the types in this assembly not visible
 // to COM components.  If you need to access a type in this assembly from
