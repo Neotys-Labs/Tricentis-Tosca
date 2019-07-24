@@ -99,7 +99,6 @@ It allows you to interact with the NeoLoad [Design API](https://www.neotys.com/d
 ```
 4. Relaunch the Tosca Commander.
 
-
 **Warning**: You might need to launch both Tosca and SAP Logon as administrator in order to convert the Tosca Script to NeoLoad.
 
 ## Global Configuration
@@ -126,6 +125,8 @@ During the execution of the Tricentis Tosca test case, if the NeoLoad User Path 
 The User Path Update feature merge the original User Path with a newer recording, copying variable extractors and variables. Below the SAP GUI User Path in NeoLoad.
 
 <p align="center"><img src="/screenshots/userpath.png" alt="user path" /></p>
+
+**Warning**: In Tosca 12.2, if executions errors are not displayed in Tosca Commander, you can see them in file neoload-add-on-error.txt located in you user profile directory. 
 
 ## ChangeLog
 
