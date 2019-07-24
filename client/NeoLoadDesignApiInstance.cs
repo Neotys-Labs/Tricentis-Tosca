@@ -47,29 +47,30 @@ namespace NeoLoad.Client
         public void StartSapRecording()
         {
             _recordStarted = true;
-            StartRecordingParamsBuilder _startRecordingPB = new StartRecordingParamsBuilder();
-            if (_userPathName != null && _userPathName.Length != 0)
-            {
-                ContainsUserPathParamsBuilder _containsBuilder = new ContainsUserPathParamsBuilder();
-                _containsBuilder.name(_userPathName);
-                _userPathExist = _client.ContainsUserPath(_containsBuilder.Build());
-                if (_userPathExist)
-                {
-                    _startRecordingPB.virtualUser(_userPathName + "_recording");
-                }
-                else
-                {
-                    _startRecordingPB.virtualUser(_userPathName);
-                }
-            }
-            _startRecordingPB.isSapGuiProtocol(true);
-
             try
             {
+                StartRecordingParamsBuilder _startRecordingPB = new StartRecordingParamsBuilder();
+                if (_userPathName != null && _userPathName.Length != 0)
+                {
+                    ContainsUserPathParamsBuilder _containsBuilder = new ContainsUserPathParamsBuilder();
+                    _containsBuilder.name(_userPathName);
+                    _userPathExist = _client.ContainsUserPath(_containsBuilder.Build());
+                    if (_userPathExist)
+                    {
+                        _startRecordingPB.virtualUser(_userPathName + "_recording");
+                    }
+                    else
+                    {
+                        _startRecordingPB.virtualUser(_userPathName);
+                    }
+                }
+                _startRecordingPB.isSapGuiProtocol(true);
+            
                 _client.StartRecording(_startRecordingPB.Build());
             } catch (Exception e)
             {
                 _recordStarted = false;
+                _instance = null;
                 WriteExceptionToFile(e);
                 throw e;
             }
@@ -116,6 +117,7 @@ namespace NeoLoad.Client
             finally
             {
                 _recordStarted = false;
+                _instance = null;
             }
         }
     }

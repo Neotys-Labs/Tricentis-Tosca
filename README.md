@@ -24,15 +24,6 @@ It allows you to interact with the NeoLoad [Design API](https://www.neotys.com/d
 
 1. Download the [latest release](https://github.com/Neotys-Labs/Tricentis-Tosca/releases/latest).
 
-2. Unzip in the root folder of the Tricentis Tosca installation directory (for example: C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\).
-
-3. Unblock "NeoLoadAddOn.dll" (Right click the DLL > Properties and tick **Unblock**).
-
-
-### For version 11.3 and 12.0
-
-1. Download the [latest release](https://github.com/Neotys-Labs/Tricentis-Tosca/releases/latest).
-
 2. Unzip in the Tosca Commander directory of the Tricentis Tosca installation directory (for example: C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\ToscaCommander).
 
 3. Unzip in the TBox directory of the Tricentis Tosca installation directory (for example: C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\TBox).
@@ -73,7 +64,41 @@ It allows you to interact with the NeoLoad [Design API](https://www.neotys.com/d
         </dependentAssembly>
     </assemblyBinding>
 ```
+7. Relaunch the Tosca Commander.
+
+### For version 11.3 and 12.0
+
+1. Download the [latest release](https://github.com/Neotys-Labs/Tricentis-Tosca/releases/latest)
+
+2. Unzip in the root folder of the Tricentis Tosca installation directory (for example: C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\).
+
+3. Unblock "NeoLoadAddOn.dll" (Right click the DLL > Properties and tick **Unblock**).
+
+4. Edit the file **Tricentis.Automation.Agent.exe.config** in the installation directory of Tricentis Tosca:
+
+* In the following node, replace **0.0.0.0-5.8.1.0** by **0.0.0.0-5.8.4.0**:
+```xml
+    <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Data.Edm" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-5.8.1.0" newVersion="5.8.1.0" />
+    </dependentAssembly>
+```
+* Add the following nodes at the end of the **assemblyBinding** node:
+```xml
+    <dependentAssembly>
+        <assemblyIdentity name="Microsoft.OData.Core" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-6.14.0.0" newVersion="6.14.0.0" />
+		<bindingRedirect oldVersion="6.15.0.0-7.3.0.0" newVersion="7.3.0.0" />
+		<codeBase version="6.14.0.0" href="nl-lib\Microsoft.OData.Core.dll" />
+        <codeBase version="7.3.0.0" href="Microsoft.OData.Core.dll" />
+     </dependentAssembly>
+	 <dependentAssembly>
+        <assemblyIdentity name="System.Spatial" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-5.8.4.0" newVersion="5.8.1.0" />
+     </dependentAssembly>
+```
 4. Relaunch the Tosca Commander.
+
 
 **Warning**: You might need to launch both Tosca and SAP Logon as administrator in order to convert the Tosca Script to NeoLoad.
 
