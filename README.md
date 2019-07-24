@@ -20,7 +20,7 @@ It allows you to interact with the NeoLoad [Design API](https://www.neotys.com/d
 
 ## Setting up the NeoLoad Tricentis Tosca Add-on
 
-###For version 12.2
+### For version 12.2
 
 1. Download the [latest release](https://github.com/Neotys-Labs/Tricentis-Tosca/releases/latest)
 
@@ -29,7 +29,7 @@ It allows you to interact with the NeoLoad [Design API](https://www.neotys.com/d
 3. Unblock "NeoLoadAddOn.dll" (Right click the DLL > Properties and tick **Unblock**).
 
 
-###For version 11.3 and 12.0
+### For version 11.3 and 12.0
 
 1. Download the [latest release](https://github.com/Neotys-Labs/Tricentis-Tosca/releases/latest)
 
