@@ -22,7 +22,7 @@ It allows you to interact with the NeoLoad [Design API](https://www.neotys.com/d
 
 ### For version 12.2
 
-1. Download the [latest release](https://github.com/Neotys-Labs/Tricentis-Tosca/releases/latest)
+1. Download the [latest release](https://github.com/Neotys-Labs/Tricentis-Tosca/releases/latest).
 
 2. Unzip in the root folder of the Tricentis Tosca installation directory (for example: C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\).
 
@@ -31,7 +31,7 @@ It allows you to interact with the NeoLoad [Design API](https://www.neotys.com/d
 
 ### For version 11.3 and 12.0
 
-1. Download the [latest release](https://github.com/Neotys-Labs/Tricentis-Tosca/releases/latest)
+1. Download the [latest release](https://github.com/Neotys-Labs/Tricentis-Tosca/releases/latest).
 
 2. Unzip in the Tosca Commander directory of the Tricentis Tosca installation directory (for example: C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\ToscaCommander).
 
