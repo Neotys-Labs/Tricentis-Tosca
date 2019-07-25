@@ -30,9 +30,11 @@ It allows you to interact with the NeoLoad [Design API](https://www.neotys.com/d
 
 4. Unblock "ToscaCommander\NeoLoadAddOn.dll" (Right click the DLL > Properties and tick **Unblock**).
 
-5. Unblock "TBox\NeoLoadAddOn.dll" (Right click the DLL > Properties and tick **Unblock**).
+5. Copy the "TCAddOn.dll" from ToscaCommander directory to TBox directory in the installation directory.
 
-6. Edit the file **TBox\Tricentis.Automation.Agent.exe.config** in the installation directory of Tricentis Tosca:
+6. Unblock "TBox\NeoLoadAddOn.dll" (Right click the DLL > Properties and tick **Unblock**).
+
+7. Edit the file **TBox\Tricentis.Automation.Agent.exe.config** in the installation directory of Tricentis Tosca:
 
 * Add the following nodes at the end of the **runtime** node:
 ```xml
@@ -64,7 +66,7 @@ It allows you to interact with the NeoLoad [Design API](https://www.neotys.com/d
         </dependentAssembly>
     </assemblyBinding>
 ```
-7. Relaunch the Tosca Commander.
+8. Relaunch the Tosca Commander.
 
 ### For Tosca version 11.3 and 12.0
 
@@ -97,7 +99,7 @@ It allows you to interact with the NeoLoad [Design API](https://www.neotys.com/d
         <bindingRedirect oldVersion="0.0.0.0-5.8.4.0" newVersion="5.8.1.0" />
      </dependentAssembly>
 ```
-4. Relaunch the Tosca Commander.
+5. Relaunch the Tosca Commander.
 
 **Warning**: You might need to launch both Tosca and SAP Logon as administrator in order to convert the Tosca Script to NeoLoad.
 
