@@ -24,15 +24,15 @@ It allows you to interact with the NeoLoad [Design API](https://www.neotys.com/d
 
 1. Download the [latest release](https://github.com/Neotys-Labs/Tricentis-Tosca/releases/latest).
 
-2. Unzip in the Tosca Commander directory of the Tricentis Tosca installation directory (for example: C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\ToscaCommander).
+2. Unzip it in the Tosca Commander directory of the Tricentis Tosca installation directory (for example: C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\ToscaCommander).
 
-3. Unzip in the TBox directory of the Tricentis Tosca installation directory (for example: C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\TBox).
+3. Unzip it in the TBox directory of the Tricentis Tosca installation directory (for example: C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\TBox).
 
-4. Unblock "ToscaCommander\NeoLoadAddOn.dll" (Right click the DLL > Properties and tick **Unblock**).
+4. Unblock the "ToscaCommander\NeoLoadAddOn.dll" file (Right click the DLL > Properties and tick **Unblock**).
 
-5. Copy the "TCAddOn.dll" from ToscaCommander directory to TBox directory in the installation directory.
+5. Copy the "TCAddOn.dll" file from Tosca Commander directory to TBox directory in the installation directory.
 
-6. Unblock "TBox\NeoLoadAddOn.dll" (Right click the DLL > Properties and tick **Unblock**).
+6. Unblock the "TBox\NeoLoadAddOn.dll" file (Right click the DLL > Properties and tick **Unblock**).
 
 7. Edit the file **TBox\Tricentis.Automation.Agent.exe.config** in the installation directory of Tricentis Tosca:
 
@@ -72,9 +72,9 @@ It allows you to interact with the NeoLoad [Design API](https://www.neotys.com/d
 
 1. Download the [latest release](https://github.com/Neotys-Labs/Tricentis-Tosca/releases/latest)
 
-2. Unzip in the root folder of the Tricentis Tosca installation directory (for example: C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\).
+2. Unzip it in the root folder of the Tricentis Tosca installation directory (for example: C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\).
 
-3. Unblock "NeoLoadAddOn.dll" (Right click the DLL > Properties and tick **Unblock**).
+3. Unblock the "NeoLoadAddOn.dll" file (Right click the DLL > Properties and tick **Unblock**).
 
 4. Edit the file **Tricentis.Automation.Agent.exe.config** in the installation directory of Tricentis Tosca:
 
@@ -128,7 +128,7 @@ The User Path Update feature merge the original User Path with a newer recording
 
 <p align="center"><img src="/screenshots/userpath.png" alt="user path" /></p>
 
-**Warning**: In Tosca 12.2, if executions errors are not displayed in Tosca Commander, you can see them in file neoload-add-on-error.txt located in you user profile directory. 
+**Warning**: In Tosca 12.2, if Execution errors are not displayed in Tosca Commander, they can be found in the **neoload-add-on-error.txt** file located in your user profile directory. 
 
 ## ChangeLog
 
