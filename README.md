@@ -20,7 +20,7 @@ It allows you to interact with the NeoLoad [Design API](https://www.neotys.com/d
 
 ## Setting up the NeoLoad Tricentis Tosca Add-on
 
-### For version 12.2
+### For Tosca version 12.2
 
 1. Download the [latest release](https://github.com/Neotys-Labs/Tricentis-Tosca/releases/latest).
 
@@ -66,7 +66,7 @@ It allows you to interact with the NeoLoad [Design API](https://www.neotys.com/d
 ```
 7. Relaunch the Tosca Commander.
 
-### For version 11.3 and 12.0
+### For Tosca version 11.3 and 12.0
 
 1. Download the [latest release](https://github.com/Neotys-Labs/Tricentis-Tosca/releases/latest)
 
