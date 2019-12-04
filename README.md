@@ -133,4 +133,4 @@ The User Path Update feature merge the original User Path with a newer recording
 ## ChangeLog
 
 * Version 1.0.0 (November 30, 2018): Initial release.
-* Version 1.1.0 (July 24, 2019): Support of Tosca version 12.2
+   * July 24, 2019: Support of Tosca version 12.2
