@@ -41,7 +41,7 @@ namespace NeoLoad.Listener
             {
                 return;
             }
-            if (testAction is ISpecialExecutionTaskTestAction && ((testAction as ISpecialExecutionTaskTestAction).GetParameter("SapConnection", true) != null || testAction.Name.Value.Contains("SAP Logon"))) {
+            if ((testAction is ISpecialExecutionTaskTestAction && (testAction as ISpecialExecutionTaskTestAction).GetParameter("SapConnection", true) != null) || testAction.Name.Value.Contains("Logon")) {
                 // We are after SAP Logon, we can start SAP recording in NeoLoad.
                 NeoLoadDesignApiInstance.GetInstance().StartSapRecording();
             }
