@@ -31,7 +31,13 @@ namespace NeoLoad.Listener
             {
                 // We are before SAP Login, we can start SAP recording in NeoLoad.
                 System.Threading.Thread.Sleep(2000);
-                NeoLoadDesignApiInstance.GetInstance().StartSapRecording();
+                NeoLoadDesignApiInstance.GetInstance().StartRecording(NeoLoadDesignApiInstance.Protocol.SAP);
+            }
+
+            if (testAction.Name.Value.Equals("OpenUrl"))
+            {
+                // We are before a web event, we can start WEB recording in NeoLoad.
+                NeoLoadDesignApiInstance.GetInstance().StartRecording(NeoLoadDesignApiInstance.Protocol.HTTP2);
             }
         }
 
@@ -43,7 +49,7 @@ namespace NeoLoad.Listener
             }
             if ((testAction is ISpecialExecutionTaskTestAction && (testAction as ISpecialExecutionTaskTestAction).GetParameter("SapConnection", true) != null) || testAction.Name.Value.Contains("Logon")) {
                 // We are after SAP Logon, we can start SAP recording in NeoLoad.
-                NeoLoadDesignApiInstance.GetInstance().StartSapRecording();
+                NeoLoadDesignApiInstance.GetInstance().StartRecording(NeoLoadDesignApiInstance.Protocol.SAP);
             }
 
         }
