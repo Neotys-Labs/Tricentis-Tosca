@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -98,25 +98,31 @@
     <Reference Include="TCAddOn, Version=12.0.0.18421, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\TBox\TCAddOn.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="TCAPIObjects, Version=12.0.0.18848, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\TBox\TCAPIObjects.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Tricentis.Automation.Interaction, Version=12.2.0.24726, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\TBox\Tricentis.Automation.Interaction.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Tricentis.Automation.SapEngine">
       <HintPath>..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\TBox\Tricentis.Automation.SapEngine.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Tricentis.AutomationBase, Version=12.2.4.18, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\TBox\Tricentis.AutomationBase.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Tricentis.AutomationObjects, Version=12.0.0.150, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\TBox\Tricentis.AutomationObjects.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
