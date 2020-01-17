@@ -69,8 +69,8 @@
       <HintPath>packages\NeotysRestCommonAPI.1.0.2\lib\net40\NeotysRestCommonAPI.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NeotysRestDesignAPI, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\NeotysRestDesignAPI.1.0.8\lib\net40\NeotysRestDesignAPI.dll</HintPath>
+    <Reference Include="NeotysRestDesignAPI, Version=1.0.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\NeotysRestDesignAPI.1.0.9\lib\net40\NeotysRestDesignAPI.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Simple.OData.Client.Net40, Version=4.16.0.0, Culture=neutral, processorArchitecture=MSIL">

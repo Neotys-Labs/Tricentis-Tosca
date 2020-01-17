@@ -88,7 +88,7 @@ namespace NeoLoad.Client
                 if (Protocol.SAP.Equals(protocol))
                 {
                     _startRecordingPB.isSapGuiProtocol(true);
-                    // TODO _startRecordingPB.isCreateTransactionBySapTCode(_createTransactionBySapTCode);
+                    _startRecordingPB.isCreateTransactionBySapTCode(_createTransactionBySapTCode);
                 }
                 else if (Protocol.HTTP2.Equals(protocol))
                 {
