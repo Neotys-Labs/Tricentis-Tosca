@@ -10,6 +10,7 @@ namespace NeoLoad.Settings
         public static readonly string API_PORT_KEY = "NeoLoadApiPort";
         public static readonly string API_KEY_KEY = "NeoLoadApiKey";
         public static readonly string API_HOSTNAME_KEY = "NeoLoadApiHostname";
+        public static readonly string CREATE_TRANSACTION_BY_SAP_TCODE_KEY = "CreateTransactionBySapTCode";
 
         protected override ApplicationSettingsBase GetSettingsObject()
         {
@@ -27,6 +28,7 @@ namespace NeoLoad.Settings
             string[] lines = { API_PORT_KEY + "=" + Settings.Default.NeoLoadApiPort,
                 API_KEY_KEY + "=" + Settings.Default.NeoLoadApiKey,
                 API_HOSTNAME_KEY + "=" + Settings.Default.NeoLoadApiHostname,
+                CREATE_TRANSACTION_BY_SAP_TCODE_KEY + "=" + Settings.Default.CreateTransactionBySapTCode,
             };
             System.IO.File.WriteAllLines(GetUserFilePath(), lines);
         }
@@ -69,5 +71,11 @@ namespace NeoLoad.Settings
         protected override string SettingName { get; } = "NeoLoadApiHostname";
 
         protected override string DisplayedName { get; } = "NeoLoadApiHostname";
+    }
+    public class CreateTransactionBySapTCodeSetting : TCAddOnOptionsDialogEntry
+    {
+        protected override string SettingName { get; } = "CreateTransactionBySapTCode";
+
+        protected override string DisplayedName { get; } = "CreateTransactionBySapTCode";
     }
 }

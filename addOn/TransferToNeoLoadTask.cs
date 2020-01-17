@@ -7,21 +7,9 @@ namespace NeoLoad.AddOn
 {
     class TransferToNeoLoadTask : TCAddOnTask
     {
-        public override Type ApplicableType
-        {
-            get
-            {
-                return typeof(ExecutionEntry);
-            }
-        }
+        public override Type ApplicableType => typeof(ExecutionEntry);
 
-        public override string Name
-        {
-            get
-            {
-                return "Transfer to NeoLoad";
-            }
-        }
+        public override string Name => "Transfer to NeoLoad";
 
         public override TCObject Execute(TCObject objectToExecuteOn, TCAddOnTaskContext taskContext)
         {

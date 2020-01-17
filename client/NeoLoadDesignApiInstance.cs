@@ -19,6 +19,7 @@ namespace NeoLoad.Client
         private int _apiPort = 0;
         private int _recorderProxyPort = 0;
         private SystemProxyHelper _systemProxyHelper = null;
+        private bool _createTransactionBySapTCode;
 
         public enum Protocol
         {
@@ -26,11 +27,12 @@ namespace NeoLoad.Client
             HTTP2
         };
 
-        private NeoLoadDesignApiInstance(string host, string port, string token) {
+        private NeoLoadDesignApiInstance(string host, string port, string token, bool createTransactionBySapTCode) {
             string url = "http://" + host + ":" + port + "/Design/v1/Service.svc/";
             _client = DesignAPIClientFactory.NewClient(url, token);
             _apiHost = host;
             _apiPort = int.Parse(port);
+            _createTransactionBySapTCode = createTransactionBySapTCode;
         }
 
         private void intialize()
@@ -46,7 +48,8 @@ namespace NeoLoad.Client
                 string host = properties[NeoLoadSettings.API_HOSTNAME_KEY];
                 string port = properties[NeoLoadSettings.API_PORT_KEY];
                 string token = properties[NeoLoadSettings.API_KEY_KEY];
-                _instance = new NeoLoadDesignApiInstance(host, port, token);
+                bool createTransactionBySapTCode = Boolean.Parse(properties[NeoLoadSettings.CREATE_TRANSACTION_BY_SAP_TCODE_KEY]);
+                _instance = new NeoLoadDesignApiInstance(host, port, token, createTransactionBySapTCode);
                 _instance.intialize();
             }
             return _instance;
@@ -85,6 +88,7 @@ namespace NeoLoad.Client
                 if (Protocol.SAP.Equals(protocol))
                 {
                     _startRecordingPB.isSapGuiProtocol(true);
+                    // TODO _startRecordingPB.isCreateTransactionBySapTCode(_createTransactionBySapTCode);
                 }
                 else if (Protocol.HTTP2.Equals(protocol))
                 {

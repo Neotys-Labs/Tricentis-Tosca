@@ -11,5 +11,8 @@
     <Setting Name="NeoLoadApiHostname" Type="System.String" Scope="User">
       <Value Profile="(Default)">localhost</Value>
     </Setting>
+    <Setting Name="CreateTransactionBySapTCode" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
