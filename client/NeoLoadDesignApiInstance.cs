@@ -148,6 +148,7 @@ namespace NeoLoad.Client
             try
             {
                 _client.StopRecording(_stopRecordingBuilder.Build());
+                _client.SaveProject();
                 if (_systemProxyHelper != null)
                 {
                     _systemProxyHelper.restoreProxy();
