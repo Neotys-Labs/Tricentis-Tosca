@@ -4,104 +4,29 @@
 
 ## Overview
 
-C# extension to integrate [Tricentis Tosca](https://www.tricentis.com/) with [NeoLoad](https://www.neotys.com/neoload/overview) for SAP GUI Script maintenance.
-It allows you to interact with the NeoLoad [Design API](https://www.neotys.com/documents/doc/neoload/latest/en/html/#11265.htm) to convert a Tricentis Tosca SAP GUI script to a NeoLoad SAP GUI User Path or update an existing SAP User Path.
+C# extension to integrate [Tricentis Tosca](https://www.tricentis.com/) with [NeoLoad](https://www.neotys.com/neoload/overview) for SAP GUI and Web Script maintenance.
+It allows you to interact with the NeoLoad [Design API](https://www.neotys.com/documents/doc/neoload/latest/en/html/#11265.htm) to convert a Tricentis Tosca SAP GUI or Web script to a NeoLoad User Path or update an existing User Path.
 
 
 
 | Property | Value |
 | ----------------    | ----------------   |
-| Maturity | Experimental |
+| Maturity | Stable |
 | Author | Neotys |
 | License           | [BSD 2-Clause "Simplified"](https://github.com/Neotys-Labs/Tricentis-Tosca/blob/master/LICENSE) |
 | NeoLoad Licensing | License FREE edition, or Enterprise edition, or Professional with Integration & Advanced Usage|
-| Supported versions | Tested with Tricentis Tosca version 11.3, 12.0 and 12.2 and NeoLoad from version [6.6.0](https://www.neotys.com/support/download-neoload) version 32 bits
+| Supported versions | Tested with Tricentis Tosca version 11.3, 12.0, 12.2, 12.3, 13.0 and NeoLoad from version [6.6.0](https://www.neotys.com/support/download-neoload) version 32 bits
 | Download Binaries | See the [latest release](https://github.com/Neotys-Labs/Tricentis-Tosca/releases/latest)|
 
 ## Setting up the NeoLoad Tricentis Tosca Add-on
 
-### For Tosca version 12.2
-
-1. Download the [latest release](https://github.com/Neotys-Labs/Tricentis-Tosca/releases/latest).
-
-2. Unzip it in the Tosca Commander directory of the Tricentis Tosca installation directory (for example: C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\ToscaCommander).
-
-3. Unzip it in the TBox directory of the Tricentis Tosca installation directory (for example: C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\TBox).
-
-4. Unblock the "ToscaCommander\NeoLoadAddOn.dll" file (Right click the DLL > Properties and tick **Unblock**).
-
-5. Copy the "TCAddOn.dll" file from Tosca Commander directory to TBox directory in the installation directory.
-
-6. Unblock the "TBox\NeoLoadAddOn.dll" file (Right click the DLL > Properties and tick **Unblock**).
-
-7. Edit the file **TBox\Tricentis.Automation.Agent.exe.config** in the installation directory of Tricentis Tosca:
-
-* Add the following nodes at the end of the **runtime** node:
-```xml
-    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
-        <dependentAssembly>
-            <assemblyIdentity name="Microsoft.Data.Edm" publicKeyToken="31bf3856ad364e35" culture="neutral" />
-            <bindingRedirect oldVersion="0.0.0.0-5.8.4.0" newVersion="5.8.4.0" />
-    	 </dependentAssembly>
-    </assemblyBinding>
-    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
-        <dependentAssembly>
-            <assemblyIdentity name="Microsoft.Data.Odata" publicKeyToken="31bf3856ad364e35" culture="neutral" />
-            <bindingRedirect oldVersion="0.0.0.0-5.8.4.0" newVersion="5.8.4.0" />
-        </dependentAssembly>
-    </assemblyBinding>
-    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
-        <dependentAssembly>
-            <assemblyIdentity name="Microsoft.OData.Core" publicKeyToken="31bf3856ad364e35" culture="neutral" />
-            <bindingRedirect oldVersion="0.0.0.0-6.14.0.0" newVersion="6.14.0.0" />
-    		<bindingRedirect oldVersion="6.15.0.0-7.3.0.0" newVersion="7.3.0.0" />
-    		<codeBase version="6.14.0.0" href="nl-lib\Microsoft.OData.Core.dll" />
-            <codeBase version="7.3.0.0" href="Microsoft.OData.Core.dll" />
-        </dependentAssembly>
-    </assemblyBinding>
-    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
-        <dependentAssembly>
-            <assemblyIdentity name="System.Spatial" publicKeyToken="31bf3856ad364e35" culture="neutral" />
-            <bindingRedirect oldVersion="0.0.0.0-5.8.4.0" newVersion="5.8.4.0" />
-        </dependentAssembly>
-    </assemblyBinding>
-```
-8. Relaunch the Tosca Commander.
-
-### For Tosca version 11.3 and 12.0
-
-1. Download the [latest release](https://github.com/Neotys-Labs/Tricentis-Tosca/releases/latest)
+1. Download the [latest release](https://github.com/Neotys-Labs/Tricentis-Tosca/releases/latest) for your Tricentis Tosca version.
 
 2. Unzip it in the root folder of the Tricentis Tosca installation directory (for example: C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\).
 
-3. Unblock the "NeoLoadAddOn.dll" file (Right click the DLL > Properties and tick **Unblock**).
+3. Relaunch the Tosca Commander.
 
-4. Edit the file **Tricentis.Automation.Agent.exe.config** in the installation directory of Tricentis Tosca:
-
-* In the following node, replace **0.0.0.0-5.8.1.0** by **0.0.0.0-5.8.4.0**:
-```xml
-    <dependentAssembly>
-        <assemblyIdentity name="Microsoft.Data.Edm" publicKeyToken="31bf3856ad364e35" culture="neutral" />
-        <bindingRedirect oldVersion="0.0.0.0-5.8.1.0" newVersion="5.8.1.0" />
-    </dependentAssembly>
-```
-* Add the following nodes at the end of the **assemblyBinding** node:
-```xml
-    <dependentAssembly>
-        <assemblyIdentity name="Microsoft.OData.Core" publicKeyToken="31bf3856ad364e35" culture="neutral" />
-        <bindingRedirect oldVersion="0.0.0.0-6.14.0.0" newVersion="6.14.0.0" />
-		<bindingRedirect oldVersion="6.15.0.0-7.3.0.0" newVersion="7.3.0.0" />
-		<codeBase version="6.14.0.0" href="nl-lib\Microsoft.OData.Core.dll" />
-        <codeBase version="7.3.0.0" href="Microsoft.OData.Core.dll" />
-     </dependentAssembly>
-	 <dependentAssembly>
-        <assemblyIdentity name="System.Spatial" publicKeyToken="31bf3856ad364e35" culture="neutral" />
-        <bindingRedirect oldVersion="0.0.0.0-5.8.4.0" newVersion="5.8.1.0" />
-     </dependentAssembly>
-```
-5. Relaunch the Tosca Commander.
-
-**Warning**: You might need to launch both Tosca and SAP Logon as administrator in order to convert the Tosca Script to NeoLoad.
+**Warning**: For SAP test case, you might need to launch both Tosca and SAP Logon as administrator in order to convert the Tosca Script to NeoLoad.
 
 ## Global Configuration
 
@@ -113,13 +38,16 @@ Parameters:
 * **NeoLoadApiPort**: The port of the NeoLoad API, by default it is 7400. 
 * **NeoLoadApiKey**: The API Key specified in the NeoLoad project when identification is required. If no identification is required, this parameter can be left blank.
 * **NeoLoadApiHostname**: The hostname of the machine that contains NeoLoad, by default it is localhost. It should be localhost for SAP GUI test case.
+* **CreateTransactionBySapTCode**: Enable/Disable the creation of transaction in Neoload for each SAP TCode.
 
 To access these values, go to the NeoLoad **Preferences**, then the **Project settings** tab, then select the **REST API** category.
 <p align="center"><img src="/screenshots/designapi.png" alt="Design API" /></p>
 
-## How to convert a Tricentis Tosca SAP script to a NeoLoad SAP User Path or update an existing SAP User Path.
+## How to convert a Tricentis Tosca SAP or Web script to a NeoLoad SAP User Path or update an existing SAP or Web User Path.
 
-In Tricentis Tosca, right click on an execution of an SAP Test Case and then **NeoLoad Add-on > Transfer to NeoLoad**
+In Tricentis Tosca, right click on an execution of a Test Case and then **NeoLoad Add-on > Transfer to NeoLoad**
+Neoload begin the **SAP recording** at the first step named "SAP" or "SAP Login".
+Neoload begin the **Web recording** at the first step named "OpenUrl".
 
 <p align="center"><img src="/screenshots/transfertoneoload.png" alt="transfer" /></p>
 
@@ -128,9 +56,14 @@ The User Path Update feature merge the original User Path with a newer recording
 
 <p align="center"><img src="/screenshots/userpath.png" alt="user path" /></p>
 
-**Warning**: In Tosca 12.2, if Execution errors are not displayed in Tosca Commander, they can be found in the **neoload-add-on-error.txt** file located in your user profile directory. 
+**Warning**: In Tosca > 12.2, if Execution errors are not displayed in Tosca Commander, they can be found in the **neoload-add-on-error.txt** file located in your user profile directory. 
 
 ## ChangeLog
+
+* Version 2.0.0 (April 27, 2020): Stabilization.
+   * Support of Tosca version 13.0
+   * Support Web test case recording
+   * Create a new transaction in Neoload at each SAP TCode encountered during the recoding. This feature is available since Neoload 7.3
 
 * Version 1.0.0 (November 30, 2018): Initial release.
    * July 24, 2019: Support of Tosca version 12.2
