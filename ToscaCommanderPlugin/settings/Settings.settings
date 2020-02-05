@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="NeoLoadAddOn.settings" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="NeoLoadApiPort" Type="System.String" Scope="User">
+      <Value Profile="(Default)">7400</Value>
+    </Setting>
+    <Setting Name="NeoLoadApiKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="NeoLoadApiHostname" Type="System.String" Scope="User">
+      <Value Profile="(Default)">localhost</Value>
+    </Setting>
+    <Setting Name="CreateTransactionBySapTCode" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

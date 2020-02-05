@@ -2,7 +2,6 @@
 using System.Runtime.InteropServices;
 using Tricentis.Automation.Creation.Attributes;
 using Tricentis.Automation.Engines.Monitoring;
-using Tricentis.TCAddOns;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
@@ -15,7 +14,6 @@ using Tricentis.TCAddOns;
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: TCAddOnType(typeof(NeoLoad.AddOn.NeoLoadAddOn))]
 [assembly: EngineId(MonitoringTaskExecutor.MonitoringEngineId)]
 
 // Setting ComVisible to false makes the types in this assembly not visible
