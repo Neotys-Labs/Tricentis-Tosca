@@ -7,7 +7,7 @@ using System.IO;
 
 namespace NeoLoad.Client
 {
-    class NeoLoadDesignApiInstance
+    public class NeoLoadDesignApiInstance
     {
         private static NeoLoadDesignApiInstance _instance = null;
 
