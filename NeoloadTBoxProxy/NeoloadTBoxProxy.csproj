@@ -41,7 +41,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TboxPlugin\NeoLoadTBoxAddOn.csproj">
+    <ProjectReference Include="..\NeoLoadTBoxAddOn\NeoLoadTBoxAddOn.csproj">
       <Project>{4a0fc21b-6069-4594-b1bc-28348da7d611}</Project>
       <Name>NeoLoadTBoxAddOn</Name>
       <Private>False</Private>
