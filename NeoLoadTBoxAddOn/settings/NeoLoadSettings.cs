@@ -8,6 +8,9 @@ namespace NeoLoad.Settings
         public static readonly string API_KEY_KEY = "NeoLoadApiKey";
         public static readonly string API_HOSTNAME_KEY = "NeoLoadApiHostname";
         public static readonly string CREATE_TRANSACTION_BY_SAP_TCODE_KEY = "CreateTransactionBySapTCode";
+        public static readonly string RECORD_WEB_OR_SAP = "RecordWebOrSap";
+        public static readonly string RECORD_WEB = "web";
+        public static readonly string RECORD_SAP = "sap";
 
 
         private static string GetUserFilePath()

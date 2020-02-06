@@ -2,6 +2,7 @@
 using NeoLoad.Client;
 using NeoLoad.Settings;
 using System;
+using System.Collections.Generic;
 using Tricentis.Automation.AutomationInstructions.TestActions;
 using Tricentis.Automation.Creation;
 using Tricentis.Automation.Engines.Monitoring;
@@ -12,7 +13,13 @@ namespace NeoLoad.Listener
 {
     public class TestActionListener : MonitoringTaskExecutor {
 
+        private readonly Boolean isRecordWeb = false;
+        private readonly Boolean isRecordSap = false;
+
         public TestActionListener(Validator validator) : base(validator) {
+            string recordWebOrSap = NeoLoadSettings.ReadSettingsFromUserFile()[NeoLoadSettings.RECORD_WEB_OR_SAP];
+            isRecordSap = recordWebOrSap.Equals(NeoLoadSettings.RECORD_SAP);
+            isRecordWeb = recordWebOrSap.Equals(NeoLoadSettings.RECORD_WEB);
         }
 
         private bool IsSendingToNeoLoad()
@@ -27,14 +34,14 @@ namespace NeoLoad.Listener
                 return;
             }
 
-            if (testAction.Name.Value.Equals("SAP") || testAction.Name.Value.Contains("SAP Login"))
+            if (isRecordSap && (testAction.Name.Value.Equals("SAP") || testAction.Name.Value.Contains("SAP Login")))
             {
                 // We are before SAP Login, we can start SAP recording in NeoLoad.
                 System.Threading.Thread.Sleep(2000);
                 NeoLoadDesignApiInstance.GetInstance().StartRecording(NeoLoadDesignApiInstance.Protocol.SAP);
             }
 
-            if (testAction.Name.Value.Equals("OpenUrl"))
+            if (isRecordWeb)
             {
                 // We are before a web event, we can start WEB recording in NeoLoad.
                 NeoLoadDesignApiInstance.GetInstance().StartRecording(NeoLoadDesignApiInstance.Protocol.HTTP2);
