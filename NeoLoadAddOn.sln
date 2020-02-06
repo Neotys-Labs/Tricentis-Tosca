@@ -1,18 +1,18 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoLoadToscaCommanderAddOn", "ToscaCommanderPlugin\NeoLoadToscaCommanderAddOn.csproj", "{BAA1DFA1-E13E-4A8C-AACA-F899BC7C2A2E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoLoadToscaCommanderAddOn", "NeoLoadToscaCommanderAddOn\NeoLoadToscaCommanderAddOn.csproj", "{BAA1DFA1-E13E-4A8C-AACA-F899BC7C2A2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoLoadTBoxAddOn", "TboxPlugin\NeoLoadTBoxAddOn.csproj", "{4A0FC21B-6069-4594-B1BC-28348DA7D611}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoLoadTBoxAddOn", "NeoLoadTBoxAddOn\NeoLoadTBoxAddOn.csproj", "{4A0FC21B-6069-4594-B1BC-28348DA7D611}"
 	ProjectSection(ProjectDependencies) = postProject
 		{B532B87E-82A6-402E-874F-DF3F21D656AD} = {B532B87E-82A6-402E-874F-DF3F21D656AD}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeotysRestDesignAPI", "..\rest-design-api\NeotysRestDesignAPI.csproj", "{B532B87E-82A6-402E-874F-DF3F21D656AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToscaProxy", "ToscaProxy\ToscaProxy.csproj", "{2E39001D-67A0-4A9B-8B95-186D3A5488A8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoloadTBoxProxy", "NeoloadTBoxProxy\NeoloadTBoxProxy.csproj", "{2E39001D-67A0-4A9B-8B95-186D3A5488A8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeotysCommonAPI", "..\neotys-rest-c-sharp-common\NeotysCommonAPI\NeotysCommonAPI.csproj", "{155144A6-4417-4DEB-BBEA-ABA3C62CA2FD}"
 EndProject
