@@ -13,7 +13,7 @@ namespace NeoLoad.AddOn
 
         public override TCObject Execute(TCObject objectToExecuteOn, TCAddOnTaskContext taskContext)
         {
-            NeoLoadSettings.WriteSettingsToUserFile(NeoLoadSettings.RECORD_WEB);
+            NeoLoadSettings.WriteSettingsToUserFile("WEB");
             var exec = (objectToExecuteOn as ExecutionEntry).Run();
             NeoLoadSettings.DeleteUserFile();
             return exec;

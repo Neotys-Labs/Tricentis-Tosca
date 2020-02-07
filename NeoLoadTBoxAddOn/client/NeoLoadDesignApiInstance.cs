@@ -20,19 +20,21 @@ namespace NeoLoad.Client
         private int _recorderProxyPort = 0;
         private SystemProxyHelper _systemProxyHelper = null;
         private bool _createTransactionBySapTCode;
+        private Protocol _protocolToRecord;
 
         public enum Protocol
         {
             SAP,
-            HTTP2
+            WEB
         };
 
-        private NeoLoadDesignApiInstance(string host, string port, string token, bool createTransactionBySapTCode) {
+        private NeoLoadDesignApiInstance(string host, string port, string token, bool createTransactionBySapTCode, Protocol protocolToRecord) {
             string url = "http://" + host + ":" + port + "/Design/v1/Service.svc/";
             _client = DesignAPIClientFactory.NewClient(url, token);
             _apiHost = host;
             _apiPort = int.Parse(port);
             _createTransactionBySapTCode = createTransactionBySapTCode;
+            _protocolToRecord = protocolToRecord;
         }
 
         private void intialize()
@@ -49,7 +51,8 @@ namespace NeoLoad.Client
                 string port = properties[NeoLoadSettings.API_PORT_KEY];
                 string token = properties[NeoLoadSettings.API_KEY_KEY];
                 bool createTransactionBySapTCode = Boolean.Parse(properties[NeoLoadSettings.CREATE_TRANSACTION_BY_SAP_TCODE_KEY]);
-                _instance = new NeoLoadDesignApiInstance(host, port, token, createTransactionBySapTCode);
+                Protocol protocolToRecord = (Protocol) Enum.Parse(typeof(Protocol), properties[NeoLoadSettings.RECORD_WEB_OR_SAP]);
+                _instance = new NeoLoadDesignApiInstance(host, port, token, createTransactionBySapTCode, protocolToRecord);
                 _instance.intialize();
             }
             return _instance;
@@ -63,6 +66,16 @@ namespace NeoLoad.Client
         public bool IsRecordStarted()
         {
             return _recordStarted;
+        }
+
+        public bool IsRecordSap()
+        {
+            return Protocol.SAP.Equals(_protocolToRecord);
+        }
+
+        public bool IsRecordWeb()
+        {
+            return Protocol.WEB.Equals(_protocolToRecord);
         }
 
         public void StartRecording(Protocol protocol)
@@ -90,7 +103,7 @@ namespace NeoLoad.Client
                     _startRecordingPB.isSapGuiProtocol(true);
                     _startRecordingPB.isCreateTransactionBySapTCode(_createTransactionBySapTCode);
                 }
-                else if (Protocol.HTTP2.Equals(protocol))
+                else if (Protocol.WEB.Equals(protocol))
                 {
                     _startRecordingPB.isHTTP2Protocol(true);
                     if(_systemProxyHelper == null)
