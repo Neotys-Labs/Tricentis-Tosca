@@ -20,7 +20,7 @@ It allows you to interact with the NeoLoad [Design API](https://www.neotys.com/d
 
 ## Setting up the NeoLoad Tricentis Tosca Add-on
 
-1. Download the [latest release](https://github.com/Neotys-Labs/Tricentis-Tosca/releases/latest) for your Tricentis Tosca version.
+1. Download the [latest release](https://github.com/Neotys-Labs/Tricentis-Tosca/releases/latest) for your Tricentis Tosca version (either 12.1 and below or 12.2 and above).
 
 2. Unzip it in the root folder of the Tricentis Tosca installation directory (for example: C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\).
 
@@ -43,18 +43,26 @@ Parameters:
 To access these values, go to the NeoLoad **Preferences**, then the **Project settings** tab, then select the **REST API** category.
 <p align="center"><img src="/screenshots/designapi.png" alt="Design API" /></p>
 
-## How to convert a Tricentis Tosca SAP or Web script to a NeoLoad SAP User Path or update an existing SAP or Web User Path.
+## How to convert a Tricentis Tosca SAP script to a NeoLoad User Path
 
-In Tricentis Tosca, right click on an execution of a Test Case and then **NeoLoad Add-on > Transfer to NeoLoad**
-Neoload begin the **SAP recording** at the first step named "SAP" or "SAP Login".
-Neoload begin the **Web recording** at the first step named "OpenUrl".
+In Tricentis Tosca, right click on an execution of a Test Case and then **NeoLoad Add-on > Transfer SAP test case to NeoLoad**
+Neoload starts the **SAP recording** at the first step named "SAP" or "SAP Login", and stops it at the end of the test case.
 
-<p align="center"><img src="/screenshots/transfertoneoload.png" alt="transfer" /></p>
+<p align="center"><img src="/screenshots/transfertSAPtoNeoload.png" alt="transfer" /></p>
+
+<p align="center"><img src="/screenshots/userpath.png" alt="user path" /></p>
+
+## How to convert a Tricentis Tosca Web script to a NeoLoad User Path
+
+In Tricentis Tosca, right click on an execution of a Test Case and then **NeoLoad Add-on > Transfer Web test case to NeoLoad**
+Neoload starts the **Web recording** at the beginning of the test case, and stops it at the end.
+
+<p align="center"><img src="/screenshots/transfertWEBtoNeoload.png" alt="transfer" /></p>
+
+## User Path Update
 
 During the execution of the Tricentis Tosca test case, if the NeoLoad User Path does not exist, it will be created. Otherwise, the existing User Path will be updated thanks to the User Path Update feature.
 The User Path Update feature merge the original User Path with a newer recording, copying variable extractors and variables. Below the SAP GUI User Path in NeoLoad.
-
-<p align="center"><img src="/screenshots/userpath.png" alt="user path" /></p>
 
 **Warning**: In Tosca > 12.2, if Execution errors are not displayed in Tosca Commander, they can be found in the **neoload-add-on-error.txt** file located in your user profile directory. 
 
@@ -64,6 +72,7 @@ The User Path Update feature merge the original User Path with a newer recording
    * Support of Tosca version 13.0
    * Support Web test case recording
    * Create a new transaction in Neoload at each SAP TCode encountered during the recoding. This feature is available since Neoload 7.3
+   * Make installation procedure easier
 
 * Version 1.0.0 (November 30, 2018): Initial release.
    * July 24, 2019: Support of Tosca version 12.2
