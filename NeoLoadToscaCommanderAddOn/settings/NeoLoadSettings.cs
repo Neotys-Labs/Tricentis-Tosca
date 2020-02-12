@@ -12,8 +12,6 @@ namespace NeoLoad.Settings
         public static readonly string API_HOSTNAME_KEY = "NeoLoadApiHostname";
         public static readonly string CREATE_TRANSACTION_BY_SAP_TCODE_KEY = "CreateTransactionBySapTCode";
         public static readonly string RECORD_WEB_OR_SAP = "RecordWebOrSap";
-        public static readonly string RECORD_WEB = "web";
-        public static readonly string RECORD_SAP = "sap";
 
         protected override ApplicationSettingsBase GetSettingsObject()
         {
@@ -40,14 +38,6 @@ namespace NeoLoad.Settings
         public static void DeleteUserFile()
         {
             System.IO.File.Delete(GetUserFilePath());
-        }
-
-        public static Dictionary<string, string> ReadSettingsFromUserFile()
-        {
-            Dictionary<string, string> data = new Dictionary<string, string>();
-            foreach (var row in System.IO.File.ReadAllLines(GetUserFilePath()))
-                data.Add(row.Split('=')[0], row.Split('=')[1]);
-            return data;
         }
 
         public static bool IsSendingToNeoLoad()
