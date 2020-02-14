@@ -1,4 +1,4 @@
-﻿using NeoLoad.Settings;
+using NeoLoad.Settings;
 using Neotys.DesignAPI.Client;
 using Neotys.DesignAPI.Model;
 using System;
@@ -7,7 +7,7 @@ using System.IO;
 
 namespace NeoLoad.Client
 {
-    class NeoLoadDesignApiInstance
+    public class NeoLoadDesignApiInstance
     {
         private static NeoLoadDesignApiInstance _instance = null;
 
@@ -15,10 +15,31 @@ namespace NeoLoad.Client
         private string _userPathName = null;
         private bool _userPathExist = false;
         private bool _recordStarted = false;
+        private string _apiHost = null;
+        private int _apiPort = 0;
+        private int _recorderProxyPort = 0;
+        private SystemProxyHelper _systemProxyHelper = null;
+        private bool _createTransactionBySapTCode;
+        private Protocol _protocolToRecord;
 
-        private NeoLoadDesignApiInstance(string host, string port, string token) {
+        public enum Protocol
+        {
+            SAP,
+            WEB
+        };
+
+        private NeoLoadDesignApiInstance(string host, string port, string token, bool createTransactionBySapTCode, Protocol protocolToRecord) {
             string url = "http://" + host + ":" + port + "/Design/v1/Service.svc/";
             _client = DesignAPIClientFactory.NewClient(url, token);
+            _apiHost = host;
+            _apiPort = int.Parse(port);
+            _createTransactionBySapTCode = createTransactionBySapTCode;
+            _protocolToRecord = protocolToRecord;
+        }
+
+        private void intialize()
+        {
+            _recorderProxyPort = _client.GetRecorderSettings().ProxySettings.Port;
         }
 
         public static NeoLoadDesignApiInstance GetInstance()
@@ -29,7 +50,10 @@ namespace NeoLoad.Client
                 string host = properties[NeoLoadSettings.API_HOSTNAME_KEY];
                 string port = properties[NeoLoadSettings.API_PORT_KEY];
                 string token = properties[NeoLoadSettings.API_KEY_KEY];
-                _instance = new NeoLoadDesignApiInstance(host, port, token);
+                bool createTransactionBySapTCode = Boolean.Parse(properties[NeoLoadSettings.CREATE_TRANSACTION_BY_SAP_TCODE_KEY]);
+                Protocol protocolToRecord = (Protocol) Enum.Parse(typeof(Protocol), properties[NeoLoadSettings.RECORD_WEB_OR_SAP]);
+                _instance = new NeoLoadDesignApiInstance(host, port, token, createTransactionBySapTCode, protocolToRecord);
+                _instance.intialize();
             }
             return _instance;
         }
@@ -44,7 +68,17 @@ namespace NeoLoad.Client
             return _recordStarted;
         }
 
-        public void StartSapRecording()
+        public bool IsRecordSap()
+        {
+            return Protocol.SAP.Equals(_protocolToRecord);
+        }
+
+        public bool IsRecordWeb()
+        {
+            return Protocol.WEB.Equals(_protocolToRecord);
+        }
+
+        public void StartRecording(Protocol protocol)
         {
             _recordStarted = true;
             try
@@ -64,13 +98,27 @@ namespace NeoLoad.Client
                         _startRecordingPB.virtualUser(_userPathName);
                     }
                 }
-                _startRecordingPB.isSapGuiProtocol(true);
-            
+                if (Protocol.SAP.Equals(protocol))
+                {
+                    _startRecordingPB.isSapGuiProtocol(true);
+                    _startRecordingPB.isCreateTransactionBySapTCode(_createTransactionBySapTCode);
+                }
+                else if (Protocol.WEB.Equals(protocol))
+                {
+                    _startRecordingPB.isHTTP2Protocol(true);
+                    if(_systemProxyHelper == null)
+                    {
+                        _systemProxyHelper = new SystemProxyHelper(_apiPort);
+                        _systemProxyHelper.setProxy(_apiHost, _recorderProxyPort, "");
+                    }
+                }
+
                 _client.StartRecording(_startRecordingPB.Build());
             } catch (Exception e)
             {
                 _recordStarted = false;
                 _instance = null;
+                _systemProxyHelper = null;
                 WriteExceptionToFile(e);
                 throw e;
             }
@@ -113,11 +161,17 @@ namespace NeoLoad.Client
             try
             {
                 _client.StopRecording(_stopRecordingBuilder.Build());
+                _client.SaveProject();
+                if (_systemProxyHelper != null)
+                {
+                    _systemProxyHelper.restoreProxy();
+                }
             }
             finally
             {
                 _recordStarted = false;
                 _instance = null;
+                _systemProxyHelper = null;
             }
         }
     }

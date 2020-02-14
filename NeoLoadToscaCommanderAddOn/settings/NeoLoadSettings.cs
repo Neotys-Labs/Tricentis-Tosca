@@ -10,6 +10,8 @@ namespace NeoLoad.Settings
         public static readonly string API_PORT_KEY = "NeoLoadApiPort";
         public static readonly string API_KEY_KEY = "NeoLoadApiKey";
         public static readonly string API_HOSTNAME_KEY = "NeoLoadApiHostname";
+        public static readonly string CREATE_TRANSACTION_BY_SAP_TCODE_KEY = "CreateTransactionBySapTCode";
+        public static readonly string RECORD_WEB_OR_SAP = "RecordWebOrSap";
 
         protected override ApplicationSettingsBase GetSettingsObject()
         {
@@ -22,11 +24,13 @@ namespace NeoLoad.Settings
             return directoryPath + "/neoload-tosca.properties";
         }
 
-        public static void WriteSettingsToUserFile()
+        public static void WriteSettingsToUserFile(String recordWebOrSap)
         {
             string[] lines = { API_PORT_KEY + "=" + Settings.Default.NeoLoadApiPort,
                 API_KEY_KEY + "=" + Settings.Default.NeoLoadApiKey,
                 API_HOSTNAME_KEY + "=" + Settings.Default.NeoLoadApiHostname,
+                CREATE_TRANSACTION_BY_SAP_TCODE_KEY + "=" + Settings.Default.CreateTransactionBySapTCode,
+                RECORD_WEB_OR_SAP + "=" + recordWebOrSap
             };
             System.IO.File.WriteAllLines(GetUserFilePath(), lines);
         }
@@ -34,14 +38,6 @@ namespace NeoLoad.Settings
         public static void DeleteUserFile()
         {
             System.IO.File.Delete(GetUserFilePath());
-        }
-
-        public static Dictionary<string, string> ReadSettingsFromUserFile()
-        {
-            Dictionary<string, string> data = new Dictionary<string, string>();
-            foreach (var row in System.IO.File.ReadAllLines(GetUserFilePath()))
-                data.Add(row.Split('=')[0], row.Split('=')[1]);
-            return data;
         }
 
         public static bool IsSendingToNeoLoad()
@@ -69,5 +65,11 @@ namespace NeoLoad.Settings
         protected override string SettingName { get; } = "NeoLoadApiHostname";
 
         protected override string DisplayedName { get; } = "NeoLoadApiHostname";
+    }
+    public class CreateTransactionBySapTCodeSetting : TCAddOnOptionsDialogEntry
+    {
+        protected override string SettingName { get; } = "CreateTransactionBySapTCode";
+
+        protected override string DisplayedName { get; } = "CreateTransactionBySapTCode";
     }
 }
