@@ -62,7 +62,7 @@ Neoload starts the **Web recording** at the beginning of the test case, and stop
 ## User Path Update
 
 During the execution of the Tricentis Tosca test case, if the NeoLoad User Path does not exist, it will be created. Otherwise, the existing User Path will be updated thanks to the User Path Update feature.
-The User Path Update feature merge the original User Path with a newer recording, copying variable extractors and variables. Below the SAP GUI User Path in NeoLoad.
+The User Path Update feature merges the original User Path with a newer recording, copying variable extractors and variables. Below the SAP GUI User Path in NeoLoad.
 
 **Warning**: In Tosca > 12.2, if Execution errors are not displayed in Tosca Commander, they can be found in the **neoload-add-on-error.txt** file located in your user profile directory. 
 
