@@ -146,6 +146,19 @@ namespace NeoLoad.Client
             }
         }
 
+        public void CreateTransaction(string _transactionName)
+        {
+            try
+            {
+                _client.SetContainer(new SetContainerParams(_transactionName));
+            }
+            catch (Exception e)
+            {
+                WriteExceptionToFile(e);
+                throw e;
+            }
+        }
+
         public void StopRecording()
         {
             StopRecordingParamsBuilder _stopRecordingBuilder = new StopRecordingParamsBuilder();
