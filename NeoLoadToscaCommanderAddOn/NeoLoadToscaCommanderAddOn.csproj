@@ -61,6 +61,10 @@
       <HintPath>..\..\..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\ToscaCommander\TCAddOn.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="TCAPI">
+      <HintPath>..\..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\ToscaCommander\TCAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="TCAPIObjects, Version=12.0.0.18848, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\ToscaCommander\TCAPIObjects.dll</HintPath>
@@ -69,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="addOn\NeoLoadAddOn.cs" />
+    <Compile Include="addOn\NeoloadToscaApi.cs" />
     <Compile Include="addOn\TransferWebToNeoLoadTask.cs" />
     <Compile Include="settings\NeoLoadSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

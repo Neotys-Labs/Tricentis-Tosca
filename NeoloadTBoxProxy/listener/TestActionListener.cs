@@ -70,6 +70,7 @@ namespace NeoLoad.Listener
                 string testCaseId = RunContext.GetAdditionalExecutionInfo("testcase.uniqueid");
                 string testCaseName = RunContext.GetAdditionalExecutionInfo("testcase.name");
                 NeoLoadDesignApiInstance.GetInstance().SetUserPathName(testCaseName + " - Tosca");
+                NeoLoadSettings.SetTestCaseId(testCaseId);
             }
         }
 

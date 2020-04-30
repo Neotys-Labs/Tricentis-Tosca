@@ -15,6 +15,7 @@ namespace NeoLoad.AddOn
         {
             NeoLoadSettings.WriteSettingsToUserFile("SAP");
             var exec = (objectToExecuteOn as ExecutionEntry).Run();
+            NeoloadToscaApi.UpdateTestCaseDescription();
             NeoLoadSettings.DeleteUserFile();
             return exec;
         }

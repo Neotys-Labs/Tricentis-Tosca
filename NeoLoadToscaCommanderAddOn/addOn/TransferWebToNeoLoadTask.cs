@@ -1,4 +1,4 @@
-﻿using NeoLoad.Settings;
+using NeoLoad.Settings;
 using System;
 using Tricentis.TCAddOns;
 using Tricentis.TCAPIObjects.Objects;
@@ -15,6 +15,7 @@ namespace NeoLoad.AddOn
         {
             NeoLoadSettings.WriteSettingsToUserFile("WEB");
             var exec = (objectToExecuteOn as ExecutionEntry).Run();
+            NeoloadToscaApi.UpdateTestCaseDescription();
             NeoLoadSettings.DeleteUserFile();
             return exec;
         }

@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
 using Tricentis.TCAddOns;
+using Tricentis.TCAPI;
+using Tricentis.TCAPIObjects.Objects;
 
 namespace NeoLoad.Settings
 {
@@ -12,6 +15,7 @@ namespace NeoLoad.Settings
         public static readonly string API_HOSTNAME_KEY = "NeoLoadApiHostname";
         public static readonly string CREATE_TRANSACTION_BY_SAP_TCODE_KEY = "CreateTransactionBySapTCode";
         public static readonly string RECORD_WEB_OR_SAP = "RecordWebOrSap";
+        public static readonly string TEST_CASE_UNIQUE_ID = "TestCaseUniqueId";
 
         protected override ApplicationSettingsBase GetSettingsObject()
         {
@@ -33,6 +37,14 @@ namespace NeoLoad.Settings
                 RECORD_WEB_OR_SAP + "=" + recordWebOrSap
             };
             System.IO.File.WriteAllLines(GetUserFilePath(), lines);
+        }
+
+        public static Dictionary<string, string> ReadSettingsFromUserFile()
+        {
+            Dictionary<string, string> data = new Dictionary<string, string>();
+            foreach (var row in System.IO.File.ReadAllLines(GetUserFilePath()))
+                data.Add(row.Split('=')[0], row.Split('=')[1]);
+            return data;
         }
 
         public static void DeleteUserFile()
