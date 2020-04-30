@@ -1,8 +1,7 @@
-﻿
+
 using NeoLoad.Client;
 using NeoLoad.Settings;
 using System;
-using System.Collections.Generic;
 using Tricentis.Automation.AutomationInstructions.TestActions;
 using Tricentis.Automation.Creation;
 using Tricentis.Automation.Engines.Monitoring;
@@ -68,8 +67,9 @@ namespace NeoLoad.Listener
         {
             if (IsSendingToNeoLoad())
             {
+                string testCaseId = RunContext.GetAdditionalExecutionInfo("testcase.uniqueid");
                 string testCaseName = RunContext.GetAdditionalExecutionInfo("testcase.name");
-                NeoLoadDesignApiInstance.GetInstance().SetUserPathName(testCaseName);
+                NeoLoadDesignApiInstance.GetInstance().SetUserPathName(testCaseName + " - Tosca");
             }
         }
 
