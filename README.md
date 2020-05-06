@@ -24,7 +24,12 @@ It allows you to interact with the NeoLoad [Design API](https://www.neotys.com/d
 
 2. Unzip it in the root folder of the Tricentis Tosca installation directory (for example: C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\).
 
-3. Relaunch the Tosca Commander.
+3. Unblock the following 3 DLL files by right clicking the DLL > Properties and tick **Unblock**
+	* TRICENTIS\Tosca Testsuite\TBox\NeoLoadTBoxAddOn.dll
+	* TRICENTIS\Tosca Testsuite\TBox\NeoloadTBoxProxy.dll
+	* TRICENTIS\Tosca Testsuite\ToscaCommander\NeoLoadToscaCommanderAddOn.dll
+
+4. Relaunch the Tosca Commander.
 
 **Warning**: For SAP test case, you might need to launch both Tosca and SAP Logon as administrator in order to convert the Tosca Script to NeoLoad.
 
