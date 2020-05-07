@@ -1,9 +1,11 @@
 using NeoLoad.Settings;
+using NeoLoadAddOn.client;
 using Neotys.DesignAPI.Client;
 using Neotys.DesignAPI.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace NeoLoad.Client
 {
@@ -121,6 +123,14 @@ namespace NeoLoad.Client
                 _systemProxyHelper = null;
                 WriteExceptionToFile(e);
                 throw e;
+            }
+
+            try
+            {
+                NeoloadRestApiInstance.GetInstance().SendUsageEvent("recording", protocol);
+            } catch(Exception e)
+            {
+                // Do nothing if send event fails
             }
         }
 

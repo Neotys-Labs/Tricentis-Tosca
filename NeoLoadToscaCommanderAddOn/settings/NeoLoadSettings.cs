@@ -1,7 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
+using System.Reflection;
 using Tricentis.TCAddOns;
+using Tricentis.TCAPI;
 
 namespace NeoLoad.Settings
 {
@@ -12,6 +13,7 @@ namespace NeoLoad.Settings
         public static readonly string API_HOSTNAME_KEY = "NeoLoadApiHostname";
         public static readonly string CREATE_TRANSACTION_BY_SAP_TCODE_KEY = "CreateTransactionBySapTCode";
         public static readonly string RECORD_WEB_OR_SAP = "RecordWebOrSap";
+        public static readonly string TCAPI_VERSION = "tcapiVersion";
 
         protected override ApplicationSettingsBase GetSettingsObject()
         {
@@ -26,13 +28,18 @@ namespace NeoLoad.Settings
 
         public static void WriteSettingsToUserFile(String recordWebOrSap)
         {
-            string[] lines = { API_PORT_KEY + "=" + Settings.Default.NeoLoadApiPort,
-                API_KEY_KEY + "=" + Settings.Default.NeoLoadApiKey,
-                API_HOSTNAME_KEY + "=" + Settings.Default.NeoLoadApiHostname,
-                CREATE_TRANSACTION_BY_SAP_TCODE_KEY + "=" + Settings.Default.CreateTransactionBySapTCode,
-                RECORD_WEB_OR_SAP + "=" + recordWebOrSap
-            };
-            System.IO.File.WriteAllLines(GetUserFilePath(), lines);
+            using (TCAPI tcapi = TCAPI.Instance is null ? TCAPI.CreateInstance() : TCAPI.Instance)
+            {
+                PropertyInfo APIVersionString = tcapi.GetType().GetProperty("APIVersionString");
+                string[] lines = { API_PORT_KEY + "=" + Settings.Default.NeoLoadApiPort,
+                    API_KEY_KEY + "=" + Settings.Default.NeoLoadApiKey,
+                    API_HOSTNAME_KEY + "=" + Settings.Default.NeoLoadApiHostname,
+                    CREATE_TRANSACTION_BY_SAP_TCODE_KEY + "=" + Settings.Default.CreateTransactionBySapTCode,
+                    RECORD_WEB_OR_SAP + "=" + recordWebOrSap,
+                    TCAPI_VERSION + "=" + (APIVersionString == null ? tcapi.APIVersionAndBuild.ToString() : APIVersionString.GetValue(tcapi)),
+                };
+                System.IO.File.WriteAllLines(GetUserFilePath(), lines);
+            }
         }
 
         public static void DeleteUserFile()
