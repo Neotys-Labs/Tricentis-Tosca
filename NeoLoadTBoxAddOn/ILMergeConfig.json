@@ -1,5 +1,6 @@
 ﻿{
     "Advanced": {
+		"AllowDuplicateType": "*",
         "Closed": true,
 		"Internalize": true
     }

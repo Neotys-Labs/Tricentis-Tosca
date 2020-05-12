@@ -1,9 +1,11 @@
 using NeoLoad.Settings;
+using NeoLoadAddOn.client;
 using Neotys.DesignAPI.Client;
 using Neotys.DesignAPI.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace NeoLoad.Client
 {
@@ -122,6 +124,14 @@ namespace NeoLoad.Client
                 WriteExceptionToFile(e);
                 throw e;
             }
+
+            try
+            {
+                NeoloadRestApiInstance.GetInstance().SendUsageEvent("recording", protocol);
+            } catch(Exception e)
+            {
+                // Do nothing if send event fails
+            }
         }
 
         private void WriteExceptionToFile(Exception ex)
@@ -143,6 +153,19 @@ namespace NeoLoad.Client
 
                     ex = ex.InnerException;
                 }
+            }
+        }
+
+        public void CreateTransaction(string _transactionName)
+        {
+            try
+            {
+                _client.SetContainer(new SetContainerParams(_transactionName));
+            }
+            catch (Exception e)
+            {
+                WriteExceptionToFile(e);
+                throw e;
             }
         }
 

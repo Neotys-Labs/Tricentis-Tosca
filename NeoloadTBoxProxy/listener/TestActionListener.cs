@@ -1,8 +1,7 @@
-﻿
+
 using NeoLoad.Client;
 using NeoLoad.Settings;
 using System;
-using System.Collections.Generic;
 using Tricentis.Automation.AutomationInstructions.TestActions;
 using Tricentis.Automation.Creation;
 using Tricentis.Automation.Engines.Monitoring;
@@ -23,8 +22,16 @@ namespace NeoLoad.Listener
 
         public override void PreExecution(ITestAction testAction)
         {
-            if (!IsSendingToNeoLoad() || NeoLoadDesignApiInstance.GetInstance().IsRecordStarted())
+            if (!IsSendingToNeoLoad())
             {
+                return;
+            }
+            if (NeoLoadDesignApiInstance.GetInstance().IsRecordStarted())
+            {
+                if (NeoLoadDesignApiInstance.GetInstance().IsRecordWeb())
+                {
+                    NeoLoadDesignApiInstance.GetInstance().CreateTransaction(testAction.Name.Value);
+                }
                 return;
             }
 
@@ -39,6 +46,7 @@ namespace NeoLoad.Listener
             {
                 // We are before a web event, we can start WEB recording in NeoLoad.
                 NeoLoadDesignApiInstance.GetInstance().StartRecording(NeoLoadDesignApiInstance.Protocol.WEB);
+                NeoLoadDesignApiInstance.GetInstance().CreateTransaction(testAction.Name.Value);
             }
         }
 
@@ -59,8 +67,9 @@ namespace NeoLoad.Listener
         {
             if (IsSendingToNeoLoad())
             {
+                string testCaseId = RunContext.GetAdditionalExecutionInfo("testcase.uniqueid");
                 string testCaseName = RunContext.GetAdditionalExecutionInfo("testcase.name");
-                NeoLoadDesignApiInstance.GetInstance().SetUserPathName(testCaseName);
+                NeoLoadDesignApiInstance.GetInstance().SetUserPathName(testCaseName + " - Tosca");
             }
         }
 
