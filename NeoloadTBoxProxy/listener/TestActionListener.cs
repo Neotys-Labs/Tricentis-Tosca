@@ -70,6 +70,13 @@ namespace NeoLoad.Listener
                 string testCaseId = RunContext.GetAdditionalExecutionInfo("testcase.uniqueid");
                 string testCaseName = RunContext.GetAdditionalExecutionInfo("testcase.name");
                 NeoLoadDesignApiInstance.GetInstance().SetUserPathName(testCaseName + " - Tosca");
+
+                // Start recording for API Testing test cases
+                if (!NeoLoadDesignApiInstance.GetInstance().IsRecordStarted() && NeoLoadDesignApiInstance.GetInstance().IsRecordWeb())
+                {
+                    // We are before a web event, we can start WEB recording in NeoLoad.
+                    NeoLoadDesignApiInstance.GetInstance().StartRecording(NeoLoadDesignApiInstance.Protocol.WEB);
+                }
             }
         }
 
