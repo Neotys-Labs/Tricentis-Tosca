@@ -15,7 +15,7 @@ It allows you to interact with the NeoLoad [Design API](https://www.neotys.com/d
 | Author | Neotys |
 | License           | [BSD 2-Clause "Simplified"](https://github.com/Neotys-Labs/Tricentis-Tosca/blob/master/LICENSE) |
 | NeoLoad Licensing | License FREE edition, or Enterprise edition, or Professional with Integration & Advanced Usage|
-| Supported versions | Tested with Tricentis Tosca version 11.3, 12.0, 12.2, 12.3, 13.0, 13.1, 13.2 and NeoLoad from version [6.6.0](https://www.neotys.com/support/download-neoload) version 32 bits
+| Supported versions | Tested with Tricentis Tosca version 11.3, 12.0, 12.2, 12.3, 13.0, 13.1, 13.2, 13.3 and NeoLoad from version [6.6.0](https://www.neotys.com/support/download-neoload) version 32 bits
 | Download Binaries | See the [latest release](https://github.com/Neotys-Labs/Tricentis-Tosca/releases/latest)|
 
 ## Setting up the NeoLoad Tricentis Tosca Add-on
@@ -57,7 +57,7 @@ Neoload starts the **SAP recording** at the first step named "SAP" or "SAP Login
 
 <p align="center"><img src="/screenshots/userpath.png" alt="user path" /></p>
 
-## How to convert a Tricentis Tosca Web script to a NeoLoad User Path
+## How to convert a Tricentis Tosca Web or API script to a NeoLoad User Path
 
 In Tricentis Tosca, right click on an execution of a Test Case and then **NeoLoad Add-on > Transfer Web test case to NeoLoad**
 Neoload starts the **Web recording** at the beginning of the test case, and stops it at the end.
@@ -72,6 +72,9 @@ The User Path Update feature merges the original User Path with a newer recordin
 **Warning**: In Tosca > 12.2, if Execution errors are not displayed in Tosca Commander, they can be found in the **neoload-add-on-error.txt** file located in your user profile directory. 
 
 ## ChangeLog
+* Version 2.2.0 (July 15, 2020): API test recording.
+   * Support API test case recording
+   * Support of Tosca version 13.3
 
 * Version 2.1.0 (May 08, 2020): Make transactions when recording web test case.
    * Support of Tosca version 13.1 and 13.2
