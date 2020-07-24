@@ -48,6 +48,12 @@ Parameters:
 To access these values, go to the NeoLoad **Preferences**, then the **Project settings** tab, then select the **REST API** category.
 <p align="center"><img src="/screenshots/designapi.png" alt="Design API" /></p>
 
+### When enterprise proxy is set
+During any transfert from Tosca to Neoload, the enterprise proxy settings must be disabled.
+Before the transfert, go to windows proxy settings. Set "Automatically detect settings" and "Use setup script" to Off as shown below.
+After the transfert complete, reset the settings at their initial value.
+<p align="center"><img src="/screenshots/disable-enterprise-proxy.png" alt="Windows proxy seetings"/></p>
+
 ## How to convert a Tricentis Tosca SAP script to a NeoLoad User Path
 
 In Tricentis Tosca, right click on an execution of a Test Case and then **NeoLoad Add-on > Transfer SAP test case to NeoLoad**
