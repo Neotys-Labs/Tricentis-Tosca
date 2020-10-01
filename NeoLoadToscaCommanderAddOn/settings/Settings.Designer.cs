@@ -58,16 +58,34 @@ namespace NeoLoad.Settings {
                 this["NeoLoadApiHostname"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool CreateTransactionBySapTCode {
-            get {
+        public bool CreateTransactionBySapTCode
+        {
+            get
+            {
                 return ((bool)(this["CreateTransactionBySapTCode"]));
             }
-            set {
+            set
+            {
                 this["CreateTransactionBySapTCode"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool Http2
+        {
+            get
+            {
+                return ((bool)(this["Http2"]));
+            }
+            set
+            {
+                this["Http2"] = value;
             }
         }
     }

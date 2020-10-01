@@ -12,6 +12,7 @@ namespace NeoLoad.Settings
         public static readonly string API_KEY_KEY = "NeoLoadApiKey";
         public static readonly string API_HOSTNAME_KEY = "NeoLoadApiHostname";
         public static readonly string CREATE_TRANSACTION_BY_SAP_TCODE_KEY = "CreateTransactionBySapTCode";
+        public static readonly string HTTP2 = "Http2";
         public static readonly string RECORD_WEB_OR_SAP = "RecordWebOrSap";
         public static readonly string TCAPI_VERSION = "tcapiVersion";
 
@@ -35,6 +36,7 @@ namespace NeoLoad.Settings
                     API_KEY_KEY + "=" + Settings.Default.NeoLoadApiKey,
                     API_HOSTNAME_KEY + "=" + Settings.Default.NeoLoadApiHostname,
                     CREATE_TRANSACTION_BY_SAP_TCODE_KEY + "=" + Settings.Default.CreateTransactionBySapTCode,
+                    HTTP2 + "=" + Settings.Default.Http2,
                     RECORD_WEB_OR_SAP + "=" + recordWebOrSap,
                     TCAPI_VERSION + "=" + (APIVersionString == null ? tcapi.APIVersionAndBuild.ToString() : APIVersionString.GetValue(tcapi)),
                 };
@@ -78,5 +80,12 @@ namespace NeoLoad.Settings
         protected override string SettingName { get; } = "CreateTransactionBySapTCode";
 
         protected override string DisplayedName { get; } = "CreateTransactionBySapTCode";
+    }
+
+    public class Http2 : TCAddOnOptionsDialogEntry
+    {
+        protected override string SettingName { get; } = "Http2";
+
+        protected override string DisplayedName { get; } = "Http2";
     }
 }
