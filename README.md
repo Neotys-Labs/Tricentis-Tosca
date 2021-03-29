@@ -15,7 +15,7 @@ It allows you to interact with the NeoLoad [Design API](https://www.neotys.com/d
 | Author | Neotys |
 | License           | [BSD 2-Clause "Simplified"](https://github.com/Neotys-Labs/Tricentis-Tosca/blob/master/LICENSE) |
 | NeoLoad Licensing | License FREE edition, or Enterprise edition, or Professional with Integration & Advanced Usage|
-| Supported versions | Tested with Tricentis Tosca version 11.3, 12.0, 12.2, 12.3, 13.0, 13.1, 13.2, 13.3, 13.4 and NeoLoad from version [6.6.0](https://www.neotys.com/support/download-neoload) version 32 bits
+| Tested versions | Tricentis Tosca versions: <ul><li>11.x (11.3)</li><li>12.x (12.0, 12.2, 12.3)</li><li>13.x (13.0, 13.1, 13.2, 13.3, 13.4)</li><li>14.x (14.1)</li></ul>[NeoLoad versions](https://www.neotys.com/support/download-neoload) from 6.6 to 7.9.
 | Download Binaries | See the [latest release](https://github.com/Neotys-Labs/Tricentis-Tosca/releases/latest)|
 
 ## Setting up the NeoLoad Tricentis Tosca Add-on
@@ -56,6 +56,8 @@ After the transfer complete, reset the settings at their initial value.
 
 ## How to convert a Tricentis Tosca SAP script to a NeoLoad User Path
 
+The NeoLoad Controller used to convert the Tosca SAP script must be 32 bits and launched in process mode (service mode is not supported). More information about NeoLoad Prerequisites for SAP GUI on [NeoLoad documentation](https://www.neotys.com/documents/doc/neoload/latest/en/html/#27113.htm).
+
 In Tricentis Tosca, right click on an execution of a Test Case and then **NeoLoad Add-on > Transfer SAP test case to NeoLoad**
 Neoload starts the **SAP recording** at the first step named "SAP" or "SAP Login", and stops it at the end of the test case.
 
@@ -75,9 +77,23 @@ Neoload starts the **Web recording** at the beginning of the test case, and stop
 During the execution of the Tricentis Tosca test case, if the NeoLoad User Path does not exist, it will be created. Otherwise, the existing User Path will be updated thanks to the User Path Update feature.
 The User Path Update feature merges the original User Path with a newer recording, copying variable extractors and variables. Below the SAP GUI User Path in NeoLoad.
 
-**Warning**: In Tosca > 12.2, if Execution errors are not displayed in Tosca Commander, they can be found in the **neoload-add-on-error.txt** file located in your user profile directory. 
+## Troubleshooting
+From Tosca version 12.2, if execution errors are not displayed in Tosca Commander (Loginfo column displays "Stack empty."), check file **neoload-add-on-error.txt** located in your user profile directory (for example C:\Users\<username>\neoload-add-on-error.txt).
+
+### Unable to connect to the remote server (No connection can be established to 127.0.0.1:7400)
+Make sure NeoLoad is running, on same host specified by IP address (127.0.0.1 for localhost), and make sure NeoLoad design API is listening on port specified (by default 7400). 
+
+### NL-DESIGN-CANNOT-GET-CONTAINS-USER-PATH (No project is opened.)
+NeoLoad is running, but there is no project open. Make sure to wait until project is fully loaded in NeoLoad before converting Tosca script.
+
+### NL-DESIGN-CANNOT-START-SAP-RECORDING (There is no active SAP connection)
+The API call sent from the NeoLoad add-on to the NeoLoad Controller Design API was performed when there was no active SAP connection. 
+Make sure there is an active SAP connection when the conversion starts. If needed, adjust name of test case actions to allow a delayed start. The add-on will trigger the "Start SAP recording" either on action pre-execution or post-execution, as coded [here](https://github.com/Neotys-Labs/Tricentis-Tosca/blob/master/NeoloadTBoxProxy/listener/TestActionListener.cs).
 
 ## ChangeLog
+
+* Version 2.3.0 (October 13, 2020): Add option to enable/disable HTTP2 during Neoload recording
+
 * Version 2.2.0 (July 15, 2020): API test recording.
    * Support API test case recording
    * Support of Tosca version 13.3
