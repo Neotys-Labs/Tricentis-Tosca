@@ -83,12 +83,27 @@ From Tosca version 12.2, if execution errors are not displayed in Tosca Commande
 ### Unable to connect to the remote server (No connection can be established to 127.0.0.1:7400)
 Make sure NeoLoad is running, on same host specified by IP address (127.0.0.1 for localhost), and make sure NeoLoad design API is listening on port specified (by default 7400). 
 
+### NL-RECORDING-NOT-LICENSED
+You need a valid license with Integration & Advanced Usage. 
+
 ### NL-DESIGN-CANNOT-GET-CONTAINS-USER-PATH (No project is opened.)
 NeoLoad is running, but there is no project open. Make sure to wait until project is fully loaded in NeoLoad before converting Tosca script.
 
 ### NL-DESIGN-CANNOT-START-SAP-RECORDING (There is no active SAP connection)
 The API call sent from the NeoLoad add-on to the NeoLoad Controller Design API was performed when there was no active SAP connection. 
 Make sure there is an active SAP connection when the conversion starts. If needed, adjust name of test case actions to allow a delayed start. The add-on will trigger the "Start SAP recording" either on action pre-execution or post-execution, as coded [here](https://github.com/Neotys-Labs/Tricentis-Tosca/blob/master/NeoloadTBoxProxy/listener/TestActionListener.cs).
+
+### NL-DESIGN-ILLEGAL-STATE-FOR-OPERATION
+Different causes that can produce an NL-DESIGN-ILLEGAL-STATE-FOR-OPERATION:
+* A test is running.
+* NeoLoad is busy.
+* A recording is already in progress.
+* The post-recording wizard is still open or running.
+* No workbench instance found.
+* A recording is already stopping.
+* Recording is already paused.
+* Recording is not paused.
+* Not currently recording.
 
 ## ChangeLog
 
