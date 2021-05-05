@@ -59,8 +59,7 @@
     </Reference>
     <Reference Include="System.Net" />
     <Reference Include="Tricentis.Automation.Interaction">
-      <HintPath>..\..\..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\ToscaCommander\Tricentis.Automation.Interaction.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\TBox\Tricentis.Automation.Interaction.dll</HintPath>
     </Reference>
     <Reference Include="Tricentis.AutomationBase">
       <HintPath>..\..\..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\TBox\Tricentis.AutomationBase.dll</HintPath>

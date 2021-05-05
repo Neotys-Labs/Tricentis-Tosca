@@ -62,7 +62,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="TCAPI">
-      <HintPath>..\..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\ToscaCommander\TCAPI.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\ToscaCommander\TCAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="TCAPIObjects, Version=12.0.0.18848, Culture=neutral, processorArchitecture=MSIL">

@@ -24,6 +24,7 @@ namespace NeoLoad.Client
         private bool _createTransactionBySapTCode;
         private bool _http2;
         private Protocol _protocolToRecord;
+        private string currentTransaction = null;
 
         public enum Protocol
         {
@@ -81,6 +82,11 @@ namespace NeoLoad.Client
         public bool IsRecordWeb()
         {
             return Protocol.WEB.Equals(_protocolToRecord);
+        }
+
+        public bool IsCreateTransactionBySapTCode()
+        {
+            return _createTransactionBySapTCode;
         }
 
         public void StartRecording(Protocol protocol)
@@ -161,6 +167,11 @@ namespace NeoLoad.Client
 
         public void CreateTransaction(string _transactionName)
         {
+            if (string.Equals(_transactionName, currentTransaction))
+            {
+                return;
+            }
+            currentTransaction = _transactionName;
             try
             {
                 _client.SetContainer(new SetContainerParams(_transactionName));

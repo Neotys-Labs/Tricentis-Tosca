@@ -3,6 +3,7 @@ using NeoLoad.Client;
 using NeoLoad.Settings;
 using System;
 using Tricentis.Automation.AutomationInstructions.TestActions;
+using Tricentis.Automation.Contract;
 using Tricentis.Automation.Creation;
 using Tricentis.Automation.Engines.Monitoring;
 using Tricentis.Automation.Execution.Context;
@@ -28,9 +29,9 @@ namespace NeoLoad.Listener
             }
             if (NeoLoadDesignApiInstance.GetInstance().IsRecordStarted())
             {
-                if (NeoLoadDesignApiInstance.GetInstance().IsRecordWeb())
+                if (NeoLoadDesignApiInstance.GetInstance().IsRecordWeb() || !NeoLoadDesignApiInstance.GetInstance().IsCreateTransactionBySapTCode())
                 {
-                    NeoLoadDesignApiInstance.GetInstance().CreateTransaction(testAction.Name.Value);
+                    UpdateTransaction(testAction);
                 }
                 return;
             }
@@ -40,13 +41,17 @@ namespace NeoLoad.Listener
                 // We are before SAP Login, we can start SAP recording in NeoLoad.
                 System.Threading.Thread.Sleep(2000);
                 NeoLoadDesignApiInstance.GetInstance().StartRecording(NeoLoadDesignApiInstance.Protocol.SAP);
+                if (!NeoLoadDesignApiInstance.GetInstance().IsCreateTransactionBySapTCode())
+                {
+                    UpdateTransaction(testAction);
+                }
             }
 
             if (NeoLoadDesignApiInstance.GetInstance().IsRecordWeb())
             {
                 // We are before a web event, we can start WEB recording in NeoLoad.
                 NeoLoadDesignApiInstance.GetInstance().StartRecording(NeoLoadDesignApiInstance.Protocol.WEB);
-                NeoLoadDesignApiInstance.GetInstance().CreateTransaction(testAction.Name.Value);
+                UpdateTransaction(testAction);
             }
         }
 
@@ -61,6 +66,15 @@ namespace NeoLoad.Listener
                 NeoLoadDesignApiInstance.GetInstance().StartRecording(NeoLoadDesignApiInstance.Protocol.SAP);
             }
 
+        }
+
+        private void UpdateTransaction(ITestAction testAction)
+        {
+            var parentItem = RunContext.Current.Parent.Parent != null ? 
+                RunContext.Current.Parent.Parent.ExecutedItem 
+                : RunContext.Current.Parent.ExecutedItem;
+            var transactionName = parentItem is Folder ? (parentItem as Folder).Name : testAction.Name.Value;
+            NeoLoadDesignApiInstance.GetInstance().CreateTransaction(transactionName);
         }
 
         public override void PreExecution()

@@ -9,7 +9,7 @@ namespace NeoLoad.AddOn
     {
         public override Type ApplicableType => typeof(ExecutionEntry);
 
-        public override string Name => "Transfer SAP test case to NeoLoad";
+        public override string Name => "Transfer SAP GUI test case to NeoLoad";
 
         public override TCObject Execute(TCObject objectToExecuteOn, TCAddOnTaskContext taskContext)
         {

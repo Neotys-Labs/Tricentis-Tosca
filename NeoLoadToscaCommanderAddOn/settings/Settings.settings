@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="NeoLoadAddOn.settings" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="NeoLoad.settings" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="NeoLoadApiPort" Type="System.String" Scope="User">
@@ -12,7 +12,10 @@
       <Value Profile="(Default)">localhost</Value>
     </Setting>
     <Setting Name="CreateTransactionBySapTCode" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="Http2" Type="System.Boolean" Scope="User">
+       <Value Profile="(Default)">True</Value>
+     </Setting>
   </Settings>
 </SettingsFile>

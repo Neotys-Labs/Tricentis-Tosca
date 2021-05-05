@@ -10,7 +10,7 @@ using Tricentis.TCAddOns;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("NeoLoadAddOn")]
-[assembly: AssemblyCopyright("Copyright ©  2020")]
+[assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: TCAddOnType(typeof(NeoLoad.AddOn.NeoLoadAddOn))]
@@ -33,5 +33,5 @@ using Tricentis.TCAddOns;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.1.0.0")]
+[assembly: AssemblyVersion("2.2.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
