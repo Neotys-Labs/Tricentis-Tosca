@@ -1,0 +1,14 @@
+# How to install the NeoLoad Tosca Addon
+
+## Automatic Install (PowerShell)
+
+1. Open Windows PowerShell as an administrator
+2. Execute the `Install-NeoLoadToscaAddon.ps1` script
+3. Follow the prompted steps
+
+> **Warning** : If you don't have the administrator rights, or your PowerShell Script Execution Policy doesn't allow you to run the script, you may choose to do a manual install.
+
+## Manual Install
+
+Follow the instructions listed here : [Setting up the NeoLoad Tricentis Tosca Add-on](../README.md#setting-up-the-neoload-tricentis-tosca-add-on)
+
