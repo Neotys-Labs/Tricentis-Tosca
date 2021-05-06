@@ -107,6 +107,8 @@ Different causes that can produce an NL-DESIGN-ILLEGAL-STATE-FOR-OPERATION:
 
 ## ChangeLog
 
+* Version 2.4.0 (June 19, 2021): Create a new transaction in Neoload from Tosca test step or folder for both Web and SAP GUI.
+
 * Version 2.3.0 (October 13, 2020): Add option to enable/disable HTTP2 during Neoload recording
 
 * Version 2.2.0 (July 15, 2020): API test recording.
