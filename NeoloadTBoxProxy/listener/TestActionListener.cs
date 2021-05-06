@@ -65,7 +65,6 @@ namespace NeoLoad.Listener
                 // We are after SAP Logon, we can start SAP recording in NeoLoad.
                 NeoLoadDesignApiInstance.GetInstance().StartRecording(NeoLoadDesignApiInstance.Protocol.SAP);
             }
-
         }
 
         private void UpdateTransaction(ITestAction testAction)
