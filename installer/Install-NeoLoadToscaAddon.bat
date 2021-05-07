@@ -1,1 +1,1 @@
-Powershell.exe -Command "& {Start-Process Powershell.exe -ArgumentList '-NoExit -ExecutionPolicy Bypass -File %~dp0Install-NeoLoadToscaAddon.ps1 %~dp0' -Verb RunAs}"
+Powershell.exe -Command "& {Start-Process Powershell.exe -ArgumentList '-NoExit -ExecutionPolicy AllSigned -File %~dp0Install-NeoLoadToscaAddon.ps1 %~dp0' -Verb RunAs}"
