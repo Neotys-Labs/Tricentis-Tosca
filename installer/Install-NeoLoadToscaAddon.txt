@@ -10,5 +10,5 @@
 
 ## Manual Install
 
-Follow the instructions listed here : [Setting up the NeoLoad Tricentis Tosca Add-on](../README.md#setting-up-the-neoload-tricentis-tosca-add-on)
+Follow the instructions listed here : https://github.com/Neotys-Labs/Tricentis-Tosca#setting-up-the-neoload-tricentis-tosca-add-on
 
