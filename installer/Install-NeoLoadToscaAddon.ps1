@@ -5,8 +5,13 @@ $FILES_TO_PROCESS = @('NeoLoadTBoxAddOn.dll', 'NeoloadTBoxProxy.dll', 'NeoLoadTo
 
 $ErrorActionPreference = 'Stop'
 
+$INITIAL_DIR = $args[0]
+
 # Step functions
 function Invoke-Bootstrap {
+    if($INITIAL_DIR) {
+        Set-Location $INITIAL_DIR
+    }
     Invoke-StepOne
 }
 function Invoke-StepOne {
@@ -49,19 +54,30 @@ function Invoke-StepThree {
         [string]$InstallLocation
     )
     $FoldersToCopy = Get-ChildItem | Where-Object { $_ -in $FOLDERS_TO_PROCESS }
-    $FoldersToCopy | ForEach-Object { 
-        Write-Host ("Copying folder '$_' to destination : '$InstallLocation'");
-        Copy-Item -Path $_ -Destination $InstallLocation -Force -Recurse;
+    Write-Host "${FoldersToCopy.Length} -eq ${FOLDERS_TO_PROCESS.Length}" -Debug
+    if($FoldersToCopy.Length -eq $FOLDERS_TO_PROCESS.Length) {
+        $FoldersToCopy | ForEach-Object { 
+            Write-Host ("Copying folder '$_' to destination : '$InstallLocation'");
+            Copy-Item -Path $_ -Destination $InstallLocation -Force -Recurse;
+        }
+        $FilesToUnblock = Get-ChildItem -Path $InstallLocation -Recurse | 
+            Where-Object { $_ -in $FOLDERS_TO_PROCESS } | 
+            Get-ChildItem | 
+            Where-Object { $_ -in $FILES_TO_PROCESS } | 
+            ForEach-Object { $_.FullName }
+        Write-Host "${FilesToUnblock.Length} -eq ${FILES_TO_PROCESS.Length}" -Debug
+        if($FilesToUnblock.Length -eq $FILES_TO_PROCESS.Length) {
+            $FilesToUnblock | ForEach-Object {
+                Invoke-UnblockFile($_);
+            }
+            Invoke-StepFour            
+        }
+        else {
+            Write-Error "Source files to copy could not be located"
+        }         
+    } else {
+        Write-Error "Source folders to copy could not be located"
     }
-    $FilesToUnblock = Get-ChildItem -Path $InstallLocation -Recurse | 
-        Where-Object { $_ -in $FOLDERS_TO_PROCESS } | 
-        Get-ChildItem | 
-        Where-Object { $_ -in $FILES_TO_PROCESS } | 
-        ForEach-Object { $_.FullName }
-    $FilesToUnblock | ForEach-Object {
-        Invoke-UnblockFile($_);
-    }
-    Invoke-StepFour
 }
 
 function Invoke-StepFour {
@@ -83,8 +99,8 @@ Invoke-Bootstrap
 # SIG # Begin signature block
 # MIIZbQYJKoZIhvcNAQcCoIIZXjCCGVoCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUy+w9KJdYn/m8eMj6T1ewubI/
-# mBegghR7MIIE/jCCA+agAwIBAgIQDUJK4L46iP9gQCHOFADw3TANBgkqhkiG9w0B
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUAKrQqM6Fnj1O27bB3mjxtC5w
+# OEqgghR7MIIE/jCCA+agAwIBAgIQDUJK4L46iP9gQCHOFADw3TANBgkqhkiG9w0B
 # AQsFADByMQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYD
 # VQQLExB3d3cuZGlnaWNlcnQuY29tMTEwLwYDVQQDEyhEaWdpQ2VydCBTSEEyIEFz
 # c3VyZWQgSUQgVGltZXN0YW1waW5nIENBMB4XDTIxMDEwMTAwMDAwMFoXDTMxMDEw
@@ -198,23 +214,23 @@ Invoke-Bootstrap
 # MTEwLwYDVQQDEyhEaWdpQ2VydCBTSEEyIEFzc3VyZWQgSUQgQ29kZSBTaWduaW5n
 # IENBAhACY0K2XvmKQ+pAe/UHOF6cMAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEM
 # MQowCKACgAChAoAAMBkGCSqGSIb3DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQB
-# gjcCAQsxDjAMBgorBgEEAYI3AgEVMCMGCSqGSIb3DQEJBDEWBBTMTDN6XGrfL+Jk
-# 0CWRJcwNrcuBAjANBgkqhkiG9w0BAQEFAASCAQBBKyNBBj3nFOxEsk2DB13LCOiI
-# ehyz4zEATsw1F0lqEua1RGGGbaV5Y7l6F7QGhqGyri7kssxF0chG/0WPrA9gukKi
-# 7rJLykvKk873y4p2K21w7qLTixcdkNZWM4DWtJ6P45iAxk/YgaC87idFPlF/CNfF
-# liC6nsvTklwBotSg5RrNDB79N8OoJKIuEBdQvZwtPWaUFgKm9dm9/NF/gp8QIHAy
-# 3uG8k6wmzT26oHzZ7KLvOouhaGGULO90+ghfAByl+cMlKG4BXuW5cf3kX+6Mor0r
-# Sp9IrGdbT+nJDJqX//RdsCpR7F51UPpeBXwDQF1NKS4iOaNd60NfznsKFZwPoYIC
+# gjcCAQsxDjAMBgorBgEEAYI3AgEVMCMGCSqGSIb3DQEJBDEWBBTX4OeEInpScWwu
+# OYd6ujjL7VBnaTANBgkqhkiG9w0BAQEFAASCAQChueqdt3uaP3+XeO0tHzX+ywG1
+# IuOZ+S19OYIkGHmucXxc/a02UdPFfXRWdQ5I0VuJfnbnqN/nNiG/ZxjywL+AGs0R
+# FKoIdCXPMm7KIOVtXUrobzE9zZmh7cttrPeG4wrHkJyMAoC3RAXPd64dO+p9VYzP
+# VDnMAIVwdgcOc10Gfros4PzXWKPoc3y34dCaUkI3ACAFIg2WAyZalnaoW5p55SJe
+# Az/PjEoeF1d14vfT9cu5YwlN24S6qOSat/FlJD/BIrCrrD+Pi/BK6lWyuirQDlLI
+# VBscp13FgmZ7i92m7fHc2b57ELY3ZDwUSO2NwtWBiJ8W/VUUUK7GBhru0N8uoYIC
 # MDCCAiwGCSqGSIb3DQEJBjGCAh0wggIZAgEBMIGGMHIxCzAJBgNVBAYTAlVTMRUw
 # EwYDVQQKEwxEaWdpQ2VydCBJbmMxGTAXBgNVBAsTEHd3dy5kaWdpY2VydC5jb20x
 # MTAvBgNVBAMTKERpZ2lDZXJ0IFNIQTIgQXNzdXJlZCBJRCBUaW1lc3RhbXBpbmcg
 # Q0ECEA1CSuC+Ooj/YEAhzhQA8N0wDQYJYIZIAWUDBAIBBQCgaTAYBgkqhkiG9w0B
-# CQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yMTA1MDYwODU2NDhaMC8G
-# CSqGSIb3DQEJBDEiBCCi8cOzmVEOA/kiRl6QHDBMvwWKqvW25881aShv/tSTvjAN
-# BgkqhkiG9w0BAQEFAASCAQADOEUjq/RumWgl3ZHH5nVwDTyiJ+B2T+C8kil+5dm3
-# A3+ncyJ42FmAOZneI3EmyHWOPetytYwL4s0Aobpc/VA15ELdCptVvtxHDjNTssft
-# AhV+DNLi4jhce9aFSHFXP9GatAqtYmML8YKFK4+PS8bzHrGQ7YhQPaakSNHXWwgr
-# VM5GEfeeQtHCB8lKq+2fU5Bojr5pnlcFXBUEQWmEAyujR93tUQuGkRiskiBlUrLW
-# qkaDkonGBYlRcIolbdchbHDUImdRKVk9gEkmDKjPbkD1dkVkfhApqTh3V8WASUmM
-# jab+m9uZjF9EDp0su9dUsz1Mb8e1N18WrL5nh8w4W5xk
+# CQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yMTA1MDcxNTAyMTNaMC8G
+# CSqGSIb3DQEJBDEiBCDwKu0lBR2KgMEhRs1dcJ4DjhhTXCzJNfbsNcvt6cQUOzAN
+# BgkqhkiG9w0BAQEFAASCAQBd7ByspuUdQSlI6UG1bL69U5nWwicif1DLrXNdKDGY
+# g1c71rfi35F9ft4k8qi5bmj0NL0dDywAnQhxOEYf9qREnuViSPvzZPVEylFQCr10
+# +jhn98waBSR5sFEGIhsJA+FYxNGWElvYAZiFloagBcvjsk4KbgtzUzx8sng8uSsZ
+# eHN+gKSuEh9zaB+qYt7lwzu504JLghqd4iqiCg7DT+tIeupgniZ0bNZd9FFSb2u8
+# dTYGd0KGiIOW/PWjiYDp6qYyTZCxcSL/+WA5DqLP4SP7DqjgIuS6HKow0in6ELa3
+# JN3aNMU1QK9Miv37cHFQnLgQVrPJYyZnWfbS/tSDwBK6
 # SIG # End signature block
