@@ -18,5 +18,14 @@ OR
 
 ## Manual Install
 
-Follow the instructions listed here : https://github.com/Neotys-Labs/Tricentis-Tosca#setting-up-the-neoload-tricentis-tosca-add-on
+1. Copy the following folders to the root folder of the Tricentis Tosca installation directory (for example: C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\).
+    * TBox
+    * ToscaCommander
+
+3. Unblock the following 3 DLL files by right clicking the DLL > Properties and tick **Unblock**
+	* TRICENTIS\Tosca Testsuite\TBox\NeoLoadTBoxAddOn.dll
+	* TRICENTIS\Tosca Testsuite\TBox\NeoloadTBoxProxy.dll
+	* TRICENTIS\Tosca Testsuite\ToscaCommander\NeoLoadToscaCommanderAddOn.dll
+
+4. Relaunch the Tosca Commander.
 

@@ -15,21 +15,16 @@ It allows you to interact with the NeoLoad [Design API](https://www.neotys.com/d
 | Author | Neotys |
 | License           | [BSD 2-Clause "Simplified"](https://github.com/Neotys-Labs/Tricentis-Tosca/blob/master/LICENSE) |
 | NeoLoad Licensing | License FREE edition, or Enterprise edition, or Professional with Integration & Advanced Usage|
-| Tested versions | Tricentis Tosca versions: <ul><li>11.x (11.3)</li><li>12.x (12.0, 12.2, 12.3)</li><li>13.x (13.0, 13.1, 13.2, 13.3, 13.4)</li><li>14.x (14.1)</li></ul>[NeoLoad versions](https://www.neotys.com/support/download-neoload) from 6.6 to 7.9.
+| Tested versions | Tricentis Tosca versions: <ul><li>12.x (12.2, 12.3)</li><li>13.x (13.0, 13.1, 13.2, 13.3, 13.4)</li><li>14.x (14.1)</li></ul>[NeoLoad versions](https://www.neotys.com/support/download-neoload) from 6.6 to 7.10.
 | Download Binaries | See the [latest release](https://github.com/Neotys-Labs/Tricentis-Tosca/releases/latest)|
 
 ## Setting up the NeoLoad Tricentis Tosca Add-on
 
-1. Download the [latest release](https://github.com/Neotys-Labs/Tricentis-Tosca/releases/latest) for your Tricentis Tosca version (either 12.1 and below or 12.2 and above).
+1. Download and unzip the [latest release](https://github.com/Neotys-Labs/Tricentis-Tosca/releases/latest).
 
-2. Unzip it in the root folder of the Tricentis Tosca installation directory (for example: C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\).
+2. Execute the `Install-NeoLoadToscaAddon.bat` file to launch the installation wizard.
 
-3. Unblock the following 3 DLL files by right clicking the DLL > Properties and tick **Unblock**
-	* TRICENTIS\Tosca Testsuite\TBox\NeoLoadTBoxAddOn.dll
-	* TRICENTIS\Tosca Testsuite\TBox\NeoloadTBoxProxy.dll
-	* TRICENTIS\Tosca Testsuite\ToscaCommander\NeoLoadToscaCommanderAddOn.dll
-
-4. Relaunch the Tosca Commander.
+3. For more installation options, refer to the `README.txt` file you will find inside your downloaded release.
 
 **Warning**: For SAP test case, you might need to launch both Tosca and SAP Logon as administrator in order to convert the Tosca Script to NeoLoad.
 
@@ -107,7 +102,9 @@ Different causes that can produce an NL-DESIGN-ILLEGAL-STATE-FOR-OPERATION:
 
 ## ChangeLog
 
-* Version 2.4.0 (June 19, 2021): Create a new transaction in Neoload from Tosca test step or folder for both Web and SAP GUI.
+* Version 2.4.0 (June 19, 2021): 
+   * Create a new transaction in Neoload from Tosca test step or folder for both Web and SAP GUI.
+   * Tosca version below 12.2 is not supported anymore.
 
 * Version 2.3.0 (October 13, 2020): Add option to enable/disable HTTP2 during Neoload recording
 
