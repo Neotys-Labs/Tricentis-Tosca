@@ -39,6 +39,7 @@ Parameters:
 * **NeoLoadApiKey**: The API Key specified in the NeoLoad project when identification is required. If no identification is required, this parameter can be left blank.
 * **NeoLoadApiHostname**: The hostname of the machine that contains NeoLoad, by default it is localhost. It should be localhost for SAP GUI test case.
 * **CreateTransactionBySapTCode**: Enable/Disable the creation of transaction in NeoLoad for each SAP TCode.
+* **Http2**: Enable/Disable the recording of HTTP/2.
 
 To access these values, go to the NeoLoad **Preferences**, then the **Project settings** tab, then select the **REST API** category.
 <p align="center"><img src="/screenshots/designapi.png" alt="Design API" /></p>
