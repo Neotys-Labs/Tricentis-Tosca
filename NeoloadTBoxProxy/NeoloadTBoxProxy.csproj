@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="listener\NeoLoadDataExchangeTestActionListener.cs" />
     <Compile Include="listener\TestActionListener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
