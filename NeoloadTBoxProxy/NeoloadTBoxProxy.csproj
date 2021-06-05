@@ -34,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="listener\NeoLoadDataExchangeTestActionListener.cs" />
-    <Compile Include="listener\TestActionListener.cs" />
+    <Compile Include="listener\NeoLoadDesignTestActionListener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
