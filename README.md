@@ -102,7 +102,7 @@ This helps when analysis of the [End User Experience](https://www.neotys.com/blo
   * Using the `TCShell.exe` Example: \
 	`TCShell -executionmode -workspace "C:\Tosca_Projects\Tosca_Workspaces\PathToYour\Workspace.tws" "${NL-CustomResources}\RunToscaExecution.tcs"`
   * Or using the `ToscaCIClient.exe`.
-  <p align="center"><img src=".=/screenshots/Tosca-EUX-NeoLoad.png" alt="Tosca EUX User Path" /></p>
+  <p align="center"><img src="/screenshots/Tosca-EUX-NeoLoad.png" alt="Tosca EUX User Path" /></p>
 
 5. Trigger the load test in combination with your EUX User Path in NeoLoad. Only one instance of the Tosca UEX test should be run per LoadGenerator
 
