@@ -29,6 +29,9 @@ namespace NeoLoadAddOn.listener
             }
         }
 
+        /// <summary>
+        /// Establish connection to the DataExchangeApi by extracting the connection details from the test configuration parameters
+        /// </summary>
         private void EstablishConnection()
         {
             if (!MainConfiguration.Instance.TryGet("NeoLoadDataExchangeApiHost", out string hostname))
@@ -40,12 +43,21 @@ namespace NeoLoadAddOn.listener
             NeoLoadDataExchangeApiInstance.GetInstance().Connect(hostname, port, key);
         }
 
+        /// <summary>
+        /// Returns true if the test configuration parameter UseNeoLoadDataExchangeApi is set
+        /// </summary>
         public bool DataExchangeApiEnabled => MainConfiguration.Instance.TryGetBool("UseNeoLoadDataExchangeApi",
                                                    out bool exchangePerformanceData) && exchangePerformanceData;
 
+        /// <summary>
+        /// Returns true if the current execution is triggered via an execution list
+        /// </summary>
         public bool IsUsingExecutionList =>
             !string.IsNullOrEmpty(RunContext.GetAdditionalExecutionInfo("executionlist.name"));
 
+        /// <summary>
+        /// Sends the elapsed time after the execution of a testAction via the the DataExchangeApi
+        /// </summary>
         public override void PostExecution(ITestAction testAction, ExecutionResult result)
         {
             if (NeoLoadDataExchangeApiInstance.GetInstance().IsConnected)
@@ -56,20 +68,20 @@ namespace NeoLoadAddOn.listener
             }
         }
 
+        /// <summary>
+        /// Creates a List of strings of the currently executed AbstractAuomationObject and its parent up to the TestCase level 
+        /// </summary>
         public List<string> CreatePath()
         {
-            List<string> list = new List<string>();
-            var stack = CreatePathRecursive(RunContext.Current, new Stack());
-
-            foreach (var item in stack)
-            {
-                list.Add(item.ToString());
-            }
-
+            var list = CreatePathInternal(RunContext.Current, new List<string>());
+            list.Reverse();
             return list;
         }
 
-        private Stack CreatePathRecursive(RunContext parent, Stack path)
+        /// <summary>
+        /// Iterates from the currently executed item up to the test case level
+        /// </summary>
+        private List<string> CreatePathInternal(RunContext parent, List<string> path)
         {
             if (parent == null)
             {
@@ -78,10 +90,10 @@ namespace NeoLoadAddOn.listener
 
             if (parent.ExecutedItem is AbstractAutomationObject ao) // Folder, TestStep
             {
-                path.Push(ao.Name);
+                path.Add(ao.Name);
             }
 
-            return CreatePathRecursive(parent.Parent, path);
+            return CreatePathInternal(parent.Parent, path);
         }
     }
 }

@@ -92,6 +92,8 @@ This helps when analysis of the [End User Experience](https://www.neotys.com/blo
 	NeoLoadDataExchangeApiKey |  Default: empty | (Optional) E.g. abcb6dcd-ea95-4a6a-9c64-80ff55ff778d
 
 	Alternatively this can also be set as part of your TCShell script as shown in [examples/RunToscaExecution.tcs](./examples/RunToscaExecution.tcs)
+	
+	_Hint: Set the repetition property on the ExecutionEntry to let one execution run repeatedly. This will increase the TPS as the workspace does not have to be reopened by the UserPath constantly._	
 
 2. Prepare your Tosca execution environment to allow executions via the command line
   * Using a [TCShell Script](https://support.tricentis.com/community/manuals_detail.do?lang=en&url=tosca_commander/script_mode.htm) (for local execution when Tosca is installed on the same machine as the NeoLoad LoadGenerator)\
@@ -101,10 +103,11 @@ This helps when analysis of the [End User Experience](https://www.neotys.com/blo
 4. Create separate EUX User Path in Neoload and add an [Executable Test Script](https://www.neotys.com/documents/doc/neoload/latest/en/html/#8677.htm) Action to it which will trigger the execution of an Tosca Execution List or Entry 
   * Using the `TCShell.exe` Example: \
 	`TCShell -executionmode -workspace "C:\Tosca_Projects\Tosca_Workspaces\PathToYour\Workspace.tws" "${NL-CustomResources}\RunToscaExecution.tcs"`
-  * Or using the `ToscaCIClient.exe`.
+  * Or using the `ToscaCIClient.exe`
   <p align="center"><img src="/screenshots/Tosca-EUX-NeoLoad.png" alt="Tosca EUX User Path" /></p>
 
-5. Trigger the load test in combination with your EUX User Path in NeoLoad. Only one instance of the Tosca UEX test should be run per LoadGenerator
+5. Trigger the load test in combination with your EUX User Path in NeoLoad. Only one instance of Tosca should be run per LoadGenerator.\
+	It is also recommended to run the UEX UsePath by defining a iteration number, so the last iteration can close the Tosca workspace without locking it.
 
 _The above example focuses on the execution via command line, Tosca test cases can alternatively be remotely executed via the [Tosca Rest API](https://support.tricentis.com/community/manuals_detail.do?url=restapi/prerequisites.htm&tcapi=tcrsapi)_
 
