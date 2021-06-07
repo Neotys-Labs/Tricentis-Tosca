@@ -50,14 +50,15 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Tricentis.Automation.Interaction">
-      <HintPath>..\..\..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\TBox\Tricentis.Automation.Interaction.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\TBox\Tricentis.Automation.Interaction.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Tricentis.AutomationBase">
-      <HintPath>..\..\..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\TBox\Tricentis.AutomationBase.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\TBox\Tricentis.AutomationBase.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Tricentis.AutomationObjects">
-      <HintPath>..\..\..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\TBox\Tricentis.AutomationObjects.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\TBox\Tricentis.AutomationObjects.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>

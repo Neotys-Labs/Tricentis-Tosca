@@ -9,7 +9,7 @@ namespace NeoLoadAddOn.client
 {
     public class NeoLoadDataExchangeApiInstance
     {
-        private static NeoLoadDataExchangeApiInstance _instance = null;
+        private static NeoLoadDataExchangeApiInstance _instance;
         private IDataExchangeAPIClient _client;
 
         private NeoLoadDataExchangeApiInstance()
@@ -26,8 +26,14 @@ namespace NeoLoadAddOn.client
             return _instance;
         }
 
+        /// <summary>
+        /// Returns true if the connection to the DataExchangeApi is already established
+        /// </summary>
         public bool IsConnected { get; private set; }
 
+        /// <summary>
+        /// Connect to the DataExchangeApi if not already connected
+        /// </summary>
         public bool Connect(string hostname, string port, string key)
         {
             if (IsConnected) return true;
@@ -46,11 +52,9 @@ namespace NeoLoadAddOn.client
             return IsConnected;
         }
 
-        public void AddEntry(string name, double value, string unit, bool passed = true, string message = "")
-        {
-            AddEntry(new List<string> {name}, value, unit, passed, message);
-        }
-
+        /// <summary>
+        /// Send new external data entry to NeoLoad via the DataExchangeApi
+        /// </summary>
         public void AddEntry(List<string> path, double value, string unit, bool passed = true, string message = "")
         {
             Entry entry = new EntryBuilder(path)
