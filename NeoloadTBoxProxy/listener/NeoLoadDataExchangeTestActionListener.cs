@@ -36,9 +36,9 @@ namespace NeoLoadAddOn.listener
         {
             if (!MainConfiguration.Instance.TryGet("NeoLoadDataExchangeApiHost", out string hostname))
                 hostname = "localhost";
-            if (MainConfiguration.Instance.TryGet("NeoLoadDataExchangeApiPort", out string port))
+            if (!MainConfiguration.Instance.TryGet("NeoLoadDataExchangeApiPort", out string port))
                 port = "7400";
-            if (MainConfiguration.Instance.TryGet("NeoLoadDataExchangeApiKey", out string key))
+            if (!MainConfiguration.Instance.TryGet("NeoLoadDataExchangeApiKey", out string key))
                 key = "";
             NeoLoadDataExchangeApiInstance.GetInstance().Connect(hostname, port, key);
         }
@@ -47,7 +47,7 @@ namespace NeoLoadAddOn.listener
         /// Returns true if the test configuration parameter UseNeoLoadDataExchangeApi is set
         /// </summary>
         public bool DataExchangeApiEnabled => MainConfiguration.Instance.TryGetBool("UseNeoLoadDataExchangeApi",
-                                                   out bool exchangePerformanceData) && exchangePerformanceData;
+                                                   out bool dataExchangeApiEnabled) && dataExchangeApiEnabled;
 
         /// <summary>
         /// Returns true if the current execution is triggered via an execution list
