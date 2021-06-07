@@ -33,6 +33,7 @@ namespace NeoLoadAddOn.client
 
         /// <summary>
         /// Connect to the DataExchangeApi if not already connected
+        /// Will try to connect again if NL-DATAEXCHANGE-NO-TEST-RUNNING exception is thrown
         /// </summary>
         public bool Connect(string hostname, string port, string key)
         {
