@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="NeoLoadExtensionHelper.cs" />
     <Compile Include="listener\NeoLoadDataExchangeTestActionListener.cs" />
     <Compile Include="listener\NeoLoadDesignTestActionListener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -49,8 +50,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Tricentis.Automation.HtmlEngine">
+      <HintPath>C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\TBox\Tricentis.Automation.HtmlEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Tricentis.Automation.Interaction">
       <HintPath>C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\TBox\Tricentis.Automation.Interaction.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Tricentis.Automation.Win32Engine">
+      <HintPath>C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\TBox\Tricentis.Automation.Win32Engine.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Tricentis.AutomationBase">

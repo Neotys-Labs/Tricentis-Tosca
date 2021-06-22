@@ -77,7 +77,7 @@ The User Path Update feature merges the original User Path with a newer recordin
 
 _(Tosca EUX is currently in beta and subject to change)_
 
-This integration allows Tosca to communicate with NeoLoads DataExchangeApi to send Tosca's TestStep timings to NeoLoad during execution.
+This integration allows Tosca to communicate with NeoLoads DataExchangeApi to send Tosca's TestStep and TestCase duration timings to NeoLoad during execution.
 This helps when analysis of the [End User Experience](https://www.neotys.com/blog/why-end-user-experience-is-important-2/) (EUX) in NeoLoad is required.
 
 **Setup**
@@ -98,7 +98,7 @@ This helps when analysis of the [End User Experience](https://www.neotys.com/blo
 2. Prepare your Tosca execution environment to allow executions via the command line
   * Using a [TCShell Script](https://support.tricentis.com/community/manuals_detail.do?lang=en&url=tosca_commander/script_mode.htm) (for local execution when Tosca is installed on the same machine as the NeoLoad LoadGenerator)\
     Example script: [examples/RunToscaExecution.tcs](./examples/RunToscaExecution.tcs)
-  * Or using the [Tosca CI Integration](https://support.tricentis.com/community/manuals_detail.do?lang=en&version=14.2.0&url=continuous_integration/concept.htm) (for remote execution when Tosca is not installed on the same machine as the NeoLoad LoadGenerator)
+  * Or using the [Tosca CI Integration](https://support.tricentis.com/community/manuals_detail.do?lang=en&url=continuous_integration/concept.htm) (for remote execution when Tosca is not installed on the same machine as the NeoLoad LoadGenerator)
 
 4. Create separate EUX User Path in Neoload and add an [Executable Test Script](https://www.neotys.com/documents/doc/neoload/latest/en/html/#8677.htm) Action to it which will trigger the execution of an Tosca Execution List or Entry 
   * Using the `TCShell.exe` Example: \
@@ -107,9 +107,15 @@ This helps when analysis of the [End User Experience](https://www.neotys.com/blo
   <p align="center"><img src="/screenshots/Tosca-EUX-NeoLoad.png" alt="Tosca EUX User Path" /></p>
 
 5. Trigger the load test in combination with your EUX User Path in NeoLoad. Only one instance of Tosca should be run per LoadGenerator.\
-	It is also recommended to run the UEX UsePath by defining a iteration number, so the last iteration can close the Tosca workspace without locking it.
+	
+	_Hint: It is recommended to run the UEX UserPath by defining a iteration number or to set the Population Parameter Stop Policy to Indeterminate. This will allow last iteration to close Tosca workspace without locking it._
 
 _The above example focuses on the execution via command line, Tosca test cases can alternatively be remotely executed via the [Tosca Rest API](https://support.tricentis.com/community/manuals_detail.do?url=restapi/prerequisites.htm&tcapi=tcrsapi)_
+
+Aditionally to the TestStep and TestCase durations timings the integration will collect browser performance timings similar to the [NeoLoad Selenium EUX integration](https://www.neotys.com/documents/doc/neoload/latest/en/html/#23676.htm) when automating web applications.
+
+<p align="center"><img src="/screenshots/Tosca-EUX-NeoLoad-Metrics.png" alt="Tosca EUX Performance Metrics" /></p>
+
 
 ## Troubleshooting
 From Tosca version 12.2, if execution errors are not displayed in Tosca Commander (Loginfo column displays "Stack empty."), check file **neoload-add-on-error.txt** located in your user profile directory (for example C:\Users\<username>\neoload-add-on-error.txt).
