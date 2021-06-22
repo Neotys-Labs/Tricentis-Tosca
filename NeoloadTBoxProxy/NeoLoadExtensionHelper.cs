@@ -34,6 +34,7 @@ namespace NeoLoadAddOn
 
                 parent = parent.Parent;
             }
+
             path.Reverse();
 
             return path;
@@ -45,6 +46,7 @@ namespace NeoLoadAddOn
         public static Dictionary<string, long> GetBrowserPerformanceTimings(IHtmlEntryPointTechnical htmlEntryPoint)
         {
             long redirectStart = 0, fetchStart = 0, responseStart = 0, domContentLoadedEventStart = 0, domLoadEventStart = 0, domLoadEventEnd = 0;
+            Dictionary<string, long> performanceDictionary = new Dictionary<string, long>();
 
             bool jsSuccess =
                 long.TryParse(htmlEntryPoint.GetJavaScriptResult("return window.performance.timing.redirectStart"), out redirectStart) &&
@@ -54,7 +56,7 @@ namespace NeoLoadAddOn
                 long.TryParse(htmlEntryPoint.GetJavaScriptResult("return window.performance.timing.loadEventStart"), out domLoadEventStart) &&
                 long.TryParse(htmlEntryPoint.GetJavaScriptResult("return window.performance.timing.loadEventEnd"), out domLoadEventEnd);
 
-            if (!jsSuccess) return null;
+            if (!jsSuccess) return performanceDictionary;
 
             long start = redirectStart == 0 ? fetchStart : redirectStart;
 
@@ -63,7 +65,7 @@ namespace NeoLoadAddOn
             long onLoad = domLoadEventStart - start;
             long documentComplete = domLoadEventEnd - start;
 
-            Dictionary<string, long> performanceDictionary = new Dictionary<string, long>();
+            
 
             if (timeToFirstByte > 0)
                 performanceDictionary.Add("Time To First Byte", timeToFirstByte);
