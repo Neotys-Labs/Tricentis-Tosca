@@ -1,12 +1,18 @@
-//Select the execution list to execute
+// TCShell example script for NeoLoad Tosca EUX
+// More information: https://support.tricentis.com/community/manuals_detail.do?lang=en&url=tosca_commander/script_mode.htm
+
+// Select the execution list to execute
 jumptonode "/Execution/ExecutionLists/Automated/Create Quote"
 
-//(Optional) Set the required ConfigurationParameter via TCShell
+// (Optional) Set the required ConfigurationParameter via TCShell
 // Alternativly set via the Tosca GUI
 settcparam NeoLoadDataExchangeApiHost localhost
 settcparam NeoLoadDataExchangeApiPort 7400
 settcparam NeoLoadDataExchangeApiKey abcb6dcd-ea95-4a6a-9c64-80ff55ff778d
 settcparam UseNeoLoadDataExchangeApi True
 
-//Trigger test execution
+// Trigger test execution
 task run
+
+// Save the test results if required
+//save
