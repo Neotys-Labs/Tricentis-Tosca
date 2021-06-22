@@ -12,7 +12,7 @@ namespace NeoLoadAddOn
         {
             int foreGroundWindowId = LocalWin32ObjectManager.EntryPoint.GetForeGroundWindow();
             IWin32WindowTechnical windowTechnical = LocalWin32ObjectManager.EntryPoint.GetWindow(foreGroundWindowId);
-            return windowTechnical.Caption;
+            return windowTechnical?.Caption ?? "";
         }
 
 
@@ -23,16 +23,16 @@ namespace NeoLoadAddOn
         public static List<string> CreatePath()
         {
             List<string> path = new List<string>();
-            RunContext parent = RunContext.Current;
+            RunContext context = RunContext.Current;
 
-            while (parent != null)
+            while (context != null)
             {
-                if (parent.ExecutedItem is AbstractAutomationObject ao) // TestStep, Folder
+                if (context.ExecutedItem is AbstractAutomationObject ao) // TestStep, Folder
                 {
                     path.Add(ao.Name);
                 }
 
-                parent = parent.Parent;
+                context = context.Parent;
             }
 
             path.Reverse();
@@ -64,8 +64,6 @@ namespace NeoLoadAddOn
             long domContentLoaded = domContentLoadedEventStart - start;
             long onLoad = domLoadEventStart - start;
             long documentComplete = domLoadEventEnd - start;
-
-            
 
             if (timeToFirstByte > 0)
                 performanceDictionary.Add("Time To First Byte", timeToFirstByte);
