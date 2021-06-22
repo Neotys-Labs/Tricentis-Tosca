@@ -51,8 +51,7 @@ namespace NeoLoadAddOn.listener
             if (!MainConfiguration.Instance.TryGet("NeoLoadDataExchangeApiKey", out string key))
                 key = "";
 
-            string scriptInfo = RunContext.TestCaseName + ", " +
-                             DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.fffffffK");
+            string scriptInfo = RunContext.GetAdditionalExecutionInfo("executionentry.nodepath");
             string softwareInfo = NeoLoadExtensionHelper.GetForeGroundWindowCaption();
 
             NeoLoadDataExchangeApiInstance.GetInstance().Connect(hostname, port, key, scriptInfo, softwareInfo);
@@ -127,6 +126,9 @@ namespace NeoLoadAddOn.listener
 
                 double elapsedMs = (result.EndTime - result.StartTime).TotalMilliseconds;
                 NeoLoadDataExchangeApiInstance.GetInstance().SendEntry(path, result.EndTime, elapsedMs, "Ms", result.IsPositive(), result.Message);
+
+                //Disconnect to allow new context for next TestCase
+                NeoLoadDataExchangeApiInstance.GetInstance().Disconnect();
             }
         }
 

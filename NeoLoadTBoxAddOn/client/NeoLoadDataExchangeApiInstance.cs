@@ -17,6 +17,8 @@ namespace NeoLoadAddOn.client
         private List<Entry> _entryCache;
         private string _connectedUrl;
         private string _connectedApiKey;
+
+        private List<Task> _tasks;
         
         private NeoLoadDataExchangeApiInstance()
         {
@@ -50,11 +52,12 @@ namespace NeoLoadAddOn.client
 
             try
             {
-                _context = CreateContext(scriptInfo, softwareInfo, osInfo, hardwareInfo, locationInfo);
-                _client = DataExchangeAPIClientFactory.NewClient(url, _context, key);
                 _connectedUrl = url;
                 _connectedApiKey = key;
                 _entryCache = new List<Entry>();
+                _tasks = new List<Task>();
+                _context = CreateContext(scriptInfo, softwareInfo, osInfo, hardwareInfo, locationInfo);
+                _client = DataExchangeAPIClientFactory.NewClient(_connectedUrl, _context, _connectedApiKey);
 
                 IsConnected = true;
             }
@@ -69,13 +72,14 @@ namespace NeoLoadAddOn.client
         /// <summary>
         /// Create context used when connection is established
         /// </summary>
-        public Context CreateContext(string script = "", string software = "", string os = "", string hardware = "", string location = "" )
+        public Context CreateContext(string script = "", string software = "", string os = "", string hardware = "", string location = "", string instanceId = "")
         {
             Context context = new ContextBuilder
             {
+                InstanceId = string.IsNullOrEmpty(instanceId) ? DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.fffffffK") : instanceId,
                 Location = string.IsNullOrEmpty(location) ? TimeZone.CurrentTimeZone.StandardName
                     .Replace("Standard", "").Replace("Time", "") : location,
-                Hardware = string.IsNullOrEmpty(location) ? (Environment.Is64BitOperatingSystem ? "64-bit, " : "32-bit, ") + 
+                Hardware = string.IsNullOrEmpty(location) ? Environment.MachineName + " / " + (Environment.Is64BitOperatingSystem ? "64-bit, " : "32-bit, ") + 
                                                             Environment.ProcessorCount + " Processors" : hardware,
                 Os = string.IsNullOrEmpty(os) ? Environment.OSVersion.ToString() : os,
                 Software = software,
@@ -113,7 +117,7 @@ namespace NeoLoadAddOn.client
         public void SendEntry(List<string> path, long timestamp, double value, string unit, string url = "", bool passed = true, string message = "")
         {
             Entry entry = CreateEntry(path, timestamp, value, unit, url, passed, message);
-            new Task(() => { _client.AddEntry(entry); }).Start();
+            _tasks.Add(Task.Factory.StartNew(() => { _client.AddEntry(entry); }));
         }
 
         /// <summary>
@@ -151,9 +155,18 @@ namespace NeoLoadAddOn.client
             if (_entryCache.Count > 0)
             {
                 List<Entry> entries = _entryCache;
-                new Task(() => { _client.AddEntries(entries); }).Start();
+                _tasks.Add(Task.Factory.StartNew(() => { _client.AddEntries(entries); }));
                 _entryCache = new List<Entry>();
             }
+        }
+
+        public void Disconnect()
+        {
+            //Wait for all task to finish before disconnecting
+            Task.WaitAll(_tasks.ToArray());
+
+            _client = null;
+            IsConnected = false;
         }
 
         /// <summary>
