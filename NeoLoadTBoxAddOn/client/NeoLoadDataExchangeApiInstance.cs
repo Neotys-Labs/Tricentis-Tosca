@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.OData.Edm;
 using Neotys.DataExchangeAPI.Client;
 using Neotys.DataExchangeAPI.Error;
 using Neotys.DataExchangeAPI.Model;
@@ -17,6 +15,7 @@ namespace NeoLoadAddOn.client
         private List<Entry> _entryCache;
         private string _connectedUrl;
         private string _connectedApiKey;
+        private string _currentScript;
 
         private List<Task> _tasks;
         
@@ -47,15 +46,28 @@ namespace NeoLoadAddOn.client
         {
             string url = "http://" + hostname + ":" + port + "/DataExchange/v1/Service.svc/";
 
-            // No need to reconnect if the connection is alive and the details did not change
-            if (IsConnected && _connectedUrl == url && _connectedApiKey == key) return true;
+            if (IsConnected)
+            {
+                // Disconnect if the connection details changed, or if a new script is executed to set the new context
+                if (!string.IsNullOrEmpty(scriptInfo) && scriptInfo != _currentScript ||
+                    _connectedUrl != url || _connectedApiKey != key)
+                {
+                    Disconnect();
+                }
+                else
+                {
+                    return true;
+                }
+            }
+
+            _connectedUrl = url;
+            _connectedApiKey = key;
+            _currentScript = scriptInfo;
+            _entryCache = new List<Entry>();
+            _tasks = new List<Task>();
 
             try
             {
-                _connectedUrl = url;
-                _connectedApiKey = key;
-                _entryCache = new List<Entry>();
-                _tasks = new List<Task>();
                 _context = CreateContext(scriptInfo, softwareInfo, osInfo, hardwareInfo, locationInfo);
                 _client = DataExchangeAPIClientFactory.NewClient(_connectedUrl, _context, _connectedApiKey);
 
@@ -76,10 +88,10 @@ namespace NeoLoadAddOn.client
         {
             Context context = new ContextBuilder
             {
-                InstanceId = string.IsNullOrEmpty(instanceId) ? DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.fffffffK") : instanceId,
+                InstanceId = string.IsNullOrEmpty(instanceId) ? Environment.MachineName + "_" + DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.fffffffK") : instanceId,
                 Location = string.IsNullOrEmpty(location) ? TimeZone.CurrentTimeZone.StandardName
                     .Replace("Standard", "").Replace("Time", "") : location,
-                Hardware = string.IsNullOrEmpty(location) ? Environment.MachineName + " / " + (Environment.Is64BitOperatingSystem ? "64-bit, " : "32-bit, ") + 
+                Hardware = string.IsNullOrEmpty(location) ? (Environment.Is64BitOperatingSystem ? "64-bit, " : "32-bit, ") + 
                                                             Environment.ProcessorCount + " Processors" : hardware,
                 Os = string.IsNullOrEmpty(os) ? Environment.OSVersion.ToString() : os,
                 Software = software,

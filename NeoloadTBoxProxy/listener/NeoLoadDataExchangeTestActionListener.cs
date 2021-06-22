@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using NeoLoadAddOn.client;
 using Tricentis.Automation.AutomationInstructions.Configuration;
@@ -12,7 +11,6 @@ using Tricentis.Automation.Engines.Technicals.Html;
 using Tricentis.Automation.Execution.Context;
 using Tricentis.Automation.Execution.Generic;
 using Tricentis.Automation.Execution.Results;
-using Tricentis.Automation.Helper;
 
 namespace NeoLoadAddOn.listener
 {
@@ -126,9 +124,6 @@ namespace NeoLoadAddOn.listener
 
                 double elapsedMs = (result.EndTime - result.StartTime).TotalMilliseconds;
                 NeoLoadDataExchangeApiInstance.GetInstance().SendEntry(path, result.EndTime, elapsedMs, "Ms", result.IsPositive(), result.Message);
-
-                //Disconnect to allow new context for next TestCase
-                NeoLoadDataExchangeApiInstance.GetInstance().Disconnect();
             }
         }
 
