@@ -60,10 +60,7 @@ namespace NeoLoadAddOn.listener
         /// </summary>
         public override void PreExecution()
         {
-            if (!NeoLoadDataExchangeApiInstance.GetInstance().IsConnected)
-            {
-                EstablishConnection();
-            }
+            EstablishConnection();
         }
 
         /// <summary>
