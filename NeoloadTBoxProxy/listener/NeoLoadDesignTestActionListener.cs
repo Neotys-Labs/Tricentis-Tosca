@@ -11,9 +11,9 @@ using Tricentis.Automation.Execution.Results;
 
 namespace NeoLoad.Listener
 {
-    public class TestActionListener : MonitoringTaskExecutor {
+    public class NeoLoadDesignTestActionListener : MonitoringTaskExecutor {
 
-        public TestActionListener(Validator validator) : base(validator) {
+        public NeoLoadDesignTestActionListener(Validator validator) : base(validator) {
         }
 
         private bool IsSendingToNeoLoad()
