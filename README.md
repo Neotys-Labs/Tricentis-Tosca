@@ -36,7 +36,7 @@ Go to **PROJECT** > **Options**, to define the NeoLoad Add-on settings:
 
 Parameters: 
 * **NeoLoadApiPort**: The port of the NeoLoad API, by default it is 7400. 
-* **NeoLoadApiKey**: The API Key specified in the NeoLoad project when identification is required. If no identification is required, this parameter can be left blank.
+* **NeoLoadApiKey**: The API Key specified in the NeoLoad General settings or in Project settings REST API. If no identification is required both in Project settings and in General settings, this parameter can be left blank.
 * **NeoLoadApiHostname**: The hostname of the machine that contains NeoLoad, by default it is localhost. It should be localhost for SAP GUI test case.
 * **CreateTransactionBySapTCode**: Enable/Disable the creation of transaction in NeoLoad for each SAP TCode.
 * **Http2**: Enable/Disable the recording of HTTP/2.
