@@ -2,6 +2,7 @@
 using System.Linq;
 using NeoLoadAddOn.client;
 using Tricentis.Automation.AutomationInstructions.Configuration;
+using Tricentis.Automation.AutomationInstructions.Dynamic.Values;
 using Tricentis.Automation.AutomationInstructions.TestActions;
 using Tricentis.Automation.Contract;
 using Tricentis.Automation.Creation;
@@ -35,7 +36,8 @@ namespace NeoLoadAddOn.listener
         /// Returns true if the current execution is triggered via an execution list
         /// </summary>
         public bool IsUsingExecutionList =>
-            !string.IsNullOrEmpty(RunContext.GetAdditionalExecutionInfo("executionlist.name"));
+            !string.IsNullOrEmpty(RunContext.AdditionalExecutionInfo
+                .SingleOrDefault(add => add.Key == "executionlist.name").Value);
 
         /// <summary>
         /// Establish connection to the DataExchangeApi by extracting the connection details from the test configuration parameters
@@ -48,7 +50,7 @@ namespace NeoLoadAddOn.listener
                 port = "7400";
             if (!MainConfiguration.Instance.TryGet("NeoLoadDataExchangeApiKey", out string key))
                 key = "";
-
+            
             string scriptInfo = RunContext.GetAdditionalExecutionInfo("executionentry.nodepath");
             string softwareInfo = NeoLoadExtensionHelper.GetForeGroundWindowCaption();
 
