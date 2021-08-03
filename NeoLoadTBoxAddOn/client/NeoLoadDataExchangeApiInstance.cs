@@ -48,16 +48,7 @@ namespace NeoLoadAddOn.client
 
             if (IsConnected)
             {
-                // Disconnect if the connection details changed, or if a new script is executed to set the new context
-                if (!string.IsNullOrEmpty(scriptInfo) && scriptInfo != _currentScript ||
-                    _connectedUrl != url || _connectedApiKey != key)
-                {
-                    Disconnect();
-                }
-                else
-                {
-                    return true;
-                }
+               Disconnect();
             }
 
             _connectedUrl = url;
