@@ -86,10 +86,10 @@ This helps when analysis of the [End User Experience](https://www.neotys.com/blo
 
 	Name | Value | Description
 	------------ | ------------- | -------------
-	UseNeoLoadDataExchangeApi | True/False | Whether the NeoLoad DataExchangeApi should be used
-	NeoLoadDataExchangeApiHost |  Default: localhost | (Optional) The hostname of the NeoLoad DataExchangeApi
-	NeoLoadDataExchangeApiPort |  Default: 7400 | (Optional) The port of the NeoLoad DataExchangeApi
-	NeoLoadDataExchangeApiKey |  Default: empty | (Optional) E.g. abcb6dcd-ea95-4a6a-9c64-80ff55ff778d
+    SendEndUserExperienceToNeoLoad | True/False | Whether the NeoLoad DataExchangeApi should be used to send End User Experience metrics to NeoLoad.
+	NeoLoadApiHost |  Default: localhost | (Optional) The hostname of the NeoLoad DataExchangeApi
+	NeoLoadApiPort |  Default: 7400 | (Optional) The port of the NeoLoad DataExchangeApi
+	NeoLoadApiKey |  Default: empty | (Optional) E.g. abcb6dcd-ea95-4a6a-9c64-80ff55ff778d
 
 	Alternatively this can also be set as part of your TCShell script as shown in [examples/RunToscaExecution.tcs](./examples/RunToscaExecution.tcs)
 	

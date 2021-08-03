@@ -27,9 +27,9 @@ namespace NeoLoadAddOn.listener
         }
 
         /// <summary>
-        /// Returns true if the test configuration parameter UseNeoLoadDataExchangeApi is set
+        /// Returns true if the test configuration parameter SendEndUserExperienceToNeoLoad is set
         /// </summary>
-        public bool DataExchangeApiEnabled => MainConfiguration.Instance.TryGetBool("UseNeoLoadDataExchangeApi",
+        public bool DataExchangeApiEnabled => MainConfiguration.Instance.TryGetBool("SendEndUserExperienceToNeoLoad",
                                                    out bool dataExchangeApiEnabled) && dataExchangeApiEnabled;
 
         /// <summary>
@@ -44,11 +44,11 @@ namespace NeoLoadAddOn.listener
         /// </summary>
         protected void EstablishConnection()
         {
-            if (!MainConfiguration.Instance.TryGet("NeoLoadDataExchangeApiHost", out string hostname))
+            if (!MainConfiguration.Instance.TryGet("NeoLoadApiHost", out string hostname))
                 hostname = "localhost";
-            if (!MainConfiguration.Instance.TryGet("NeoLoadDataExchangeApiPort", out string port))
+            if (!MainConfiguration.Instance.TryGet("NeoLoadApiPort", out string port))
                 port = "7400";
-            if (!MainConfiguration.Instance.TryGet("NeoLoadDataExchangeApiKey", out string key))
+            if (!MainConfiguration.Instance.TryGet("NeoLoadApiKey", out string key))
                 key = "";
             
             string scriptInfo = RunContext.GetAdditionalExecutionInfo("executionentry.nodepath");

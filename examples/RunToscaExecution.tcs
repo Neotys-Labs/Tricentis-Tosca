@@ -6,10 +6,10 @@ jumptonode "/Execution/ExecutionLists/Automated/Create Quote"
 
 // (Optional) Set the required ConfigurationParameter via TCShell
 // Alternativly set via the Tosca GUI
-settcparam NeoLoadDataExchangeApiHost localhost
-settcparam NeoLoadDataExchangeApiPort 7400
-settcparam NeoLoadDataExchangeApiKey abcb6dcd-ea95-4a6a-9c64-80ff55ff778d
-settcparam UseNeoLoadDataExchangeApi True
+settcparam NeoLoadApiHost localhost
+settcparam NeoLoadApiPort 7400
+settcparam NeoLoadApiKey abcb6dcd-ea95-4a6a-9c64-80ff55ff778d
+settcparam SendEndUserExperienceToNeoLoad True
 
 // Trigger test execution
 task run
