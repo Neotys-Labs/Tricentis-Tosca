@@ -147,10 +147,10 @@ Different causes that can produce an NL-DESIGN-ILLEGAL-STATE-FOR-OPERATION:
 
 ## ChangeLog
 
-* Version 2.5.0 (June 6, 2021): 
-   * Basic Support for end user experience testing using Tosca
+* Version 2.5.0 (August 3, 2021): 
+   * Basic Support for end user experience testing using Tosca.
 
-* Version 2.4.0 (May 19, 2021): 
+* Version 2.4.0 (June 19, 2021): 
    * Create a new transaction in NeoLoad from Tosca test step or folder for both Web and SAP GUI.
    * Tosca version below 12.2 is not supported anymore.
 
