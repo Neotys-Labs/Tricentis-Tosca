@@ -130,7 +130,6 @@ namespace NeoLoad.Client
 
         void storeProxyInfo()
         {
-            // Query following options. 
             INTERNET_PER_CONN_OPTION[] Options = new INTERNET_PER_CONN_OPTION[3];
 
             Options[0] = new INTERNET_PER_CONN_OPTION();
@@ -153,7 +152,6 @@ namespace NeoLoad.Client
                 current = (System.IntPtr)(current + Marshal.SizeOf(Options[i]));
             }
 
-            // Initialize a INTERNET_PER_CONN_OPTION_LIST instance.
             INTERNET_PER_CONN_OPTION_LIST Request = new INTERNET_PER_CONN_OPTION_LIST();
 
             // Point to the allocated memory.
@@ -167,7 +165,6 @@ namespace NeoLoad.Client
             Request.OptionError = 0;
             int size = Marshal.SizeOf(Request);
 
-            // Query internet options. 
             bool result = InternetQueryOptionList(IntPtr.Zero, INTERNET_OPTION.INTERNET_OPTION_PER_CONNECTION_OPTION, ref Request, ref size);
             if (result)
             {
@@ -249,39 +246,33 @@ namespace NeoLoad.Client
         private static bool setConnectionProxy(int proxyKind, string connectionName, string proxyServer, string bypass)
         {
 
-            // Create 3 options.
             INTERNET_PER_CONN_OPTION[] Options = new INTERNET_PER_CONN_OPTION[3];
 
-            // Set PROXY flags.
             Options[0] = new INTERNET_PER_CONN_OPTION();
             Options[0].dwOption = (int)INTERNET_PER_CONN_OptionEnum.INTERNET_PER_CONN_FLAGS;
             Options[0].Value.dwValue = proxyKind;
-
-            // Set proxy name.           
+         
             Options[1] = new INTERNET_PER_CONN_OPTION();
             Options[1].dwOption =
                 (int)INTERNET_PER_CONN_OptionEnum.INTERNET_PER_CONN_PROXY_SERVER;
             Options[1].Value.pszValue = Marshal.StringToHGlobalAuto(proxyServer);
-
-            // Set bypass        
+      
             Options[2] = new INTERNET_PER_CONN_OPTION();
             Options[2].dwOption =
                 (int)INTERNET_PER_CONN_OptionEnum.INTERNET_PER_CONN_PROXY_BYPASS;
             Options[2].Value.pszValue = bypass == null ? IntPtr.Zero : Marshal.StringToHGlobalAuto(bypass);
 
-            // Initialize a INTERNET_PER_CONN_OPTION_LIST instance.
             INTERNET_PER_CONN_OPTION_LIST option_list = new INTERNET_PER_CONN_OPTION_LIST();
 
-            // default stuff
             option_list.Size = Marshal.SizeOf(option_list);
             option_list.Connection = connectionName == null ? IntPtr.Zero : Marshal.StringToHGlobalAuto(connectionName); ;
             option_list.OptionCount = Options.Length;
             option_list.OptionError = 0;
 
             var optSize = Marshal.SizeOf(typeof(INTERNET_PER_CONN_OPTION));
-            // make a pointer out of all that ...
+            // make a pointer to the 3 options
             var optionsPtr = Marshal.AllocCoTaskMem(optSize * Options.Length);
-            // copy the array over into that spot in memory ...
+            // copy the array over into that spot
             for (var i = 0; i < Options.Length; i++)
             {
                 var opt = new IntPtr(optionsPtr.ToInt64() + (i * optSize));
@@ -290,11 +281,10 @@ namespace NeoLoad.Client
 
             option_list.pOptions = optionsPtr;
 
-            // and then make a pointer out of the whole list
+            // and then make a pointer out of the list
             var ipcoListPtr = Marshal.AllocCoTaskMem(option_list.Size);
             Marshal.StructureToPtr(option_list, ipcoListPtr, false);
 
-            // Set internet settings.
             bool bReturn = InternetSetOption(IntPtr.Zero, (int)INTERNET_OPTION.INTERNET_OPTION_PER_CONNECTION_OPTION, ipcoListPtr, option_list.Size);
 
             // Free the allocated memory.
@@ -305,8 +295,7 @@ namespace NeoLoad.Client
         }
 
         /*
-         * These lines implement the Interface in the beginning of program 
-         * They cause the OS to refresh the settings, causing proxy to realy update
+         * OS refresh the settings, causing proxy to really update
          */
         private void updateProxySettings()
         {

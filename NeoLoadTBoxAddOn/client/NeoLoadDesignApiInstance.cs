@@ -199,16 +199,22 @@ namespace NeoLoad.Client
             {
                 _client.StopRecording(_stopRecordingBuilder.Build());
                 _client.SaveProject();
-                if (_systemProxyHelper != null)
-                {
-                    _systemProxyHelper.restoreProxy();
-                }
             }
             finally
             {
                 _recordStarted = false;
                 _instance = null;
-                _systemProxyHelper = null;
+                if (_systemProxyHelper != null)
+                {
+                    try
+                    {
+                        _systemProxyHelper.restoreProxy();
+                    }
+                    finally
+                    {
+                        _systemProxyHelper = null;
+                    }
+                }
             }
         }
     }
