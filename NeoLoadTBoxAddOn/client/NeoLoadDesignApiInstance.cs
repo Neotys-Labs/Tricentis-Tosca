@@ -129,7 +129,17 @@ namespace NeoLoad.Client
             {
                 _recordStarted = false;
                 _instance = null;
-                _systemProxyHelper = null;
+                if (_systemProxyHelper != null)
+                {
+                    try
+                    {
+                        _systemProxyHelper.restoreProxy();
+                    }
+                    catch (Exception ignored)
+                    {
+                    }
+                    _systemProxyHelper = null;
+                }
                 WriteExceptionToFile(e);
                 throw e;
             }
