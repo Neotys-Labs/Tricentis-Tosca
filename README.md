@@ -15,7 +15,7 @@ It allows you to interact with the NeoLoad [Design API](https://www.neotys.com/d
 | Author | Neotys |
 | License           | [BSD 2-Clause "Simplified"](https://github.com/Neotys-Labs/Tricentis-Tosca/blob/master/LICENSE) |
 | NeoLoad Licensing | License FREE edition, or Enterprise edition, or Professional with Integration & Advanced Usage|
-| Tested versions | Tricentis Tosca versions: <ul><li>12.x (12.2, 12.3)</li><li>13.x (13.0, 13.1, 13.2, 13.3, 13.4)</li><li>14.x (14.1, 14.2)</li></ul>[NeoLoad versions](https://www.neotys.com/support/download-neoload) from 6.6 to 7.10.
+| Tested versions | Tricentis Tosca versions: <ul><li>12.x (12.2, 12.3)</li><li>13.x (13.0, 13.1, 13.2, 13.3, 13.4)</li><li>14.x (14.1, 14.2)</li></ul>[NeoLoad versions](https://www.neotys.com/support/download-neoload) from 6.6 to 7.11.
 | Download Binaries | See the [latest release](https://github.com/Neotys-Labs/Tricentis-Tosca/releases/latest)|
 
 ## Setting up the NeoLoad Tricentis Tosca Add-on
@@ -146,6 +146,9 @@ Different causes that can produce an NL-DESIGN-ILLEGAL-STATE-FOR-OPERATION:
 * Not currently recording.
 
 ## ChangeLog
+
+* Version 2.5.1 (October 22, 2021):
+   * Fixed Web Transfer when the system proxy uses the "AutoConfigURL".
 
 * Version 2.5.0 (August 3, 2021): 
    * Basic Support for end user experience testing using Tosca.
