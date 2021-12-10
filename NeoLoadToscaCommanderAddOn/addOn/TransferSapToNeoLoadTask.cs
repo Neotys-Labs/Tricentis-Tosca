@@ -18,5 +18,18 @@ namespace NeoLoad.AddOn
             NeoLoadSettings.DeleteUserFile();
             return exec;
         }
+
+        public override int CompareTo(TCAddOnTask taskToCompare)
+        {
+           if(taskToCompare is TransferSapAndWebToNeoLoadTask)
+            {
+                return -1;
+            } 
+            else if (taskToCompare is TransferWebToNeoLoadTask)
+            {
+                return 1;
+            }
+            return 0;
+        }
     }
 }

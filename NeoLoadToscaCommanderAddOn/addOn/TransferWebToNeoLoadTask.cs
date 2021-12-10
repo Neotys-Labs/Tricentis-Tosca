@@ -18,5 +18,11 @@ namespace NeoLoad.AddOn
             NeoLoadSettings.DeleteUserFile();
             return exec;
         }
+
+        
+        public override int CompareTo(TCAddOnTask taskToCompare)
+        {
+           return -1;
+        }
     }
 }
