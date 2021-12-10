@@ -15,7 +15,7 @@ It allows you to interact with the NeoLoad [Design API](https://www.neotys.com/d
 | Author | Neotys |
 | License           | [BSD 2-Clause "Simplified"](https://github.com/Neotys-Labs/Tricentis-Tosca/blob/master/LICENSE) |
 | NeoLoad Licensing | License FREE edition, or Enterprise edition, or Professional with Integration & Advanced Usage|
-| Tested versions | Tricentis Tosca versions: <ul><li>12.x (12.2, 12.3)</li><li>13.x (13.0, 13.1, 13.2, 13.3, 13.4)</li><li>14.x (14.1, 14.2)</li></ul>[NeoLoad versions](https://www.neotys.com/support/download-neoload) from 6.6 to 7.11.
+| Tested versions | Tricentis Tosca versions: <ul><li>12.x (12.2, 12.3)</li><li>13.x (13.0, 13.1, 13.2, 13.3, 13.4)</li><li>14.x (14.1, 14.2)</li><li>15.x (15.0)</li></ul>[NeoLoad versions](https://www.neotys.com/support/download-neoload) from 6.6 to 8.0.
 | Download Binaries | See the [latest release](https://github.com/Neotys-Labs/Tricentis-Tosca/releases/latest)|
 
 ## Setting up the NeoLoad Tricentis Tosca Add-on
@@ -50,11 +50,11 @@ Before the transfer, go to windows proxy settings. Set "Automatically detect set
 After the transfer complete, reset the settings at their initial value.
 <p align="center"><img src="/screenshots/disable-enterprise-proxy.png" alt="Windows proxy seetings"/></p>
 
-## How to convert a Tricentis Tosca SAP script to a NeoLoad User Path
+## How to convert a Tricentis Tosca SAP GUI script to a NeoLoad User Path
 
-The NeoLoad Controller used to convert the Tosca SAP script must be 32 bits and launched in process mode (service mode is not supported). More information about NeoLoad Prerequisites for SAP GUI on [NeoLoad documentation](https://www.neotys.com/documents/doc/neoload/latest/en/html/#27113.htm).
+The NeoLoad Controller used to convert the Tosca SAP script must be launched in process mode (service mode is not supported). More information about NeoLoad Prerequisites for SAP GUI on [NeoLoad documentation](https://www.neotys.com/documents/doc/neoload/latest/en/html/#27113.htm).
 
-In Tricentis Tosca, right click on an execution of a Test Case and then **NeoLoad Add-on > Transfer SAP test case to NeoLoad**
+In Tricentis Tosca, right click on an execution of a Test Case and then **NeoLoad Add-on > Transfer SAP GUI test case to NeoLoad**
 NeoLoad starts the **SAP recording** at the first step named "SAP" or "SAP Login", and stops it at the end of the test case.
 
 <p align="center"><img src="/screenshots/transfertSAPtoNeoload.png" alt="transfer" /></p>
@@ -67,6 +67,15 @@ In Tricentis Tosca, right click on an execution of a Test Case and then **NeoLoa
 NeoLoad starts the **Web recording** at the beginning of the test case, and stops it at the end.
 
 <p align="center"><img src="/screenshots/transfertWEBtoNeoload.png" alt="transfer" /></p>
+
+## How to convert a Tricentis Tosca SAP GUI and Web script to a NeoLoad User Path
+
+The NeoLoad Controller used to convert the Tosca SAP script must be launched in process mode (service mode is not supported). More information about NeoLoad Prerequisites for SAP GUI on [NeoLoad documentation](https://www.neotys.com/documents/doc/neoload/latest/en/html/#27113.htm).
+
+In Tricentis Tosca, right click on an execution of a Test Case and then **NeoLoad Add-on > Transfer SAP GUI and Web test case to NeoLoad**
+NeoLoad starts the **recording** at the first step named "SAP" or "SAP Login", then both SAP GUI and Web are recorded, the record is stopped at the end of the test case.
+
+<p align="center"><img src="/screenshots/transfertSapAndWebToNeoload.png" alt="transfer" /></p>
 
 ## User Path Update
 
@@ -146,6 +155,10 @@ Different causes that can produce an NL-DESIGN-ILLEGAL-STATE-FOR-OPERATION:
 * Not currently recording.
 
 ## ChangeLog
+
+* Version 2.6.0 (December 16, 2021):
+   * Support SAP Gui and Web at once test case
+   * Improve created transaction in NeoLoad when there are no folders in Tosca.
 
 * Version 2.5.1 (October 22, 2021):
    * Fixed Web Transfer when the system proxy uses the "AutoConfigURL".

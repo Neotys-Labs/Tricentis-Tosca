@@ -27,7 +27,7 @@ namespace NeoLoad.Settings
             return directoryPath + "/neoload-tosca.properties";
         }
 
-        public static void WriteSettingsToUserFile(String recordWebOrSap)
+        public static void WriteSettingsToUserFile(String protocol)
         {
             using (TCAPI tcapi = TCAPI.Instance is null ? TCAPI.CreateInstance() : TCAPI.Instance)
             {
@@ -37,7 +37,7 @@ namespace NeoLoad.Settings
                     API_HOSTNAME_KEY + "=" + Settings.Default.NeoLoadApiHostname,
                     CREATE_TRANSACTION_BY_SAP_TCODE_KEY + "=" + Settings.Default.CreateTransactionBySapTCode,
                     HTTP2 + "=" + Settings.Default.Http2,
-                    RECORD_WEB_OR_SAP + "=" + recordWebOrSap,
+                    RECORD_WEB_OR_SAP + "=" + protocol,
                     TCAPI_VERSION + "=" + (APIVersionString == null ? tcapi.APIVersionAndBuild.ToString() : APIVersionString.GetValue(tcapi)),
                 };
                 System.IO.File.WriteAllLines(GetUserFilePath(), lines);

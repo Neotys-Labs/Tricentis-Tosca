@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="addOn\NeoLoadAddOn.cs" />
+    <Compile Include="addOn\TransferSapAndWebToNeoLoadTask.cs" />
     <Compile Include="addOn\TransferWebToNeoLoadTask.cs" />
     <Compile Include="settings\NeoLoadSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

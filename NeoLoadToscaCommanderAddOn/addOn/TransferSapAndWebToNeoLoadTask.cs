@@ -5,15 +5,15 @@ using Tricentis.TCAPIObjects.Objects;
 
 namespace NeoLoad.AddOn
 {
-    class TransferSapToNeoLoadTask : TCAddOnTask
+    class TransferSapAndWebToNeoLoadTask : TCAddOnTask
     {
         public override Type ApplicableType => typeof(ExecutionEntry);
 
-        public override string Name => "Transfer SAP GUI test case to NeoLoad";
+        public override string Name => "Transfer SAP GUI and Web test case to NeoLoad";
 
         public override TCObject Execute(TCObject objectToExecuteOn, TCAddOnTaskContext taskContext)
         {
-            NeoLoadSettings.WriteSettingsToUserFile("SAP");
+            NeoLoadSettings.WriteSettingsToUserFile("SAP_AND_WEB");
             var exec = (objectToExecuteOn as ExecutionEntry).Run();
             NeoLoadSettings.DeleteUserFile();
             return exec;
@@ -21,15 +21,7 @@ namespace NeoLoad.AddOn
 
         public override int CompareTo(TCAddOnTask taskToCompare)
         {
-           if(taskToCompare is TransferSapAndWebToNeoLoadTask)
-            {
-                return -1;
-            } 
-            else if (taskToCompare is TransferWebToNeoLoadTask)
-            {
-                return 1;
-            }
-            return 0;
+            return 1;
         }
     }
 }
