@@ -29,7 +29,7 @@ namespace NeoLoad.Listener
             }
             if (NeoLoadDesignApiInstance.GetInstance().IsRecordStarted())
             {
-                if (NeoLoadDesignApiInstance.GetInstance().IsRecordWeb() || !NeoLoadDesignApiInstance.GetInstance().IsCreateTransactionBySapTCode())
+                if (NeoLoadDesignApiInstance.GetInstance().IsRecordWebOnly() || !NeoLoadDesignApiInstance.GetInstance().IsCreateTransactionBySapTCode())
                 {
                     UpdateTransaction(testAction);
                 }
@@ -40,17 +40,17 @@ namespace NeoLoad.Listener
             {
                 // We are before SAP Login, we can start SAP recording in NeoLoad.
                 System.Threading.Thread.Sleep(2000);
-                NeoLoadDesignApiInstance.GetInstance().StartRecording(NeoLoadDesignApiInstance.Protocol.SAP);
+                NeoLoadDesignApiInstance.GetInstance().StartRecording();
                 if (!NeoLoadDesignApiInstance.GetInstance().IsCreateTransactionBySapTCode())
                 {
                     UpdateTransaction(testAction);
                 }
             }
 
-            if (NeoLoadDesignApiInstance.GetInstance().IsRecordWeb())
+            if (NeoLoadDesignApiInstance.GetInstance().IsRecordWebOnly())
             {
                 // We are before a web event, we can start WEB recording in NeoLoad.
-                NeoLoadDesignApiInstance.GetInstance().StartRecording(NeoLoadDesignApiInstance.Protocol.WEB);
+                NeoLoadDesignApiInstance.GetInstance().StartRecording();
                 UpdateTransaction(testAction);
             }
         }
@@ -63,7 +63,7 @@ namespace NeoLoad.Listener
             }
             if ((testAction is ISpecialExecutionTaskTestAction && (testAction as ISpecialExecutionTaskTestAction).GetParameter("SapConnection", true) != null) || testAction.Name.Value.Contains("Logon")) {
                 // We are after SAP Logon, we can start SAP recording in NeoLoad.
-                NeoLoadDesignApiInstance.GetInstance().StartRecording(NeoLoadDesignApiInstance.Protocol.SAP);
+                NeoLoadDesignApiInstance.GetInstance().StartRecording();
             }
         }
 
@@ -72,7 +72,7 @@ namespace NeoLoad.Listener
             var parentItem = RunContext.Current.Parent.Parent != null ? 
                 RunContext.Current.Parent.Parent.ExecutedItem 
                 : RunContext.Current.Parent.ExecutedItem;
-            var transactionName = parentItem is Folder ? (parentItem as Folder).Name : testAction.Name.Value;
+            var transactionName = parentItem is Folder && !(parentItem is ExecutionEntry) ? (parentItem as Folder).Name : testAction.Name.Value;
             NeoLoadDesignApiInstance.GetInstance().CreateTransaction(transactionName);
         }
 
@@ -85,10 +85,10 @@ namespace NeoLoad.Listener
                 NeoLoadDesignApiInstance.GetInstance().SetUserPathName(testCaseName + " - Tosca");
 
                 // Start recording for API Testing test cases
-                if (!NeoLoadDesignApiInstance.GetInstance().IsRecordStarted() && NeoLoadDesignApiInstance.GetInstance().IsRecordWeb())
+                if (!NeoLoadDesignApiInstance.GetInstance().IsRecordStarted() && NeoLoadDesignApiInstance.GetInstance().IsRecordWebOnly())
                 {
                     // We are before a web event, we can start WEB recording in NeoLoad.
-                    NeoLoadDesignApiInstance.GetInstance().StartRecording(NeoLoadDesignApiInstance.Protocol.WEB);
+                    NeoLoadDesignApiInstance.GetInstance().StartRecording();
                 }
             }
         }

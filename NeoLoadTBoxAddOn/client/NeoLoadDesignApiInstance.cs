@@ -29,7 +29,8 @@ namespace NeoLoad.Client
         public enum Protocol
         {
             SAP,
-            WEB
+            WEB,
+            SAP_AND_WEB
         };
 
         private NeoLoadDesignApiInstance(string host, string port, string token, bool createTransactionBySapTCode, bool http2, Protocol protocolToRecord) {
@@ -76,10 +77,15 @@ namespace NeoLoad.Client
 
         public bool IsRecordSap()
         {
-            return Protocol.SAP.Equals(_protocolToRecord);
+            return Protocol.SAP.Equals(_protocolToRecord) || Protocol.SAP_AND_WEB.Equals(_protocolToRecord);
         }
 
         public bool IsRecordWeb()
+        {
+            return Protocol.WEB.Equals(_protocolToRecord) || Protocol.SAP_AND_WEB.Equals(_protocolToRecord);
+        }
+
+        public bool IsRecordWebOnly()
         {
             return Protocol.WEB.Equals(_protocolToRecord);
         }
@@ -89,7 +95,7 @@ namespace NeoLoad.Client
             return _createTransactionBySapTCode;
         }
 
-        public void StartRecording(Protocol protocol)
+        public void StartRecording()
         {
             _recordStarted = true;
             try
@@ -109,12 +115,12 @@ namespace NeoLoad.Client
                         _startRecordingPB.virtualUser(_userPathName);
                     }
                 }
-                if (Protocol.SAP.Equals(protocol))
+                if (IsRecordSap())
                 {
                     _startRecordingPB.isSapGuiProtocol(true);
                     _startRecordingPB.isCreateTransactionBySapTCode(_createTransactionBySapTCode);
                 }
-                else if (Protocol.WEB.Equals(protocol))
+                if (IsRecordWeb())
                 {
                     _startRecordingPB.isHTTP2Protocol(_http2);
                     if(_systemProxyHelper == null)
@@ -146,7 +152,7 @@ namespace NeoLoad.Client
 
             try
             {
-                NeoloadRestApiInstance.GetInstance().SendUsageEvent("recording", protocol);
+                NeoloadRestApiInstance.GetInstance().SendUsageEvent("recording", _protocolToRecord);
             } catch(Exception e)
             {
                 // Do nothing if send event fails

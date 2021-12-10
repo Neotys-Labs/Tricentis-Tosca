@@ -147,6 +147,10 @@ Different causes that can produce an NL-DESIGN-ILLEGAL-STATE-FOR-OPERATION:
 
 ## ChangeLog
 
+* Version 2.6.0 (December 15, 2021):
+   * Support SAP Gui and Web at once test case
+   * Improve created transaction in NeoLoad when there is no folders in Tosca.
+
 * Version 2.5.1 (October 22, 2021):
    * Fixed Web Transfer when the system proxy uses the "AutoConfigURL".
 
