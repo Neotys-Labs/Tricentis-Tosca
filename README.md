@@ -50,11 +50,11 @@ Before the transfer, go to windows proxy settings. Set "Automatically detect set
 After the transfer complete, reset the settings at their initial value.
 <p align="center"><img src="/screenshots/disable-enterprise-proxy.png" alt="Windows proxy seetings"/></p>
 
-## How to convert a Tricentis Tosca SAP script to a NeoLoad User Path
+## How to convert a Tricentis Tosca SAP GUI script to a NeoLoad User Path
 
-The NeoLoad Controller used to convert the Tosca SAP script must be 32 bits and launched in process mode (service mode is not supported). More information about NeoLoad Prerequisites for SAP GUI on [NeoLoad documentation](https://www.neotys.com/documents/doc/neoload/latest/en/html/#27113.htm).
+The NeoLoad Controller used to convert the Tosca SAP script must be launched in process mode (service mode is not supported). More information about NeoLoad Prerequisites for SAP GUI on [NeoLoad documentation](https://www.neotys.com/documents/doc/neoload/latest/en/html/#27113.htm).
 
-In Tricentis Tosca, right click on an execution of a Test Case and then **NeoLoad Add-on > Transfer SAP test case to NeoLoad**
+In Tricentis Tosca, right click on an execution of a Test Case and then **NeoLoad Add-on > Transfer SAP GUI test case to NeoLoad**
 NeoLoad starts the **SAP recording** at the first step named "SAP" or "SAP Login", and stops it at the end of the test case.
 
 <p align="center"><img src="/screenshots/transfertSAPtoNeoload.png" alt="transfer" /></p>
@@ -67,6 +67,15 @@ In Tricentis Tosca, right click on an execution of a Test Case and then **NeoLoa
 NeoLoad starts the **Web recording** at the beginning of the test case, and stops it at the end.
 
 <p align="center"><img src="/screenshots/transfertWEBtoNeoload.png" alt="transfer" /></p>
+
+## How to convert a Tricentis Tosca SAP GUI and Web script to a NeoLoad User Path
+
+The NeoLoad Controller used to convert the Tosca SAP script must be launched in process mode (service mode is not supported). More information about NeoLoad Prerequisites for SAP GUI on [NeoLoad documentation](https://www.neotys.com/documents/doc/neoload/latest/en/html/#27113.htm).
+
+In Tricentis Tosca, right click on an execution of a Test Case and then **NeoLoad Add-on > Transfer SAP GUI and Web test case to NeoLoad**
+NeoLoad starts the **recording** at the first step named "SAP" or "SAP Login", then both SAP GUI and Web are recorded, the record is stopped it at the end of the test case.
+
+<p align="center"><img src="/screenshots/transfertSapAndWebToNeoload.png" alt="transfer" /></p>
 
 ## User Path Update
 
