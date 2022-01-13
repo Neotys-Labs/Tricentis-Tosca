@@ -73,7 +73,7 @@ NeoLoad starts the **Web recording** at the beginning of the test case, and stop
 The NeoLoad Controller used to convert the Tosca SAP script must be launched in process mode (service mode is not supported). More information about NeoLoad Prerequisites for SAP GUI on [NeoLoad documentation](https://www.neotys.com/documents/doc/neoload/latest/en/html/#27113.htm).
 
 In Tricentis Tosca, right click on an execution of a Test Case and then **NeoLoad Add-on > Transfer SAP GUI and Web test case to NeoLoad**
-NeoLoad starts the **recording** at the first step named "SAP" or "SAP Login", then both SAP GUI and Web are recorded, the record is stopped at the end of the test case.
+NeoLoad starts the **recording** at the first step named "SAP" or "SAP Login", then both SAP GUI and Web are recorded, the recording is stopped at the end of the test case.
 
 <p align="center"><img src="/screenshots/transfertSapAndWebToNeoload.png" alt="transfer" /></p>
 
