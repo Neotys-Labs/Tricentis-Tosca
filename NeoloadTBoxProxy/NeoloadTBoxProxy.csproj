@@ -51,23 +51,23 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Tricentis.Automation.HtmlEngine">
-      <HintPath>C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\TBox\Tricentis.Automation.HtmlEngine.dll</HintPath>
+      <HintPath>$(TBox_Home)\Engines\Tricentis.Automation.HtmlEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Tricentis.Automation.Interaction">
-      <HintPath>C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\TBox\Tricentis.Automation.Interaction.dll</HintPath>
+      <HintPath>$(TBox_Home)\Tricentis.Automation.Interaction.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Tricentis.Automation.Win32Engine">
-      <HintPath>C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\TBox\Tricentis.Automation.Win32Engine.dll</HintPath>
+    <Reference Include="Tricentis.Automation.Win32Base">
+      <HintPath>$(TBox_Home)\Tricentis.Automation.Win32Base.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Tricentis.AutomationBase">
-      <HintPath>C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\TBox\Tricentis.AutomationBase.dll</HintPath>
+      <HintPath>$(TBox_Home)\Tricentis.AutomationBase.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Tricentis.AutomationObjects">
-      <HintPath>C:\Program Files (x86)\TRICENTIS\Tosca Testsuite\TBox\Tricentis.AutomationObjects.dll</HintPath>
+      <HintPath>$(TBox_Home)\Tricentis.AutomationObjects.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>

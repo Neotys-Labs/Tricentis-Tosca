@@ -58,16 +58,16 @@
     <Reference Include="System.Configuration" />
     <Reference Include="TCAddOn, Version=12.0.0.18421, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\ToscaCommander\TCAddOn.dll</HintPath>
+      <HintPath>$(Commander_Home)\TCAddOn.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="TCAPI">
-      <HintPath>..\..\..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\ToscaCommander\TCAPI.dll</HintPath>
+      <HintPath>$(Commander_Home)\TCAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="TCAPIObjects, Version=12.0.0.18848, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\ToscaCommander\TCAPIObjects.dll</HintPath>
+      <HintPath>$(Commander_Home)\TCAPIObjects.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
