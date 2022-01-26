@@ -1,20 +1,35 @@
-﻿using System.Collections.Generic;
-using System.Runtime.Remoting.Channels;
+﻿using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using System.Text;
 using Tricentis.Automation.Contract;
 using Tricentis.Automation.Engines.Technicals.Html;
 using Tricentis.Automation.Execution.Context;
-using Tricentis.Automation.Win32Base.Services;
-
 
 namespace NeoLoadAddOn
 {
     public static class NeoLoadExtensionHelper
     {
-        public static string GetForeGroundWindowCaption() {
-            var windowTechnical = ServiceFactory.CreateWindowService().GetForegroundWindow();
-            return windowTechnical?.Caption ?? "";
-        }
+        [DllImport("user32.dll")]
+        static extern IntPtr GetForegroundWindow();
 
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        static extern int GetWindowTextLength(IntPtr hwnd);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
+
+        public static string GetForeGroundWindowCaption() {
+            var win = GetForegroundWindow();
+            if (win == IntPtr.Zero) return string.Empty;
+
+            var length = GetWindowTextLength(win);
+            if (length == 0) return string.Empty;
+
+            var buffer = new StringBuilder(length + 1);
+            GetWindowText(win, buffer, buffer.Capacity);
+            return buffer.ToString();
+        }
 
         /// <summary>
         /// Creates a List of strings of the currently executed AbstractAuomationObject and its parent up to the TestCase level
