@@ -58,10 +58,6 @@
       <HintPath>$(TBox_Home)\Tricentis.Automation.Interaction.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Tricentis.Automation.Win32Base">
-      <HintPath>$(TBox_Home)\Tricentis.Automation.Win32Base.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Tricentis.AutomationBase">
       <HintPath>$(TBox_Home)\Tricentis.AutomationBase.dll</HintPath>
       <Private>False</Private>
