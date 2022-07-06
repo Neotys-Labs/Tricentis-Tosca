@@ -226,7 +226,7 @@ namespace NeoLoad.Client
         {
             string newProxyServer = String.Format("http={0}:{1};https={0}:{1}", host, port);
             int newProxyKind = (int)(INTERNET_OPTION_PER_CONN_FLAGS.PROXY_TYPE_DIRECT | INTERNET_OPTION_PER_CONN_FLAGS.PROXY_TYPE_PROXY);
-            setConnectionProxy(newProxyKind, _connectionName, newProxyServer, null);
+            setConnectionProxy(newProxyKind, _connectionName, newProxyServer, excluded);
             updateProxySettings();
         }
 

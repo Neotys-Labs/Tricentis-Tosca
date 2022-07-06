@@ -126,7 +126,8 @@ namespace NeoLoad.Client
                     if(_systemProxyHelper == null)
                     {
                         _systemProxyHelper = new SystemProxyHelper(_apiPort);
-                        _systemProxyHelper.setProxy(_apiHost, _recorderProxyPort, "");
+                        string excluded = _apiHost != "localhost" ? _apiHost : null;
+                        _systemProxyHelper.setProxy(_apiHost, _recorderProxyPort, excluded);
                     }
                 }
 
