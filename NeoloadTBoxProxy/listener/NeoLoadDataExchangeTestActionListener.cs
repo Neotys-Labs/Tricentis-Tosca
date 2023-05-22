@@ -50,8 +50,8 @@ namespace NeoLoadAddOn.listener
                 port = "7400";
             if (!MainConfiguration.Instance.TryGet("NeoLoadApiKey", out string key))
                 key = "";
-            
-            string scriptInfo = RunContext.GetAdditionalExecutionInfo("executionentry.nodepath");
+
+            RunContext.Instance.TryGetGetAdditionalExecutionInfo("executionentry.nodepath", out string scriptInfo);
             string softwareInfo = NeoLoadExtensionHelper.GetForeGroundWindowCaption();
 
             NeoLoadDataExchangeApiInstance.GetInstance().Connect(hostname, port, key, scriptInfo, softwareInfo);
@@ -113,7 +113,7 @@ namespace NeoLoadAddOn.listener
         public override void PostExecution(ExecutionResult result)
         {
             if (NeoLoadDataExchangeApiInstance.GetInstance().IsConnected &&
-                RunContext.Current?.Executor is IAutomationObjectTestCaseItemExecutor<ExecutionEntry> executor)
+                RunContext.Instance.Current?.Executor is IAutomationObjectTestCaseItemExecutor<ExecutionEntry> executor)
             {
                 List<string> path = new List<string>
                 {

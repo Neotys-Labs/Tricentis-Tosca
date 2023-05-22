@@ -69,9 +69,9 @@ namespace NeoLoad.Listener
 
         private void UpdateTransaction(ITestAction testAction)
         {
-            var parentItem = RunContext.Current.Parent.Parent != null ? 
-                RunContext.Current.Parent.Parent.ExecutedItem 
-                : RunContext.Current.Parent.ExecutedItem;
+            var parentItem = RunContext.Instance.Current.Parent.Parent != null ? 
+                RunContext.Instance.Current.Parent.Parent.ExecutedItem 
+                : RunContext.Instance.Current.Parent.ExecutedItem;
             var transactionName = parentItem is Folder && !(parentItem is ExecutionEntry) ? (parentItem as Folder).Name : testAction.Name.Value;
             NeoLoadDesignApiInstance.GetInstance().CreateTransaction(transactionName);
         }
@@ -80,8 +80,8 @@ namespace NeoLoad.Listener
         {
             if (IsSendingToNeoLoad())
             {
-                string testCaseId = RunContext.GetAdditionalExecutionInfo("testcase.uniqueid");
-                string testCaseName = RunContext.GetAdditionalExecutionInfo("testcase.name");
+                RunContext.Instance.TryGetGetAdditionalExecutionInfo("testcase.uniqueid", out string testCaseId);
+                RunContext.Instance.TryGetGetAdditionalExecutionInfo("testcase.name", out string testCaseName);
                 NeoLoadDesignApiInstance.GetInstance().SetUserPathName(testCaseName + " - Tosca");
 
                 // Start recording for API Testing test cases

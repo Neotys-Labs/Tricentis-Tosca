@@ -38,7 +38,7 @@ namespace NeoLoadAddOn
         public static List<string> CreatePath()
         {
             List<string> path = new List<string>();
-            RunContext context = RunContext.Current;
+            Run context = RunContext.Instance.Current;
 
             while (context != null)
             {

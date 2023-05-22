@@ -142,7 +142,7 @@ namespace NeoLoad.Client
                     {
                         _systemProxyHelper.restoreProxy();
                     }
-                    catch (Exception ignored)
+                    catch (Exception)
                     {
                     }
                     _systemProxyHelper = null;
