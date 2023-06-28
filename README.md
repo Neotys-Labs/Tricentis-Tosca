@@ -156,6 +156,9 @@ Different causes that can produce an NL-DESIGN-ILLEGAL-STATE-FOR-OPERATION:
 
 ## ChangeLog
 
+* Version 2.7.0 (June 28, 2023):
+    * Support of Tosca version 2023.1
+
 * Version 2.6.1 (July 6, 2022):
     * Fixed Web Transfer when Tosca and NeoLoad are not on the same machine.
 
