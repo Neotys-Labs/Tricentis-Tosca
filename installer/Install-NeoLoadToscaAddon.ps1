@@ -1,5 +1,4 @@
 $NEOLOAD_ADDON_NAME = 'NeoLoad Add-on for Tricentis Tosca'
-$TOSCA_SOFTWARE_NAME = 'Tosca'
 $FOLDERS_TO_PROCESS = @('TBox', 'ToscaCommander')
 $FILES_TO_PROCESS = @('NeoLoadTBoxAddOn.dll', 'NeoloadTBoxProxy.dll', 'NeoLoadToscaCommanderAddOn.dll')
 
@@ -28,24 +27,24 @@ function Invoke-StepOne {
 
 function Invoke-StepTwo {
     $RegistryPaths = @(
-        "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*"
-        "HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*"
+		"HKLM:\SOFTWARE\TRICENTIS"
+		"HKLM:\Software\Wow6432Node\TRICENTIS"
     )
-    $Results = @((Get-ItemProperty $RegistryPaths) -Match $TOSCA_SOFTWARE_NAME | Where-Object { $_.InstallLocation })
+    $Results = @((Get-ItemProperty $RegistryPaths) | Where-Object { $_.Home_Long })
     if ($Results.Length -gt 1) {
-        $Title = ("We have found several installations of $TOSCA_SOFTWARE_NAME installed on your machine.")
+        $Title = ("We have found several installations of Tosca installed on your machine.")
         $Prompt = "Choose one installation path"
         $Counter = 0
-        $Choices = $Results | ForEach-Object { New-Object System.Management.Automation.Host.ChoiceDescription ("&$Counter - " + $_.InstallLocation) ; $Counter++ }
+        $Choices = $Results | ForEach-Object { New-Object System.Management.Automation.Host.ChoiceDescription ("&$Counter - " + $_.Home_Long) ; $Counter++ }
         $Default = 0
         $Choice = $Host.UI.PromptForChoice($Title, $Prompt, $Choices, $Default)
-        Invoke-StepThree($Results[$Choice].InstallLocation)
+        Invoke-StepThree($Results[$Choice].Home_Long)
     }
     elseif ($Results.Length -eq 1) {
-        Invoke-StepThree($Results[0].InstallLocation)
+        Invoke-StepThree($Results[0].Home_Long)
     }
     else {
-        Write-Host ("No installation of $TOSCA_SOFTWARE_NAME could be found. Make sure it is correctly installed before running this script.") -ForegroundColor Red
+        Write-Host ("No installation of Tosca could be found. Make sure it is correctly installed before running this script.") -ForegroundColor Red
     }
 }
 
@@ -55,31 +54,31 @@ function Invoke-StepThree {
     )
     $FoldersToCopy = Get-ChildItem | Where-Object { $_ -in $FOLDERS_TO_PROCESS }
     if($FoldersToCopy.Length -eq $FOLDERS_TO_PROCESS.Length) {
-        $FoldersToCopy | ForEach-Object { 
+        $FoldersToCopy | ForEach-Object {
             Write-Host ("Copying folder '$_' to destination : '$InstallLocation'");
             Copy-Item -Path $_ -Destination $InstallLocation -Force -Recurse;
         }
-        $FilesToUnblock = Get-ChildItem -Path $InstallLocation -Recurse | 
-            Where-Object { $_ -in $FOLDERS_TO_PROCESS } | 
-            Get-ChildItem | 
-            Where-Object { $_ -in $FILES_TO_PROCESS } | 
+        $FilesToUnblock = Get-ChildItem -Path $InstallLocation -Recurse |
+            Where-Object { $_ -in $FOLDERS_TO_PROCESS } |
+            Get-ChildItem |
+            Where-Object { $_ -in $FILES_TO_PROCESS } |
             ForEach-Object { $_.FullName }
         if($FilesToUnblock.Length -eq $FILES_TO_PROCESS.Length) {
             $FilesToUnblock | ForEach-Object {
                 Invoke-UnblockFile($_);
             }
-            Invoke-StepFour            
+            Invoke-StepFour
         }
         else {
             Write-Error "Source files to copy could not be located"
-        }         
+        }
     } else {
         Write-Error "Source folders to copy could not be located"
     }
 }
 
 function Invoke-StepFour {
-    Write-Host ("$NEOLOAD_ADDON_NAME has been successfully installed. You must restart $TOSCA_SOFTWARE_NAME before you can see the changes being applied.") -ForegroundColor Green;
+    Write-Host ("$NEOLOAD_ADDON_NAME has been successfully installed. You must restart Tosca before you can see the changes being applied.") -ForegroundColor Green;
 }
 
 # Helper functions
