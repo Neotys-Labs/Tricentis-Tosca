@@ -1,4 +1,5 @@
 $NEOLOAD_ADDON_NAME = 'NeoLoad Add-on for Tricentis Tosca'
+$TOSCA_SOFTWARE_NAME = 'Tosca'
 $FOLDERS_TO_PROCESS = @('TBox', 'ToscaCommander')
 $FILES_TO_PROCESS = @('NeoLoadTBoxAddOn.dll', 'NeoloadTBoxProxy.dll', 'NeoLoadToscaCommanderAddOn.dll')
 
@@ -27,12 +28,12 @@ function Invoke-StepOne {
 
 function Invoke-StepTwo {
     $RegistryPaths = @(
-		"HKLM:\SOFTWARE\TRICENTIS"
-		"HKLM:\Software\Wow6432Node\TRICENTIS"
+		"HKLM:\SOFTWARE\*"
+		"HKLM:\Software\Wow6432Node\*"
     )
-    $Results = @((Get-ItemProperty $RegistryPaths) | Where-Object { $_.Home_Long })
+    $Results = @((Get-ItemProperty $RegistryPaths) -Match $TOSCA_SOFTWARE_NAME  | Where-Object { $_.Home_Long })
     if ($Results.Length -gt 1) {
-        $Title = ("We have found several installations of Tosca installed on your machine.")
+        $Title = ("We have found several installations of $TOSCA_SOFTWARE_NAME installed on your machine.")
         $Prompt = "Choose one installation path"
         $Counter = 0
         $Choices = $Results | ForEach-Object { New-Object System.Management.Automation.Host.ChoiceDescription ("&$Counter - " + $_.Home_Long) ; $Counter++ }
@@ -44,7 +45,7 @@ function Invoke-StepTwo {
         Invoke-StepThree($Results[0].Home_Long)
     }
     else {
-        Write-Host ("No installation of Tosca could be found. Make sure it is correctly installed before running this script.") -ForegroundColor Red
+        Write-Host ("No installation of $TOSCA_SOFTWARE_NAME could be found. Make sure it is correctly installed before running this script.") -ForegroundColor Red
     }
 }
 
@@ -78,7 +79,7 @@ function Invoke-StepThree {
 }
 
 function Invoke-StepFour {
-    Write-Host ("$NEOLOAD_ADDON_NAME has been successfully installed. You must restart Tosca before you can see the changes being applied.") -ForegroundColor Green;
+    Write-Host ("$NEOLOAD_ADDON_NAME has been successfully installed. You must restart $TOSCA_SOFTWARE_NAME before you can see the changes being applied.") -ForegroundColor Green;
 }
 
 # Helper functions
