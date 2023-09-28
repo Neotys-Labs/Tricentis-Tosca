@@ -18,6 +18,15 @@ It allows you to interact with the NeoLoad [Design API](https://www.neotys.com/d
 | Tested versions | Tricentis Tosca versions: <ul><li>12.x (12.2, 12.3)</li><li>13.x (13.0, 13.1, 13.2, 13.3, 13.4)</li><li>14.x (14.1, 14.2, 14.3)</li><li>15.x (15.0)</li><li>2023.x (2023.1)</li></ul>[NeoLoad versions](https://www.neotys.com/support/download-neoload) from 6.6 to 2023.3.
 | Download Binaries | See the [latest release](https://github.com/Neotys-Labs/Tricentis-Tosca/releases/latest)|
 
+## Compatibility
+
+You can refer to the following table to find which version of this addon to use based on your Tosca version.
+
+| Tosca Version      | NeoLoad Tosca Addon Version |
+| ------------------ | --------------------------- |
+| 2023.1.X and above | 2.7.X                       |
+| 16.0.X and below   | 2.6.X                       |
+
 ## Setting up the NeoLoad Tricentis Tosca Add-on
 
 1. Download and unzip the [latest release](https://github.com/Neotys-Labs/Tricentis-Tosca/releases/latest).
